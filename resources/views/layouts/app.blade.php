@@ -72,7 +72,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-4" id="react-app">
             @yield('content')
         </main>
     </div>

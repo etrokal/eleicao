@@ -1,7 +1,16 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 
-class Example extends Component {
+class CadastroMesario extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+
+    }
+
+  }
+
+
   render() {
     return (
       <div className="container">
@@ -21,6 +30,6 @@ class Example extends Component {
 
 export default Example;
 
-if (document.getElementById("example")) {
-  ReactDOM.render(<Example />, document.getElementById("example"));
+if (document.getElementById("cadastro-mesario-app")) {
+  ReactDOM.render(<CadastroMesario />, document.getElementById("cadastro-mesario-app"));
 }

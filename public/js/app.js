@@ -68889,9 +68889,10 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+// require('./components/Example');
 
 
-__webpack_require__(/*! ./components/Example */ "./resources/js/components/Example.js");
+__webpack_require__(/*! ./components/usuario/cadastro/CadastroUsuario */ "./resources/js/components/usuario/cadastro/CadastroUsuario.js");
 
 /***/ }),
 
@@ -68940,10 +68941,74 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
-/***/ "./resources/js/components/Example.js":
-/*!********************************************!*\
-  !*** ./resources/js/components/Example.js ***!
-  \********************************************/
+/***/ "./resources/js/components/usuario/cadastro/BarraDeComandos.js":
+/*!*********************************************************************!*\
+  !*** ./resources/js/components/usuario/cadastro/BarraDeComandos.js ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+var BarraDeComandos =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(BarraDeComandos, _React$Component);
+
+  function BarraDeComandos() {
+    _classCallCheck(this, BarraDeComandos);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(BarraDeComandos).apply(this, arguments));
+  }
+
+  _createClass(BarraDeComandos, [{
+    key: "render",
+    value: function render() {
+      var _this = this;
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "btn btn-primary",
+        type: "button",
+        onClick: function onClick() {
+          return _this.props.novoUsuario();
+        }
+      }, "Novo Usu\xE1rio"));
+    }
+  }]);
+
+  return BarraDeComandos;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (BarraDeComandos);
+
+/***/ }),
+
+/***/ "./resources/js/components/usuario/cadastro/CadastroUsuario.js":
+/*!*********************************************************************!*\
+  !*** ./resources/js/components/usuario/cadastro/CadastroUsuario.js ***!
+  \*********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -68953,29 +69018,358 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _BarraDeComandos__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./BarraDeComandos */ "./resources/js/components/usuario/cadastro/BarraDeComandos.js");
+/* harmony import */ var _FormUsuario__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./FormUsuario */ "./resources/js/components/usuario/cadastro/FormUsuario.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 
 
-function Example() {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "container"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "row justify-content-center"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-md-8"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "card"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "card-header"
-  }, "Example Component"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "card-body"
-  }, "I'm an example component!")))));
+
+
+
+
+var CadastroUsuario =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(CadastroUsuario, _React$Component);
+
+  function CadastroUsuario(props) {
+    var _this;
+
+    _classCallCheck(this, CadastroUsuario);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(CadastroUsuario).call(this, props));
+    _this.usuarioVazio = {
+      id: "",
+      name: "",
+      email: "",
+      password: "",
+      password_confirm: "",
+      cpf: "",
+      rg: ""
+    };
+    _this.state = {
+      mostraFormNovoUsuario: false,
+      usuarioSelecionado: _this.usuarioVazio
+    };
+    return _this;
+  }
+
+  _createClass(CadastroUsuario, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {}
+  }, {
+    key: "mostraFormNovoUsuario",
+    value: function mostraFormNovoUsuario() {
+      this.setState({
+        mostraFormNovoUsuario: true,
+        usuarioSelecionado: this.usuarioVazio
+      });
+    }
+  }, {
+    key: "escondeFormNovoUsuario",
+    value: function escondeFormNovoUsuario() {
+      this.setState({
+        mostraFormNovoUsuario: false
+      });
+    }
+  }, {
+    key: "salvarUsuario",
+    value: function salvarUsuario(usuario) {
+      var _this2 = this;
+
+      return new Promise(function (resolve, reject) {
+        axios__WEBPACK_IMPORTED_MODULE_4___default.a.post("/usuario", usuario).then(function (result) {
+          _this2.setState({
+            usuarioSelecionado: _this2.data.usuario
+          });
+
+          resolve(result.data);
+        })["catch"](function (error) {
+          reject(error);
+        });
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this3 = this;
+
+      var formNovoUsuario = this.state.mostraFormNovoUsuario ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FormUsuario__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        usuario: this.state.usuarioSelecionado,
+        escondeForm: function escondeForm() {
+          return _this3.escondeFormNovoUsuario();
+        },
+        salvarUsuario: function salvarUsuario(usuario) {
+          return _this3.salvarUsuario();
+        }
+      }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null);
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_BarraDeComandos__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        novoUsuario: function novoUsuario() {
+          return _this3.mostraFormNovoUsuario();
+        }
+      }))), formNovoUsuario);
+    }
+  }]);
+
+  return CadastroUsuario;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (CadastroUsuario);
+
+if (document.getElementById("cadastro-usuario-app")) {
+  react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(CadastroUsuario, null), document.getElementById("cadastro-usuario-app"));
 }
 
-/* harmony default export */ __webpack_exports__["default"] = (Example);
+/***/ }),
 
-if (document.getElementById('example')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Example, null), document.getElementById('example'));
+/***/ "./resources/js/components/usuario/cadastro/FormUsuario.js":
+/*!*****************************************************************!*\
+  !*** ./resources/js/components/usuario/cadastro/FormUsuario.js ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return FormUsuario; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _util_cpf__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../util/cpf */ "./resources/js/util/cpf.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+var FormUsuario =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(FormUsuario, _React$Component);
+
+  // TODO: Adicionar foto
+  function FormUsuario(props) {
+    var _this;
+
+    _classCallCheck(this, FormUsuario);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(FormUsuario).call(this, props));
+    _this.state = {
+      id: _this.props.usuario.id,
+      name: _this.props.usuario.name,
+      email: _this.props.usuario.email,
+      password: "",
+      password_confirm: "",
+      cpf: _this.props.usuario.cpf,
+      rg: _this.props.usuario.rg
+    };
+    return _this;
+  }
+
+  _createClass(FormUsuario, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      $("#form-usuario-modal").modal("show"); // this.validarCpf();
+    }
+  }, {
+    key: "validarCpf",
+    value: function validarCpf() {
+      // Validar CPF
+      if (!Object(_util_cpf__WEBPACK_IMPORTED_MODULE_1__["default"])(this.state.cpf)) {
+        var inputCpf = document.getElementById("cpf");
+        inputCpf.setCustomValidity("O CPF deve ser válido.");
+      } else {
+        var _inputCpf = document.getElementById("cpf");
+
+        _inputCpf.setCustomValidity("");
+      }
+    }
+  }, {
+    key: "getUsuario",
+    value: function getUsuario() {
+      var usuario = {
+        id: this.state.id,
+        name: this.state.name,
+        email: this.state.email,
+        password: this.state.password,
+        password_confirm: this.state.password_confirm,
+        cpf: this.state.cpf,
+        rg: this.state.rg
+      };
+      return usuario;
+    }
+  }, {
+    key: "submit",
+    value: function submit() {
+      this.props.salvarUsuario(this.getUsuario());
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var tituloModal = this.state.id ? "Editar Usuário" : "Novo Usuário";
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "form-usuario-modal",
+        className: "modal",
+        tabIndex: "-1",
+        role: "dialog"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-dialog",
+        role: "document"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-content"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        action: "",
+        method: "POST"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-header"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+        className: "modal-title"
+      }, tituloModal)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-body"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "name"
+      }, "Nome"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        id: "name",
+        className: "form-control",
+        required: true,
+        maxLength: "191"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "email"
+      }, "E-mail"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "email",
+        id: "email",
+        className: "form-control",
+        required: true,
+        maxLength: "191"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "cpf"
+      }, "CPF"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "cpf",
+        id: "cpf",
+        className: "form-control",
+        required: true,
+        maxLength: "191",
+        onInput: function onInput() {
+          return _this2.validarCpf();
+        }
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "rg"
+      }, "RG"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "rg",
+        id: "rg",
+        className: "form-control",
+        required: true,
+        maxLength: "191",
+        onInput: function onInput() {
+          return _this2.validarCpf();
+        }
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal-footer"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        type: "button",
+        className: "btn btn-secondary",
+        "data-dismiss": "modal",
+        onClick: function onClick() {
+          return _this2.props.escondeForm();
+        }
+      }, "Fechar"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        type: "submit",
+        className: "btn btn-primary",
+        onClick: function onClick() {
+          return _this2.submit();
+        }
+      }, "Salvar"))))));
+    }
+  }]);
+
+  return FormUsuario;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+
+
+/***/ }),
+
+/***/ "./resources/js/util/cpf.js":
+/*!**********************************!*\
+  !*** ./resources/js/util/cpf.js ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ValidarCpf; });
+function ValidarCpf(strCPF) {
+  var Soma = 0;
+  var Resto;
+  var thisCPF = strCPF.replace(/\D/, "");
+  if (thisCPF == "00000000000") return false;
+
+  for (var i = 1; i <= 9; i++) {
+    Soma = Soma + parseInt(thisCPF.substring(i - 1, i)) * (11 - i);
+  }
+
+  Resto = Soma * 10 % 11;
+  if (Resto == 10 || Resto == 11) Resto = 0;
+  if (Resto != parseInt(thisCPF.substring(9, 10))) return false;
+  Soma = 0;
+
+  for (var _i = 1; _i <= 10; _i++) {
+    Soma = Soma + parseInt(thisCPF.substring(_i - 1, _i)) * (12 - _i);
+  }
+
+  Resto = Soma * 10 % 11;
+  if (Resto == 10 || Resto == 11) Resto = 0;
+  if (Resto != parseInt(thisCPF.substring(10, 11))) return false;
+  return true;
 }
 
 /***/ }),
