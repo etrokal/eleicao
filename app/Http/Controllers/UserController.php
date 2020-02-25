@@ -22,6 +22,29 @@ class UserController extends Controller
         return response()->json($user);
     }
 
+    public function list(Request $request) {
+        $offset = $request->input('offset') ? $request->input('offset') : 0;
+        $limit = $request->input('limit') ? $request->input('offset') : 15;
+        $orderBy = $request->input('orderBy') ? preg_replace('/\W/', '', $request->input('orderBy')) : 'id';
+        $orderAsc = $request->input('orderAsc') === FALSE ? 'desc' : 'asc';
+        $filter = $request->input('filter');
+
+        $usersQuery = User::skip($offset)->take($limit);
+
+        if(!empty($orderBy)) {
+            $usersQuery->orderBy($orderBy, $orderAsc);
+        }
+
+        if(!empty($filter)) {
+            $usersQuery
+                ->where('name', 'like', $filter)
+                ->orWhere('email', 'like', $filter)
+                ->orWhere('cpf', 'like', $filter);
+        }
+
+        return response()->json($usersQuery->get());
+    }
+
 
 
     // VERIFICACOES

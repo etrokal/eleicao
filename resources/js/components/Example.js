@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 
-class Example extends Component {
+export default class Example extends Component {
   render() {
     return (
       <div className="container">
@@ -18,8 +18,6 @@ class Example extends Component {
     );
   }
 }
-
-export default Example;
 
 if (document.getElementById("example")) {
   ReactDOM.render(<Example />, document.getElementById("example"));

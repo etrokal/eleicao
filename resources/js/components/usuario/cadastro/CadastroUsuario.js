@@ -3,6 +3,9 @@ import ReactDOM from "react-dom";
 
 import BarraDeComandos from "./BarraDeComandos";
 import FormUsuario from "./FormUsuario";
+import DataTable from "./DataTable";
+import UserDataModal from "./UserDataModal";
+
 import Axios from "axios";
 
 class CadastroUsuario extends React.Component {
@@ -21,12 +24,27 @@ class CadastroUsuario extends React.Component {
     };
 
     this.state = {
-      mostraFormNovoUsuario: false,
-      usuarioSelecionado: this.usuarioVazio
+      mostraFormUsuario: false,
+      usuarioSelecionado: this.usuarioVazio,
+      usuarios: [],
+      orderParams: {
+        orderBy: "id",
+        orderAsc: true,
+        offset: 0,
+        limit: 15,
+        filterText: ""
+      },
+      showUserDataModal: false
     };
 
-    this.mostraFormNovoUsuario = this.mostraFormNovoUsuario.bind(this);
-    this.escondeFormNovoUsuario = this.escondeFormNovoUsuario.bind(this);
+    this.fetchUserList = this.fetchUserList.bind(this);
+
+    this.mostraFormUsuario = this.mostraFormUsuario.bind(this);
+    this.escondeFormUsuario = this.escondeFormUsuario.bind(this);
+    this.showUserDataModal = this.showUserDataModal.bind(this);
+    this.hideUserDataModal = this.hideUserDataModal.bind(this);
+
+    this.handleAxiosError = this.handleAxiosError.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handleCpfChange = this.handleCpfChange.bind(this);
@@ -37,11 +55,27 @@ class CadastroUsuario extends React.Component {
     );
     this.handleAdmin = this.handleAdmin.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+
+    this.handleShowUser = this.handleShowUser.bind(this);
   }
 
+  componentDidMount() {}
 
+  fetchUserList() {
+    Axios.get("/usuario/list")
+      .then(result => {
+        this.setState({
+          usuarios: result.data
+        });
+      })
+      .catch(this.handleAxiosError);
+  }
 
-  // HANDLERS USUARIO
+  handleAxiosError(error) {
+    console.log(error);
+  }
+
+  // HANDLERS FORM USUARIO
   handleNameChange(value) {
     const usuarioSelecionado = this.state.usuarioSelecionado;
     usuarioSelecionado.name = value;
@@ -111,10 +145,10 @@ class CadastroUsuario extends React.Component {
         const usuarioSelecionado = this.state.usuarioSelecionado;
 
         this.setState({
-          usuarioSelecionado: Object.assign(usuarioSelecionado, result.data)
+          usuarioSelecionado: Object.assign(this.usuarioVazio, result.data)
         });
 
-        this.escondeFormNovoUsuario();
+        this.escondeFormUsuario();
         toastr.success("Usuário salvo com sucesso!");
         // TODO: atualizar lista de usuários
       })
@@ -128,26 +162,46 @@ class CadastroUsuario extends React.Component {
       });
   }
 
+  // HANDLERS DATA TABLE
+  handleShowUser(user) {
+    this.setState({
+      usuarioSelecionado: Object.assign(this.usuarioVazio, user)
+    });
+    this.showUserDataModal();
+  }
+
   // INTERFACE CHANGES
-  mostraFormNovoUsuario() {
+  mostraFormUsuario() {
     const usuarioSelecionado = this.state.usuarioSelecionado;
     this.setState({
-      mostraFormNovoUsuario: true,
+      mostraFormUsuario: true,
       usuarioSelecionado: Object.assign({}, this.usuarioVazio)
     });
   }
 
-  escondeFormNovoUsuario() {
+  escondeFormUsuario() {
     this.setState({
-      mostraFormNovoUsuario: false
+      mostraFormUsuario: false
+    });
+  }
+
+  showUserDataModal() {
+    this.setState({
+      showUserDataModal: true
+    });
+  }
+
+  hideUserDataModal() {
+    this.setState({
+      showUserDataModal: false
     });
   }
 
   render() {
-    let formNovoUsuario = this.state.mostraFormNovoUsuario ? (
+    const formUsuario = this.state.mostraFormUsuario ? (
       <FormUsuario
         usuario={this.state.usuarioSelecionado}
-        escondeForm={this.escondeFormNovoUsuario}
+        escondeForm={this.escondeFormUsuario}
         handleNameChange={this.handleNameChange}
         handleEmailChange={this.handleEmailChange}
         handleCpfChange={this.handleCpfChange}
@@ -161,16 +215,32 @@ class CadastroUsuario extends React.Component {
       <div></div>
     );
 
+    const userDataModal = this.state.showUserDataModal ? (
+      <UserDataModal
+        user={this.state.usuarioSelecionado}
+        handleEditUserButton={this.handleEditUserButton}
+        handlePasswordChangeButton={this.handlePasswordChangeButton}
+        handleCancelButton={this.hideUserDataModal}
+      />
+    ) : (
+      <div></div>
+    );
+
     return (
       <div className="container">
         <form>
           {/* <BarraDeBusca /> */}
-          {/* <ListaDeUsusarios /> */}
+          <DataTable
+            usuarios={this.state.usuarios}
+            handleShow={this.handleShowUser}
+            fetchUserList={this.fetchUserList}
+          />
           <div className="form-group">
-            <BarraDeComandos novoUsuario={() => this.mostraFormNovoUsuario()} />
+            <BarraDeComandos novoUsuario={() => this.mostraFormUsuario()} />
           </div>
         </form>
-        {formNovoUsuario}
+        {formUsuario}
+        {userDataModal}
       </div>
     );
   }
