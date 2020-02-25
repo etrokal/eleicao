@@ -17,12 +17,15 @@ class CreateCandidatoTable extends Migration
             $table->bigIncrements('id');
 
             $table->string('nome');
-            $table->string('nome_fantasia')->unique();
+            $table->string('nome_fantasia');
             $table->string('numero');
-            $table->binary('foto');
-            $table->string('mime_foto');
+            $table->binary('foto')->nullable();
+            $table->string('mime_foto')->nullable();
 
-            $table->timestamps();
+            $table->timestampsTz();
+            $table->softDeletesTz();
+
+            $table->unique(['nome_fantasia', 'deleted_at']);
         });
     }
 

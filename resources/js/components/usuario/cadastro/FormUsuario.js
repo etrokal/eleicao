@@ -1,57 +1,197 @@
 import React from "react";
 import ValidarCpf from "../../../util/cpf";
+import Axios from "axios";
+import FieldSpinner from "../../basic/FieldSpinner";
 
 export default class FormUsuario extends React.Component {
   // TODO: Adicionar foto
 
   constructor(props) {
     super(props);
+
     this.state = {
-      id: this.props.usuario.id,
-      name: this.props.usuario.name,
-      email: this.props.usuario.email,
-      password: "",
-      password_confirm: "",
-      cpf: this.props.usuario.cpf,
-      rg: this.props.usuario.rg
+      showEmailSpinner: false,
+      showCpfSpinner: false
     };
+
+    this.handleNameChange = this.handleNameChange.bind(this);
+    this.handleEmailChange = this.handleEmailChange.bind(this);
+    this.handleCpfChange = this.handleCpfChange.bind(this);
+    this.handleRgChange = this.handleRgChange.bind(this);
+    this.handlePasswordChange = this.handlePasswordChange.bind(this);
+    this.handlePasswordConfirmChange = this.handlePasswordConfirmChange.bind(
+      this
+    );
+    this.handleAdmin = this.handleAdmin.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
     $("#form-usuario-modal").modal("show");
-    // this.validarCpf();
+
+    const inputCpf = document.getElementById("cpf");
+    const imCpf = new Inputmask("999.999.999-99");
+    imCpf.mask(inputCpf);
   }
 
-  validarCpf() {
-    // Validar CPF
-    if (!ValidarCpf(this.state.cpf)) {
-      const inputCpf = document.getElementById("cpf");
-      inputCpf.setCustomValidity("O CPF deve ser válido.");
+  // EVENT HANDLERS
+  handleNameChange(e) {
+    this.props.handleNameChange(e.target.value);
+  }
+
+  handleEmailChange(e) {
+    const emailInput = e.target;
+    this.desabilitaSubmit();
+    this.showEmailSpinner();
+
+    // VERIFICAR SE E-MAIL É ÚNICO
+    Axios.get("/verificacoes/usuario/email", {
+      params: {
+        email: emailInput.value,
+        id: this.props.usuario.id
+      }
+    })
+      .then(result => {
+        if (!result.data.unico) {
+          emailInput.setCustomValidity(
+            "O e-mail já foi cadastrado no sistema."
+          );
+        } else {
+          emailInput.setCustomValidity("");
+        }
+      })
+      .catch(console.log)
+      .finally(() => {
+        this.habilitaSubmit();
+        this.hideEmailSpinner();
+      });
+
+    this.props.handleEmailChange(emailInput.value);
+  }
+
+  handleCpfChange(e) {
+    const inputCpf = e.target;
+    this.desabilitaSubmit();
+    this.showCpfSpinner();
+
+    // VERIFICAR SE CPF É ÚNICO E VALIDAR CPF
+    Axios.get("/verificacoes/usuario/cpf", {
+      params: {
+        cpf: inputCpf.value,
+        id: this.props.usuario.id
+      }
+    })
+      .then(result => {
+        if (!result.data.unico) {
+          inputCpf.setCustomValidity("O cpf já foi cadastrado no sistema.");
+        } else if (!ValidarCpf(inputCpf.value)) {
+          inputCpf.setCustomValidity("O CPF deve ser válido.");
+        } else {
+          inputCpf.setCustomValidity("");
+        }
+      })
+      .catch(console.log)
+      .finally(() => {
+        this.habilitaSubmit();
+        this.hideCpfSpinner();
+      });
+
+    this.props.handleCpfChange(inputCpf.value);
+  }
+
+  handleRgChange(e) {
+    const inputRg = e.target;
+    const indice = inputRg.value.search(/[^\d\.\-]/);
+
+    if (indice === -1) {
+      inputRg.setCustomValidity("");
     } else {
-      const inputCpf = document.getElementById("cpf");
-      inputCpf.setCustomValidity("");
+      inputRg.setCustomValidity("O RG deve ser válido.");
     }
+
+    this.props.handleRgChange(inputRg.value);
   }
 
-  getUsuario() {
-    const usuario = {
-      id: this.state.id,
-      name: this.state.name,
-      email: this.state.email,
-      password: this.state.password,
-      password_confirm: this.state.password_confirm,
-      cpf: this.state.cpf,
-      rg: this.state.rg
-    };
-    return usuario;
+  handlePasswordChange(e) {
+    this.props.handlePasswordChange(e.target.value);
   }
 
-  submit() {
-    this.props.salvarUsuario(this.getUsuario());
+  handlePasswordConfirmChange(e) {
+    const inputPassword = document.getElementById("password");
+    const inputPasswordConfirm = e.target;
+
+    if (inputPassword.value === inputPasswordConfirm.value) {
+      inputPasswordConfirm.setCustomValidity("");
+    } else {
+      inputPasswordConfirm.setCustomValidity("As senhas devem ser iguais");
+    }
+
+    this.props.handlePasswordConfirmChange(inputPasswordConfirm.value);
+  }
+
+  handleAdmin(e) {
+    this.props.handleAdmin(e.target.checked);
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    $("#form-usuario-modal").modal("hide");
+    this.props.handleSubmit();
+  }
+
+  /** FIM DOS HANDLERS */
+
+  // INTERFACE CHANGES
+  showEmailSpinner() {
+    this.setState({
+      showEmailSpinner: true
+    });
+  }
+
+  hideEmailSpinner() {
+    this.setState({
+      showEmailSpinner: false
+    });
+  }
+
+  showCpfSpinner() {
+    this.setState({
+      showCpfSpinner: true
+    });
+  }
+
+  hideCpfSpinner() {
+    this.setState({
+      showCpfSpinner: false
+    });
+  }
+
+  desabilitaSubmit() {
+    const submitBtn = document.querySelector("button[type=submit]");
+    submitBtn.disabled = true;
+  }
+
+  habilitaSubmit() {
+    const submitBtn = document.querySelector("button[type=submit]");
+    submitBtn.disabled = false;
   }
 
   render() {
-    const tituloModal = this.state.id ? "Editar Usuário" : "Novo Usuário";
+    const tituloModal = this.props.usuario.id
+      ? "Editar Usuário"
+      : "Novo Usuário";
+
+    const emailSpinner = this.state.showEmailSpinner ? (
+      <FieldSpinner />
+    ) : (
+      <span></span>
+    );
+
+    const cpfSpinner = this.state.showCpfSpinner ? (
+      <FieldSpinner />
+    ) : (
+      <span></span>
+    );
 
     return (
       <div
@@ -62,7 +202,7 @@ export default class FormUsuario extends React.Component {
       >
         <div className="modal-dialog" role="document">
           <div className="modal-content">
-            <form action="" method="POST">
+            <form action="" method="POST" onSubmit={this.handleSubmit}>
               <div className="modal-header">
                 <h5 className="modal-title">{tituloModal}</h5>
               </div>
@@ -77,29 +217,36 @@ export default class FormUsuario extends React.Component {
                     className="form-control"
                     required
                     maxLength="191"
+                    value={this.props.usuario.name}
+                    onChange={this.handleNameChange}
                   />
                 </div>
 
                 <div className="form-group">
                   <label htmlFor="email">E-mail</label>
+                  {emailSpinner}
                   <input
                     type="email"
                     id="email"
                     className="form-control"
                     required
+                    value={this.props.usuario.email}
+                    onChange={this.handleEmailChange}
                     maxLength="191"
                   />
                 </div>
 
                 <div className="form-group">
                   <label htmlFor="cpf">CPF</label>
+                  {cpfSpinner}
                   <input
                     type="cpf"
                     id="cpf"
                     className="form-control"
                     required
                     maxLength="191"
-                    onInput={() => this.validarCpf()}
+                    value={this.props.usuario.cpf}
+                    onChange={this.handleCpfChange}
                   />
                 </div>
 
@@ -111,8 +258,51 @@ export default class FormUsuario extends React.Component {
                     className="form-control"
                     required
                     maxLength="191"
-                    onInput={() => this.validarCpf()}
+                    value={this.props.usuario.rg}
+                    onChange={this.handleRgChange}
                   />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="password">Senha</label>
+                  <input
+                    type="password"
+                    id="password"
+                    className="form-control"
+                    required
+                    minLength="6"
+                    maxLength="191"
+                    value={this.props.usuario.password}
+                    onChange={this.handlePasswordChange}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="password-confirm">Confirmar senha</label>
+                  <input
+                    type="password"
+                    id="password-confirm"
+                    className="form-control"
+                    required
+                    minLength="6"
+                    maxLength="191"
+                    value={this.props.usuario.password_confirmation}
+                    onChange={this.handlePasswordConfirmChange}
+                  />
+                </div>
+
+                <div className="form-check">
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    value="1"
+                    checked={!!this.props.usuario.admin}
+                    onChange={this.handleAdmin}
+                    id="admin"
+                  />
+                  <label className="form-check-label" htmlFor="admin">
+                    Administrador
+                  </label>
                 </div>
 
                 {/* FIM DO CONTEÚDO */}
@@ -126,11 +316,7 @@ export default class FormUsuario extends React.Component {
                 >
                   Fechar
                 </button>
-                <button
-                  type="submit"
-                  className="btn btn-primary"
-                  onClick={() => this.submit()}
-                >
+                <button type="submit" className="btn btn-primary">
                   Salvar
                 </button>
               </div>

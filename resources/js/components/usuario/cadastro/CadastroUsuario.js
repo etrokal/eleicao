@@ -14,23 +14,126 @@ class CadastroUsuario extends React.Component {
       name: "",
       email: "",
       password: "",
-      password_confirm: "",
+      password_confirmation: "",
       cpf: "",
-      rg: ""
+      rg: "",
+      admin: false
     };
 
     this.state = {
       mostraFormNovoUsuario: false,
       usuarioSelecionado: this.usuarioVazio
     };
+
+    this.mostraFormNovoUsuario = this.mostraFormNovoUsuario.bind(this);
+    this.escondeFormNovoUsuario = this.escondeFormNovoUsuario.bind(this);
+    this.handleNameChange = this.handleNameChange.bind(this);
+    this.handleEmailChange = this.handleEmailChange.bind(this);
+    this.handleCpfChange = this.handleCpfChange.bind(this);
+    this.handleRgChange = this.handleRgChange.bind(this);
+    this.handlePasswordChange = this.handlePasswordChange.bind(this);
+    this.handlePasswordConfirmChange = this.handlePasswordConfirmChange.bind(
+      this
+    );
+    this.handleAdmin = this.handleAdmin.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentDidMount() {}
 
+
+  // HANDLERS USUARIO
+  handleNameChange(value) {
+    const usuarioSelecionado = this.state.usuarioSelecionado;
+    usuarioSelecionado.name = value;
+
+    this.setState({
+      usuarioSelecionado
+    });
+  }
+
+  handleEmailChange(value) {
+    const usuarioSelecionado = this.state.usuarioSelecionado;
+    usuarioSelecionado.email = value;
+
+    this.setState({
+      usuarioSelecionado
+    });
+  }
+
+  handleCpfChange(value) {
+    const usuarioSelecionado = this.state.usuarioSelecionado;
+    usuarioSelecionado.cpf = value;
+
+    this.setState({
+      usuarioSelecionado
+    });
+  }
+
+  handleRgChange(value) {
+    const usuarioSelecionado = this.state.usuarioSelecionado;
+    usuarioSelecionado.rg = value;
+
+    this.setState({
+      usuarioSelecionado
+    });
+  }
+
+  handlePasswordChange(value) {
+    const usuarioSelecionado = this.state.usuarioSelecionado;
+    usuarioSelecionado.password = value;
+
+    this.setState({
+      usuarioSelecionado
+    });
+  }
+
+  handlePasswordConfirmChange(value) {
+    const usuarioSelecionado = this.state.usuarioSelecionado;
+    usuarioSelecionado.password_confirmation = value;
+
+    this.setState({
+      usuarioSelecionado
+    });
+  }
+
+  handleAdmin(value) {
+    const usuarioSelecionado = this.state.usuarioSelecionado;
+    usuarioSelecionado.admin = value;
+
+    this.setState({
+      usuarioSelecionado
+    });
+  }
+
+  handleSubmit() {
+    Axios.post("/usuario", this.state.usuarioSelecionado)
+      .then(result => {
+        const usuarioSelecionado = this.state.usuarioSelecionado;
+
+        this.setState({
+          usuarioSelecionado: Object.assign(usuarioSelecionado, result.data)
+        });
+
+        this.escondeFormNovoUsuario();
+        toastr.success("Usuário salvo com sucesso!");
+        // TODO: atualizar lista de usuários
+      })
+      .catch(error => {
+        Swal.fire({
+          icon: "error",
+          title: "Erro",
+          text: "Ocorreu um erro ao salvar o usuário"
+        });
+        console.log(error);
+      });
+  }
+
+  // INTERFACE CHANGES
   mostraFormNovoUsuario() {
+    const usuarioSelecionado = this.state.usuarioSelecionado;
     this.setState({
       mostraFormNovoUsuario: true,
-      usuarioSelecionado: this.usuarioVazio
+      usuarioSelecionado: Object.assign({}, this.usuarioVazio)
     });
   }
 
@@ -40,27 +143,19 @@ class CadastroUsuario extends React.Component {
     });
   }
 
-  salvarUsuario(usuario) {
-    return new Promise((resolve, reject) => {
-      Axios.post("/usuario", usuario)
-        .then(result => {
-          this.setState({
-            usuarioSelecionado: this.data.usuario
-          });
-          resolve(result.data);
-        })
-        .catch(error => {
-          reject(error);
-        });
-    });
-  }
-
   render() {
     let formNovoUsuario = this.state.mostraFormNovoUsuario ? (
       <FormUsuario
         usuario={this.state.usuarioSelecionado}
-        escondeForm={() => this.escondeFormNovoUsuario()}
-        salvarUsuario={usuario => this.salvarUsuario()}
+        escondeForm={this.escondeFormNovoUsuario}
+        handleNameChange={this.handleNameChange}
+        handleEmailChange={this.handleEmailChange}
+        handleCpfChange={this.handleCpfChange}
+        handleRgChange={this.handleRgChange}
+        handlePasswordChange={this.handlePasswordChange}
+        handlePasswordConfirmChange={this.handlePasswordConfirmChange}
+        handleAdmin={this.handleAdmin}
+        handleSubmit={this.handleSubmit}
       />
     ) : (
       <div></div>

@@ -2,7 +2,7 @@ export default function ValidarCpf(strCPF) {
   let Soma = 0;
   let Resto;
 
-  const thisCPF = strCPF.replace(/\D/, "");
+  const thisCPF = strCPF.replace(/\D/g, "");
 
   if (thisCPF == "00000000000") return false;
 

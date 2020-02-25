@@ -13,9 +13,11 @@
         "laravel/framework": "^6.2",
         "laravel/passport": "^8.4",
         "laravel/tinker": "^2.0",
+        "laravellegends/pt-br-validator": "6.*",
         "lucascudo/laravel-pt-br-localization": "^1.0"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.2",
         "facade/ignition": "^1.4",
         "fzaninotto/faker": "^1.9.1",
         "laravel/ui": "^1.2",

@@ -23,5 +23,11 @@
         "resolve-url-loader": "^3.1.0",
         "sass": "^1.15.2",
         "sass-loader": "^8.0.0"
+    },
+    "dependencies": {
+        "animate.css": "^3.7.2",
+        "inputmask": "^5.0.3",
+        "sweetalert2": "^9.8.2",
+        "toastr": "^2.1.4"
     }
 }

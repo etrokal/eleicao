@@ -20,5 +20,9 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/usuario', 'UserController@index')->name('user.index');
+Route::post('/usuario', 'UserController@store')->name('user.store');
+
+Route::get('/verificacoes/usuario/email', 'UserController@verificaEmailUnico');
+Route::get('/verificacoes/usuario/cpf', 'UserController@verificaCpfUnico');
 
 
