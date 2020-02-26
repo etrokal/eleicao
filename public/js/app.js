@@ -83766,12 +83766,13 @@ function (_React$Component) {
       mostraFormUsuario: false,
       usuarioSelecionado: _this.usuarioVazio,
       usuarios: [],
+      qtdUsuarios: 0,
       orderParams: {
         orderBy: "id",
         orderAsc: true,
         offset: 0,
         limit: 15,
-        filterText: ""
+        filter: ""
       },
       showUserDataModal: false
     };
@@ -83790,6 +83791,7 @@ function (_React$Component) {
     _this.handleAdmin = _this.handleAdmin.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.handleShowUser = _this.handleShowUser.bind(_assertThisInitialized(_this));
+    _this.handlePageChange = _this.handlePageChange.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -83801,9 +83803,18 @@ function (_React$Component) {
     value: function fetchUserList() {
       var _this2 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_6___default.a.get("/usuario/list").then(function (result) {
+      axios__WEBPACK_IMPORTED_MODULE_6___default.a.get("/usuario/list", {
+        params: {
+          offset: this.state.orderParams.offset,
+          limit: this.state.orderParams.limit,
+          orderBy: this.state.orderParams.orderBy,
+          orderAsc: this.state.orderParams.orderAsc,
+          filter: this.state.orderParams.filter
+        }
+      }).then(function (result) {
         _this2.setState({
-          usuarios: result.data
+          usuarios: result.data.users,
+          qtdUsuarios: result.data.qtdTotal
         });
       })["catch"](this.handleAxiosError);
     }
@@ -83882,15 +83893,15 @@ function (_React$Component) {
       var _this3 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_6___default.a.post("/usuario", this.state.usuarioSelecionado).then(function (result) {
-        var usuarioSelecionado = _this3.state.usuarioSelecionado;
-
         _this3.setState({
           usuarioSelecionado: Object.assign(_this3.usuarioVazio, result.data)
         });
 
         _this3.escondeFormUsuario();
 
-        toastr.success("Usuário salvo com sucesso!"); // TODO: atualizar lista de usuários
+        _this3.fetchUserList();
+
+        toastr.success("Usuário salvo com sucesso!");
       })["catch"](function (error) {
         Swal.fire({
           icon: "error",
@@ -83904,16 +83915,30 @@ function (_React$Component) {
   }, {
     key: "handleShowUser",
     value: function handleShowUser(user) {
+      var usuarioVazio = Object.assign({}, this.usuarioVazio);
       this.setState({
-        usuarioSelecionado: Object.assign(this.usuarioVazio, user)
+        usuarioSelecionado: Object.assign(usuarioVazio, user)
       });
       this.showUserDataModal();
+    }
+  }, {
+    key: "handlePageChange",
+    value: function handlePageChange(offset, limit) {
+      var _this4 = this;
+
+      var orderParams = Object.assign({}, this.state.orderParams);
+      orderParams.offset = offset;
+      orderParams.limit = limit;
+      this.setState({
+        orderParams: orderParams
+      }, function () {
+        return _this4.fetchUserList();
+      });
     } // INTERFACE CHANGES
 
   }, {
     key: "mostraFormUsuario",
     value: function mostraFormUsuario() {
-      var usuarioSelecionado = this.state.usuarioSelecionado;
       this.setState({
         mostraFormUsuario: true,
         usuarioSelecionado: Object.assign({}, this.usuarioVazio)
@@ -83943,7 +83968,7 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this4 = this;
+      var _this5 = this;
 
       var formUsuario = this.state.mostraFormUsuario ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FormUsuario__WEBPACK_IMPORTED_MODULE_3__["default"], {
         usuario: this.state.usuarioSelecionado,
@@ -83968,12 +83993,15 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_DataTable__WEBPACK_IMPORTED_MODULE_4__["default"], {
         usuarios: this.state.usuarios,
         handleShow: this.handleShowUser,
-        fetchUserList: this.fetchUserList
+        fetchUserList: this.fetchUserList,
+        orderParams: this.state.orderParams,
+        handlePageChange: this.handlePageChange,
+        qtdRegistros: this.state.qtdUsuarios
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_BarraDeComandos__WEBPACK_IMPORTED_MODULE_2__["default"], {
         novoUsuario: function novoUsuario() {
-          return _this4.mostraFormUsuario();
+          return _this5.mostraFormUsuario();
         }
       }))), formUsuario, userDataModal);
     }
@@ -84043,7 +84071,7 @@ function (_React$Component) {
     _this.handleShow = _this.handleShow.bind(_assertThisInitialized(_this));
     _this.handleDelete = _this.handleDelete.bind(_assertThisInitialized(_this));
     _this.fetchUserList = _this.fetchUserList.bind(_assertThisInitialized(_this));
-    _this.generateTableLines = _this.generateTableLines.bind(_assertThisInitialized(_this));
+    _this.renderTableLines = _this.renderTableLines.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -84084,8 +84112,8 @@ function (_React$Component) {
       this.props.fetchUserList();
     }
   }, {
-    key: "generateTableLines",
-    value: function generateTableLines() {
+    key: "renderTableLines",
+    value: function renderTableLines() {
       var _this3 = this;
 
       var usuarios = this.props.usuarios.slice();
@@ -84120,7 +84148,7 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var tableLines = this.generateTableLines();
+      var tableLines = this.renderTableLines();
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
         className: "table"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
@@ -84133,7 +84161,12 @@ function (_React$Component) {
         scope: "col"
       }, "CPF"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
         scope: "col"
-      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, tableLines)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Pagination__WEBPACK_IMPORTED_MODULE_2__["default"], null));
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, tableLines)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Pagination__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        offset: this.props.orderParams.offset,
+        limit: this.props.orderParams.limit,
+        qtdTotal: this.props.qtdRegistros,
+        handlePageChange: this.props.handlePageChange
+      }));
     }
   }]);
 
@@ -84529,9 +84562,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -84545,16 +84578,125 @@ var Pagination =
 function (_Component) {
   _inherits(Pagination, _Component);
 
-  function Pagination() {
+  function Pagination(props) {
+    var _this;
+
     _classCallCheck(this, Pagination);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(Pagination).apply(this, arguments));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Pagination).call(this, props));
+    _this.numberOfPagesBeforeAndAfter = 3;
+    _this.renderPageNumbers = _this.renderPageNumbers.bind(_assertThisInitialized(_this));
+    _this.getQtdPaginas = _this.getQtdPaginas.bind(_assertThisInitialized(_this));
+    _this.getCurrentPage = _this.getCurrentPage.bind(_assertThisInitialized(_this));
+    _this.handlePageChange = _this.handlePageChange.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(Pagination, [{
+    key: "getQtdPaginas",
+    value: function getQtdPaginas() {
+      var limit = this.props.limit;
+      var qtdTotal = this.props.qtdTotal;
+      var qtdPaginas = Math.ceil(qtdTotal / limit);
+      return qtdPaginas;
+    }
+  }, {
+    key: "getCurrentPage",
+    value: function getCurrentPage() {
+      var offset = this.props.offset;
+      var limit = this.props.limit;
+      var paginaAtual = Math.floor(offset / limit) + 1;
+      return paginaAtual;
+    }
+  }, {
+    key: "handlePageChange",
+    value: function handlePageChange(pageNumber) {
+      var limit = this.props.limit;
+      var offset = (pageNumber - 1) * limit;
+      this.props.handlePageChange(offset, limit);
+    }
+  }, {
+    key: "renderPageNumbers",
+    value: function renderPageNumbers() {
+      var _this2 = this;
+
+      var offset = this.props.offset;
+      var limit = this.props.limit;
+      var qtdTotal = this.props.qtdTotal;
+      var qtdPaginas = this.getQtdPaginas();
+      var paginaAtual = this.getCurrentPage();
+      var numberOfInterations = 2 * this.numberOfPagesBeforeAndAfter + 1;
+      var pageNumbers = []; // ANTERIOR
+
+      var linkAnterior = paginaAtual === 1 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "page-item",
+        key: "-1"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "page-link text-secondary"
+      }, "Anterior")) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "page-item",
+        key: "-1"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        className: "page-link",
+        href: "#",
+        onClick: function onClick() {
+          return _this2.handlePageChange(paginaAtual - 1);
+        }
+      }, "Anterior"));
+      pageNumbers.push(linkAnterior);
+
+      var _loop = function _loop(i) {
+        if (i < 1 || i > qtdPaginas) {
+          return "continue";
+        }
+
+        pageNumbers.push(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          className: "page-item",
+          key: i
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          className: "page-link",
+          href: "#",
+          onClick: function onClick() {
+            return _this2.handlePageChange(i);
+          }
+        }, i)));
+      };
+
+      for (var i = paginaAtual - this.numberOfPagesBeforeAndAfter; i <= numberOfInterations; ++i) {
+        var _ret = _loop(i);
+
+        if (_ret === "continue") continue;
+      } // PRÓXIMO
+
+
+      var linkProximo = paginaAtual === qtdPaginas ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "page-item",
+        key: "-2"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "page-link text-secondary"
+      }, "Pr\xF3ximo")) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "page-item",
+        key: "-2"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        className: "page-link",
+        href: "#",
+        onClick: function onClick() {
+          return _this2.handlePageChange(paginaAtual + 1);
+        }
+      }, "Pr\xF3ximo"));
+      pageNumbers.push(linkProximo);
+      return pageNumbers;
+    }
+  }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null);
+      var pages = this.renderPageNumbers();
+      var pagination = this.props.qtdTotal === 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
+        "aria-label": "Page navigation example"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "pagination justify-content-center"
+      }, pages));
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, pagination);
     }
   }]);
 

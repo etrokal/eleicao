@@ -27,12 +27,13 @@ class CadastroUsuario extends React.Component {
       mostraFormUsuario: false,
       usuarioSelecionado: this.usuarioVazio,
       usuarios: [],
+      qtdUsuarios: 0,
       orderParams: {
         orderBy: "id",
         orderAsc: true,
         offset: 0,
         limit: 15,
-        filterText: ""
+        filter: ""
       },
       showUserDataModal: false
     };
@@ -57,15 +58,25 @@ class CadastroUsuario extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
 
     this.handleShowUser = this.handleShowUser.bind(this);
+    this.handlePageChange = this.handlePageChange.bind(this);
   }
 
   componentDidMount() {}
 
   fetchUserList() {
-    Axios.get("/usuario/list")
+    Axios.get("/usuario/list", {
+      params: {
+        offset: this.state.orderParams.offset,
+        limit: this.state.orderParams.limit,
+        orderBy: this.state.orderParams.orderBy,
+        orderAsc: this.state.orderParams.orderAsc,
+        filter: this.state.orderParams.filter
+      }
+    })
       .then(result => {
         this.setState({
-          usuarios: result.data
+          usuarios: result.data.users,
+          qtdUsuarios: result.data.qtdTotal
         });
       })
       .catch(this.handleAxiosError);
@@ -142,15 +153,12 @@ class CadastroUsuario extends React.Component {
   handleSubmit() {
     Axios.post("/usuario", this.state.usuarioSelecionado)
       .then(result => {
-        const usuarioSelecionado = this.state.usuarioSelecionado;
-
         this.setState({
           usuarioSelecionado: Object.assign(this.usuarioVazio, result.data)
         });
-
         this.escondeFormUsuario();
+        this.fetchUserList();
         toastr.success("Usuário salvo com sucesso!");
-        // TODO: atualizar lista de usuários
       })
       .catch(error => {
         Swal.fire({
@@ -164,15 +172,29 @@ class CadastroUsuario extends React.Component {
 
   // HANDLERS DATA TABLE
   handleShowUser(user) {
+    const usuarioVazio = Object.assign({}, this.usuarioVazio);
+
     this.setState({
-      usuarioSelecionado: Object.assign(this.usuarioVazio, user)
+      usuarioSelecionado: Object.assign(usuarioVazio, user)
     });
     this.showUserDataModal();
   }
 
+  handlePageChange(offset, limit) {
+    const orderParams = Object.assign({}, this.state.orderParams);
+    orderParams.offset = offset;
+    orderParams.limit = limit;
+
+    this.setState(
+      {
+        orderParams: orderParams
+      },
+      () => this.fetchUserList()
+    );
+  }
+
   // INTERFACE CHANGES
   mostraFormUsuario() {
-    const usuarioSelecionado = this.state.usuarioSelecionado;
     this.setState({
       mostraFormUsuario: true,
       usuarioSelecionado: Object.assign({}, this.usuarioVazio)
@@ -234,6 +256,9 @@ class CadastroUsuario extends React.Component {
             usuarios={this.state.usuarios}
             handleShow={this.handleShowUser}
             fetchUserList={this.fetchUserList}
+            orderParams={this.state.orderParams}
+            handlePageChange={this.handlePageChange}
+            qtdRegistros={this.state.qtdUsuarios}
           />
           <div className="form-group">
             <BarraDeComandos novoUsuario={() => this.mostraFormUsuario()} />

@@ -11,7 +11,7 @@ export default class DataTable extends React.Component {
     this.handleShow = this.handleShow.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.fetchUserList = this.fetchUserList.bind(this);
-    this.generateTableLines = this.generateTableLines.bind(this);
+    this.renderTableLines = this.renderTableLines.bind(this);
   }
 
   componentDidMount() {
@@ -44,7 +44,7 @@ export default class DataTable extends React.Component {
     this.props.fetchUserList();
   }
 
-  generateTableLines() {
+  renderTableLines() {
     const usuarios = this.props.usuarios.slice();
 
     const tableLines = [];
@@ -80,7 +80,7 @@ export default class DataTable extends React.Component {
   }
 
   render() {
-    const tableLines = this.generateTableLines();
+    const tableLines = this.renderTableLines();
 
     return (
       <div>
@@ -96,7 +96,12 @@ export default class DataTable extends React.Component {
           </thead>
           <tbody>{tableLines}</tbody>
         </table>
-        <Pagination />
+        <Pagination
+            offset={this.props.orderParams.offset}
+            limit={this.props.orderParams.limit}
+            qtdTotal={this.props.qtdRegistros}
+            handlePageChange={this.props.handlePageChange}
+        />
       </div>
     );
   }
