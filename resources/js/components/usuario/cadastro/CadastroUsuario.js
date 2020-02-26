@@ -59,6 +59,8 @@ class CadastroUsuario extends React.Component {
 
     this.handleShowUser = this.handleShowUser.bind(this);
     this.handlePageChange = this.handlePageChange.bind(this);
+    this.handleLimitChange = this.handleLimitChange.bind(this);
+    this.handleFilterChange = this.handleFilterChange.bind(this);
   }
 
   componentDidMount() {}
@@ -193,6 +195,25 @@ class CadastroUsuario extends React.Component {
     );
   }
 
+  handleLimitChange(limit) {
+      const orderParams = Object.assign({}, this.state.orderParams);
+      orderParams.limit = limit;
+
+      this.setState({
+        orderParams: orderParams,
+      }, () => this.fetchUserList());
+
+  }
+
+  handleFilterChange(filter) {
+    const orderParams = Object.assign({}, this.state.orderParams);
+    orderParams.filter = filter;
+
+    this.setState({
+      orderParams: orderParams,
+    }, () => this.fetchUserList());
+  }
+
   // INTERFACE CHANGES
   mostraFormUsuario() {
     this.setState({
@@ -259,6 +280,8 @@ class CadastroUsuario extends React.Component {
             orderParams={this.state.orderParams}
             handlePageChange={this.handlePageChange}
             qtdRegistros={this.state.qtdUsuarios}
+            handleLimitChange={this.handleLimitChange}
+            handleFilterChange={this.handleFilterChange}
           />
           <div className="form-group">
             <BarraDeComandos novoUsuario={() => this.mostraFormUsuario()} />
