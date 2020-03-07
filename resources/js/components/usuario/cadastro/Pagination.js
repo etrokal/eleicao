@@ -6,43 +6,37 @@ export default class Pagination extends Component {
     super(props);
 
     this.numberOfPagesBeforeAndAfter = 3;
-
-    this.renderPageNumbers = this.renderPageNumbers.bind(this);
-    this.getQtdPaginas = this.getQtdPaginas.bind(this);
-    this.getCurrentPage = this.getCurrentPage.bind(this);
-    this.handlePageChange = this.handlePageChange.bind(this);
   }
 
-  getQtdPaginas() {
+  getQtdPaginas = () => {
     const limit = this.props.limit;
     const qtdTotal = this.props.qtdTotal;
     const qtdPaginas = Math.ceil(qtdTotal / limit);
     return qtdPaginas;
-  }
+  };
 
-  getCurrentPage() {
+  getCurrentPage = () => {
     const offset = this.props.offset;
     const limit = this.props.limit;
     const paginaAtual = Math.floor(offset / limit) + 1;
     return paginaAtual;
-  }
+  };
 
-  handlePageChange(pageNumber) {
+  handlePageChange = pageNumber => {
     const limit = this.props.limit;
     const offset = (pageNumber - 1) * limit;
 
-    this.props.handlePageChange(offset, limit);
-  }
+    this.props.paramsDispatch({
+      type: "set-param-offset",
+      payload: offset
+    });
+  };
 
-  renderPageNumbers() {
-    const offset = this.props.offset;
-    const limit = this.props.limit;
-    const qtdTotal = this.props.qtdTotal;
-
+  renderPageNumbers = () => {
     const qtdPaginas = this.getQtdPaginas();
     const paginaAtual = this.getCurrentPage();
 
-    const numberOfInterations = 2 * this.numberOfPagesBeforeAndAfter + 1;
+    const numberOfIterations = 2 * this.numberOfPagesBeforeAndAfter + 1;
 
     const pageNumbers = [];
 
@@ -50,9 +44,7 @@ export default class Pagination extends Component {
     const linkAnterior =
       paginaAtual === 1 ? (
         <li className="page-item" key="-1">
-          <span className="page-link text-secondary" >
-            Anterior
-          </span>
+          <span className="page-link text-secondary">Anterior</span>
         </li>
       ) : (
         <li className="page-item" key="-1">
@@ -70,15 +62,16 @@ export default class Pagination extends Component {
 
     for (
       let i = paginaAtual - this.numberOfPagesBeforeAndAfter;
-      i <= numberOfInterations;
+      i <= numberOfIterations;
       ++i
     ) {
       if (i < 1 || i > qtdPaginas) {
         continue;
       }
 
+      const ativo = paginaAtual === i ? "active" : "";
       pageNumbers.push(
-        <li className="page-item" key={i}>
+        <li className={"page-item " + ativo} key={i}>
           <a
             className="page-link"
             href="#"
@@ -94,9 +87,7 @@ export default class Pagination extends Component {
     const linkProximo =
       paginaAtual === qtdPaginas ? (
         <li className="page-item" key="-2">
-          <span className="page-link text-secondary" >
-            Próximo
-          </span>
+          <span className="page-link text-secondary">Próximo</span>
         </li>
       ) : (
         <li className="page-item" key="-2">
@@ -113,9 +104,9 @@ export default class Pagination extends Component {
     pageNumbers.push(linkProximo);
 
     return pageNumbers;
-  }
+  };
 
-  render() {
+  render = () => {
     const pages = this.renderPageNumbers();
     const pagination =
       this.props.qtdTotal === 0 ? (
@@ -126,5 +117,5 @@ export default class Pagination extends Component {
         </nav>
       );
     return <div>{pagination}</div>;
-  }
+  };
 }

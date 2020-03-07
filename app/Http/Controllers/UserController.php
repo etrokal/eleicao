@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+
 use App\Models\User;
+use App\Http\Requests\StoreUser;
+use App\Http\Requests\UpdateUserRequest;
+use Debugbar;
 
 class UserController extends Controller
 {
@@ -14,11 +18,21 @@ class UserController extends Controller
         return view('user.index');
     }
 
-    public function store(Request $request) {
+    public function store(StoreUser $request) {
         $campos = $request->all();
         $campos['password'] = Hash::make($campos['password']);
 
         $user = User::create($campos);
+        return response()->json($user);
+    }
+
+    public function update(UpdateUserRequest $request, User $user) {
+        $data = $request->all();
+
+        unset($data['password']);
+        $user->fill($data);
+        $user->save();
+
         return response()->json($user);
     }
 
@@ -43,12 +57,21 @@ class UserController extends Controller
         $qtdTotal = User::count();
 
         $resultado = [
-            'users' => $users,
-            'qtdTotal' => $qtdTotal
+            'records' => $users,
+            'totalNumRecords' => $qtdTotal
         ];
 
         return response()->json($resultado);
     }
+
+    public function destroy(User $user) {
+        // TODO only admin
+        $user->delete();
+
+        return response()->json($user);
+    }
+
+
 
     // VERIFICACOES
     // Retorna TRUE se o CPF for único e FALSE se for repetido

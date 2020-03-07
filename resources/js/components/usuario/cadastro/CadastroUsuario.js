@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useState, useEffect, useCallback, useReducer } from "react";
 import ReactDOM from "react-dom";
+import produce from "immer";
 
+// HOOKS
+import useForm from "./hooks/useForm";
+import useDataFetcher from "./hooks/useDataFetcher";
+import useDeleter from "./hooks/useDeleter";
+
+// COMPONENTS
 import BarraDeComandos from "./BarraDeComandos";
 import FormUsuario from "./FormUsuario";
 import DataTable from "./DataTable";
@@ -8,291 +15,152 @@ import UserDataModal from "./UserDataModal";
 
 import Axios from "axios";
 
-class CadastroUsuario extends React.Component {
-  constructor(props) {
-    super(props);
+// TODO: Falta terminar a edição, ordenação e exclusão
 
-    this.usuarioVazio = {
-      id: "",
-      name: "",
-      email: "",
-      password: "",
-      password_confirmation: "",
-      cpf: "",
-      rg: "",
-      admin: false
-    };
+const initialState = {
+  shouldShowModal: false,
+  shouldShowForm: false,
+  formType: "create",
+  modalUser: {}
+};
 
-    this.state = {
-      mostraFormUsuario: false,
-      usuarioSelecionado: this.usuarioVazio,
-      usuarios: [],
-      qtdUsuarios: 0,
-      orderParams: {
-        orderBy: "id",
-        orderAsc: true,
-        offset: 0,
-        limit: 15,
-        filter: ""
-      },
-      showUserDataModal: false
-    };
+function reducer(state, action) {
+  switch (action.type) {
+    case "show-modal":
+      return {
+        ...state,
+        shouldShowModal: true,
+        shouldShowForm: false,
+        modalUser: action.payload
+      };
+    case "hide-modal":
+      return { ...state, shouldShowModal: false };
+    case "show-create-form":
+      return {
+        ...state,
+        shouldShowModal: false,
+        shouldShowForm: true,
+        formType: "create"
+      };
+    case "show-edit-form":
+      return {
+        ...state,
+        shouldShowModal: false,
+        shouldShowForm: true,
+        formType: "edit"
+      };
+    case "hide-form":
+      return { ...state, shouldShowForm: false };
 
-    this.fetchUserList = this.fetchUserList.bind(this);
-
-    this.mostraFormUsuario = this.mostraFormUsuario.bind(this);
-    this.escondeFormUsuario = this.escondeFormUsuario.bind(this);
-    this.showUserDataModal = this.showUserDataModal.bind(this);
-    this.hideUserDataModal = this.hideUserDataModal.bind(this);
-
-    this.handleAxiosError = this.handleAxiosError.bind(this);
-    this.handleNameChange = this.handleNameChange.bind(this);
-    this.handleEmailChange = this.handleEmailChange.bind(this);
-    this.handleCpfChange = this.handleCpfChange.bind(this);
-    this.handleRgChange = this.handleRgChange.bind(this);
-    this.handlePasswordChange = this.handlePasswordChange.bind(this);
-    this.handlePasswordConfirmChange = this.handlePasswordConfirmChange.bind(
-      this
-    );
-    this.handleAdmin = this.handleAdmin.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-
-    this.handleShowUser = this.handleShowUser.bind(this);
-    this.handlePageChange = this.handlePageChange.bind(this);
-    this.handleLimitChange = this.handleLimitChange.bind(this);
-    this.handleFilterChange = this.handleFilterChange.bind(this);
-  }
-
-  componentDidMount() {}
-
-  fetchUserList() {
-    Axios.get("/usuario/list", {
-      params: {
-        offset: this.state.orderParams.offset,
-        limit: this.state.orderParams.limit,
-        orderBy: this.state.orderParams.orderBy,
-        orderAsc: this.state.orderParams.orderAsc,
-        filter: this.state.orderParams.filter
-      }
-    })
-      .then(result => {
-        this.setState({
-          usuarios: result.data.users,
-          qtdUsuarios: result.data.qtdTotal
-        });
-      })
-      .catch(this.handleAxiosError);
-  }
-
-  handleAxiosError(error) {
-    console.log(error);
-  }
-
-  // HANDLERS FORM USUARIO
-  handleNameChange(value) {
-    const usuarioSelecionado = this.state.usuarioSelecionado;
-    usuarioSelecionado.name = value;
-
-    this.setState({
-      usuarioSelecionado
-    });
-  }
-
-  handleEmailChange(value) {
-    const usuarioSelecionado = this.state.usuarioSelecionado;
-    usuarioSelecionado.email = value;
-
-    this.setState({
-      usuarioSelecionado
-    });
-  }
-
-  handleCpfChange(value) {
-    const usuarioSelecionado = this.state.usuarioSelecionado;
-    usuarioSelecionado.cpf = value;
-
-    this.setState({
-      usuarioSelecionado
-    });
-  }
-
-  handleRgChange(value) {
-    const usuarioSelecionado = this.state.usuarioSelecionado;
-    usuarioSelecionado.rg = value;
-
-    this.setState({
-      usuarioSelecionado
-    });
-  }
-
-  handlePasswordChange(value) {
-    const usuarioSelecionado = this.state.usuarioSelecionado;
-    usuarioSelecionado.password = value;
-
-    this.setState({
-      usuarioSelecionado
-    });
-  }
-
-  handlePasswordConfirmChange(value) {
-    const usuarioSelecionado = this.state.usuarioSelecionado;
-    usuarioSelecionado.password_confirmation = value;
-
-    this.setState({
-      usuarioSelecionado
-    });
-  }
-
-  handleAdmin(value) {
-    const usuarioSelecionado = this.state.usuarioSelecionado;
-    usuarioSelecionado.admin = value;
-
-    this.setState({
-      usuarioSelecionado
-    });
-  }
-
-  handleSubmit() {
-    Axios.post("/usuario", this.state.usuarioSelecionado)
-      .then(result => {
-        this.setState({
-          usuarioSelecionado: Object.assign(this.usuarioVazio, result.data)
-        });
-        this.escondeFormUsuario();
-        this.fetchUserList();
-        toastr.success("Usuário salvo com sucesso!");
-      })
-      .catch(error => {
-        Swal.fire({
-          icon: "error",
-          title: "Erro",
-          text: "Ocorreu um erro ao salvar o usuário"
-        });
-        console.log(error);
-      });
-  }
-
-  // HANDLERS DATA TABLE
-  handleShowUser(user) {
-    const usuarioVazio = Object.assign({}, this.usuarioVazio);
-
-    this.setState({
-      usuarioSelecionado: Object.assign(usuarioVazio, user)
-    });
-    this.showUserDataModal();
-  }
-
-  handlePageChange(offset, limit) {
-    const orderParams = Object.assign({}, this.state.orderParams);
-    orderParams.offset = offset;
-    orderParams.limit = limit;
-
-    this.setState(
-      {
-        orderParams: orderParams
-      },
-      () => this.fetchUserList()
-    );
-  }
-
-  handleLimitChange(limit) {
-      const orderParams = Object.assign({}, this.state.orderParams);
-      orderParams.limit = limit;
-
-      this.setState({
-        orderParams: orderParams,
-      }, () => this.fetchUserList());
-
-  }
-
-  handleFilterChange(filter) {
-    const orderParams = Object.assign({}, this.state.orderParams);
-    orderParams.filter = filter;
-
-    this.setState({
-      orderParams: orderParams,
-    }, () => this.fetchUserList());
-  }
-
-  // INTERFACE CHANGES
-  mostraFormUsuario() {
-    this.setState({
-      mostraFormUsuario: true,
-      usuarioSelecionado: Object.assign({}, this.usuarioVazio)
-    });
-  }
-
-  escondeFormUsuario() {
-    this.setState({
-      mostraFormUsuario: false
-    });
-  }
-
-  showUserDataModal() {
-    this.setState({
-      showUserDataModal: true
-    });
-  }
-
-  hideUserDataModal() {
-    this.setState({
-      showUserDataModal: false
-    });
-  }
-
-  render() {
-    const formUsuario = this.state.mostraFormUsuario ? (
-      <FormUsuario
-        usuario={this.state.usuarioSelecionado}
-        escondeForm={this.escondeFormUsuario}
-        handleNameChange={this.handleNameChange}
-        handleEmailChange={this.handleEmailChange}
-        handleCpfChange={this.handleCpfChange}
-        handleRgChange={this.handleRgChange}
-        handlePasswordChange={this.handlePasswordChange}
-        handlePasswordConfirmChange={this.handlePasswordConfirmChange}
-        handleAdmin={this.handleAdmin}
-        handleSubmit={this.handleSubmit}
-      />
-    ) : (
-      <div></div>
-    );
-
-    const userDataModal = this.state.showUserDataModal ? (
-      <UserDataModal
-        user={this.state.usuarioSelecionado}
-        handleEditUserButton={this.handleEditUserButton}
-        handlePasswordChangeButton={this.handlePasswordChangeButton}
-        handleCancelButton={this.hideUserDataModal}
-      />
-    ) : (
-      <div></div>
-    );
-
-    return (
-      <div className="container">
-        <form>
-          {/* <BarraDeBusca /> */}
-          <DataTable
-            usuarios={this.state.usuarios}
-            handleShow={this.handleShowUser}
-            fetchUserList={this.fetchUserList}
-            orderParams={this.state.orderParams}
-            handlePageChange={this.handlePageChange}
-            qtdRegistros={this.state.qtdUsuarios}
-            handleLimitChange={this.handleLimitChange}
-            handleFilterChange={this.handleFilterChange}
-          />
-          <div className="form-group">
-            <BarraDeComandos novoUsuario={() => this.mostraFormUsuario()} />
-          </div>
-        </form>
-        {formUsuario}
-        {userDataModal}
-      </div>
-    );
+    default:
+      throw new Error("invalid action type: " + action.type);
   }
 }
+
+const CadastroUsuario = props => {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  const newUser = {
+    id: "",
+    name: "",
+    email: "",
+    password: "",
+    password_confirmation: "",
+    cpf: "",
+    rg: "",
+    admin: false
+  };
+
+  const { inputData, handleInputChange, submitForm, setData } = useForm(
+    "/usuario", newUser
+  );
+
+  const {
+    records,
+    orderParams,
+    totalNumRecords,
+    paramsDispatch,
+    fetchData
+  } = useDataFetcher("/usuario/list");
+
+  const { deleteRecord } = useDeleter("/usuario");
+
+  const handleEditButton = useCallback(
+    e => {
+      setData(produce(state.modalUser, nextUser => nextUser));
+      dispatch({ type: "show-edit-form" });
+    },
+    [state]
+  );
+
+  const handleSubmit = e => {
+    submitForm(() => {
+      dispatch({ type: "hide-form" });
+      fetchData();
+    });
+  };
+
+  const handleDelete = record => {
+    deleteRecord(record.id, () => {
+      fetchData();
+    });
+  };
+
+  const handleNewUserButton = e => {
+    setData(produce(newUser, nextUser => nextUser));
+    dispatch({ type: "show-create-form" });
+  };
+
+  const handleShowModal = user => {
+    dispatch({
+      type: "show-modal",
+      payload: produce(user, nextUser => nextUser)
+    });
+  };
+
+  const formUsuario = state.shouldShowForm ? (
+    <FormUsuario
+      user={inputData}
+      formType={state.formType}
+      handleInputChange={handleInputChange}
+      handleCancelButton={() => dispatch({ type: "hide-form" })}
+      handleSubmit={handleSubmit}
+    />
+  ) : (
+    <></>
+  );
+
+  const userDataModal = state.shouldShowModal ? (
+    <UserDataModal
+      user={state.modalUser}
+      handleEditButton={handleEditButton}
+      handlePasswordChangeButton={() => {}}
+      handleCancelButton={() => dispatch({ type: "hide-modal" })}
+    />
+  ) : (
+    <></>
+  );
+
+  return (
+    <div className="container">
+      <form>
+        <DataTable
+          records={records}
+          handleShowModal={handleShowModal}
+          orderParams={orderParams}
+          paramsDispatch={paramsDispatch}
+          handleDelete={handleDelete}
+          totalNumRecords={totalNumRecords}
+        />
+        <div className="form-group">
+          <BarraDeComandos novoUsuario={() => handleNewUserButton()} />
+        </div>
+      </form>
+      {formUsuario}
+      {userDataModal}
+    </div>
+  );
+};
 
 export default CadastroUsuario;
 

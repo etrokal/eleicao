@@ -17,7 +17,7 @@ export default class TextField extends React.Component {
 
     return (
       <div className="form-inline">
-        <label className="sr-only" for="text-field">
+        <label className="sr-only" htmlFor="text-field">
           {placeholder}
         </label>
         <input

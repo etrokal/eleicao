@@ -20,8 +20,10 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/usuario', 'UserController@index')->name('user.index');
-Route::post('/usuario', 'UserController@store')->name('user.store');
+Route::post('/usuario', 'UserController@store');
 Route::get('/usuario/list', 'UserController@list');
+Route::put('/usuario/{user}', 'UserController@update');
+Route::delete('/usuario/{user}', 'UserController@destroy');
 
 Route::get('/verificacoes/usuario/email', 'UserController@verificaEmailUnico');
 Route::get('/verificacoes/usuario/cpf', 'UserController@verificaCpfUnico');

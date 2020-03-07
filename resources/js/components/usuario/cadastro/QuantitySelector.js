@@ -18,7 +18,6 @@ export default class QuantitySelector extends React.Component {
   }
 
   renderOptions() {
-    const quantity = this.props.quantity;
     const options = [];
     this.quantityOptions.forEach(el => {
       options.push(<option key={el}>{el}</option>);
@@ -38,7 +37,7 @@ export default class QuantitySelector extends React.Component {
         <select
           id="quantity-selector"
           name="quantity-selector"
-          value={this.props.quantity}
+          value={this.props.value}
           className="form-control"
           onChange={this.handleQuantityChange}
         >

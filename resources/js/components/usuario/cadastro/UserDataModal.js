@@ -6,36 +6,36 @@ export default class UserDataModal extends React.Component {
   constructor(props) {
     super(props);
 
-    this.showModal = this.showModal.bind(this);
-    this.hideModal = this.hideModal.bind(this);
+    // this.showModal = this.showModal.bind(this);
+    // this.hideModal = this.hideModal.bind(this);
 
-    this.handleCancelButton = this.handleCancelButton.bind(this);
-    this.handleEditUserButton = this.handleEditUserButton.bind(this);
+    // this.handleCancelButton = this.handleCancelButton.bind(this);
+    // this.handleEditUserButton = this.handleEditUserButton.bind(this);
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
     this.showModal();
-  }
+  };
 
-  showModal() {
+  showModal = () => {
     $("#show-user-modal").modal("show");
-  }
+  };
 
-  hideModal() {
+  hideModal = () => {
     $("#show-user-modal").modal("hide");
-  }
+  };
 
-  handleCancelButton(e) {
+  handleCancelButton = e => {
     this.hideModal();
     this.props.handleCancelButton();
-  }
+  };
 
-  handleEditUserButton(e) {
+  handleEditUserButton = e => {
     this.hideModal();
-    this.props.handleCancelButton();
-  }
+    this.props.handleEditButton();
+  };
 
-  render() {
+  render = () => {
     return (
       <div id="show-user-modal" className="modal" tabIndex="-1" role="dialog">
         <div className="modal-dialog" role="document">
@@ -73,6 +73,13 @@ export default class UserDataModal extends React.Component {
               </dl>
 
               <dl className="row">
+                <dt className="col-sm-3">É Admin?</dt>
+                <dd className="col-sm-9">
+                  {this.props.user.admin ? "Sim" : "Não"}
+                </dd>
+              </dl>
+
+              <dl className="row">
                 <dt className="col-sm-3">Criado em</dt>
                 <dd className="col-sm-9">
                   {Formatter.dateFormat(this.props.user.created_at)}
@@ -91,6 +98,7 @@ export default class UserDataModal extends React.Component {
               <button
                 type="button"
                 className="btn btn-primary"
+                data-dismiss="modal"
                 onClick={this.handleEditUserButton}
               >
                 Editar
@@ -116,5 +124,5 @@ export default class UserDataModal extends React.Component {
         </div>
       </div>
     );
-  }
+  };
 }
