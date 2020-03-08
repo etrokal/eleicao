@@ -1,8 +1,9 @@
 import React, { useReducer, useEffect, useCallback } from "react";
 
-import ValidarCpf from "../../../util/cpf";
+import ValidarCpf from "../../../util/ValidarCpf";
 import Axios from "axios";
 import FieldSpinner from "../../basic/FieldSpinner";
+import usePasswordConfirm from "../../basic/hooks/usePasswordConfirm";
 
 const initialState = {
   showEmailSpinner: false,
@@ -30,6 +31,11 @@ function reducer(state, action) {
 
 const FormUsuario = props => {
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  const { handlePasswordConfirmChange } = usePasswordConfirm(
+    "password",
+    props.handleInputChange
+  );
 
   // Roda na inicialização
   useEffect(() => {
@@ -145,25 +151,10 @@ const FormUsuario = props => {
     props.handleInputChange(e);
   };
 
-  const handlePasswordConfirmChange = e => {
-    e.persist();
-    const inputPassword = document.getElementById("password");
-    const inputPasswordConfirm = e.target;
-
-    if (inputPassword.value === inputPasswordConfirm.value) {
-      inputPasswordConfirm.setCustomValidity("");
-    } else {
-      inputPasswordConfirm.setCustomValidity("As senhas devem ser iguais");
-    }
-
-    props.handleInputChange(e);
-  };
-
   const handleSubmit = e => {
     e.persist();
     e.preventDefault();
-    $("#form-usuario-modal").modal("hide");
-    props.handleSubmit(e);
+    props.handleSubmit(() => $("#form-usuario-modal").modal("hide"));
   };
 
   /** FIM DOS HANDLERS **/

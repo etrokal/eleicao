@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useCallback, useReducer } from "react";
+import React, { useCallback, useReducer } from "react";
 import ReactDOM from "react-dom";
 import produce from "immer";
 
 // HOOKS
-import useForm from "./hooks/useForm";
-import useDataFetcher from "./hooks/useDataFetcher";
-import useDeleter from "./hooks/useDeleter";
+import useForm from "../../basic/hooks/useForm";
+import useDataFetcher from "../../basic/hooks/useDataFetcher";
+import useDeleter from "../../basic/hooks/useDeleter";
 
 // COMPONENTS
 import BarraDeComandos from "./BarraDeComandos";
@@ -13,13 +13,14 @@ import FormUsuario from "./FormUsuario";
 import DataTable from "./DataTable";
 import UserDataModal from "./UserDataModal";
 
-import Axios from "axios";
+import AlterPasswordForm from "./AlterPasswordForm";
 
 // TODO: Falta terminar a edição, ordenação e exclusão
 
 const initialState = {
   shouldShowModal: false,
   shouldShowForm: false,
+  shouldShowAlterPasswordForm: false,
   formType: "create",
   modalUser: {}
 };
@@ -51,7 +52,15 @@ function reducer(state, action) {
       };
     case "hide-form":
       return { ...state, shouldShowForm: false };
-
+    case "show-password-form":
+      return {
+        ...state,
+        shouldShowAlterPasswordForm: true,
+        shouldShowModal: false,
+        shouldShowForm: false
+      };
+    case "hide-password-form":
+      return { ...state, shouldShowAlterPasswordForm: false };
     default:
       throw new Error("invalid action type: " + action.type);
   }
@@ -72,8 +81,15 @@ const CadastroUsuario = props => {
   };
 
   const { inputData, handleInputChange, submitForm, setData } = useForm(
-    "/usuario", newUser
+    "/usuario",
+    newUser
   );
+
+  const passwordForm = useForm("/usuario/password", {
+    password: "",
+    password_confirmation: "",
+    id: ""
+  });
 
   const {
     records,
@@ -93,10 +109,11 @@ const CadastroUsuario = props => {
     [state]
   );
 
-  const handleSubmit = e => {
+  const handleUserFormSubmit = callback => {
     submitForm(() => {
-      dispatch({ type: "hide-form" });
       fetchData();
+      if (callback) callback();
+      dispatch({ type: "hide-form" });
     });
   };
 
@@ -118,24 +135,54 @@ const CadastroUsuario = props => {
     });
   };
 
-  const formUsuario = state.shouldShowForm ? (
+  const handlePasswordChangeButton = () => {
+    passwordForm.setData({
+      id: state.modalUser.id,
+      name: state.modalUser.name,
+      email: state.modalUser.email,
+      cpf: state.modalUser.cpf,
+      password: "",
+      password_confirmation: ""
+    });
+    dispatch({ type: "show-password-form" });
+  };
+
+  const handlePasswordSubmit = callback => {
+    passwordForm.submitForm(() => {
+      if (callback) callback();
+      dispatch({ type: "hide-password-form" });
+    });
+  };
+
+  const renderFormUsuario = state.shouldShowForm ? (
     <FormUsuario
       user={inputData}
       formType={state.formType}
       handleInputChange={handleInputChange}
       handleCancelButton={() => dispatch({ type: "hide-form" })}
-      handleSubmit={handleSubmit}
+      handleSubmit={handleUserFormSubmit}
     />
   ) : (
     <></>
   );
 
-  const userDataModal = state.shouldShowModal ? (
+  const renderUserDataModal = state.shouldShowModal ? (
     <UserDataModal
       user={state.modalUser}
       handleEditButton={handleEditButton}
-      handlePasswordChangeButton={() => {}}
+      handlePasswordChangeButton={handlePasswordChangeButton}
       handleCancelButton={() => dispatch({ type: "hide-modal" })}
+    />
+  ) : (
+    <></>
+  );
+
+  const renderPasswordForm = state.shouldShowAlterPasswordForm ? (
+    <AlterPasswordForm
+      inputData={passwordForm.inputData}
+      handleInputChange={passwordForm.handleInputChange}
+      handleSubmit={handlePasswordSubmit}
+      handleCancelButton={() => dispatch({ type: "hide-password-form" })}
     />
   ) : (
     <></>
@@ -156,8 +203,9 @@ const CadastroUsuario = props => {
           <BarraDeComandos novoUsuario={() => handleNewUserButton()} />
         </div>
       </form>
-      {formUsuario}
-      {userDataModal}
+      {renderFormUsuario}
+      {renderUserDataModal}
+      {renderPasswordForm}
     </div>
   );
 };

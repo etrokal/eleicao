@@ -106,6 +106,7 @@ export default class UserDataModal extends React.Component {
               <button
                 type="button"
                 className="btn btn-secondary"
+                data-dismiss="modal"
                 onClick={this.props.handlePasswordChangeButton}
               >
                 Alterar Senha

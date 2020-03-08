@@ -8,17 +8,21 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Http\Requests\StoreUser;
 use App\Http\Requests\UpdateUserRequest;
+use App\Http\Requests\AlterPasswordUserRequest;
+
 use Debugbar;
 
 class UserController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         // TODO: Somente administradores podem fazer isso
 
         return view('user.index');
     }
 
-    public function store(StoreUser $request) {
+    public function store(StoreUser $request)
+    {
         $campos = $request->all();
         $campos['password'] = Hash::make($campos['password']);
 
@@ -26,7 +30,8 @@ class UserController extends Controller
         return response()->json($user);
     }
 
-    public function update(UpdateUserRequest $request, User $user) {
+    public function update(UpdateUserRequest $request, User $user)
+    {
         $data = $request->all();
 
         unset($data['password']);
@@ -36,7 +41,8 @@ class UserController extends Controller
         return response()->json($user);
     }
 
-    public function list(Request $request) {
+    public function list(Request $request)
+    {
         $offset = $request->input('offset') ? $request->input('offset') : 0;
         $limit = $request->input('limit') ? $request->input('limit') : 15;
         $orderBy = $request->input('orderBy') ? preg_replace('/\W/', '', $request->input('orderBy')) : 'id';
@@ -46,7 +52,7 @@ class UserController extends Controller
         $usersQuery = User::skip($offset)->take($limit);
         $usersQuery->orderBy($orderBy, $orderAsc);
 
-        if(!empty($filter)) {
+        if (!empty($filter)) {
             $usersQuery
                 ->where('name', 'like', '%' . $filter . '%')
                 ->orWhere('email', 'like', '%' . $filter . '%')
@@ -64,24 +70,31 @@ class UserController extends Controller
         return response()->json($resultado);
     }
 
-    public function destroy(User $user) {
+    public function destroy(User $user)
+    {
         // TODO only admin
         $user->delete();
-
         return response()->json($user);
     }
 
+    public function password(AlterPasswordUserRequest $request, User $user)
+    {
+        $password = Hash::make($request->input('password'));
+        $user->password = $password;
+        $user->save();
+    }
 
 
     // VERIFICACOES
     // Retorna TRUE se o CPF for único e FALSE se for repetido
-    public function verificaCpfUnico(Request $request) {
+    public function verificaCpfUnico(Request $request)
+    {
         $cpf = $request->input('cpf');
         $id = $request->input('id');
 
         $cpfLimpo = preg_replace('/\D/', '', $cpf);
 
-        if(!empty($id)) {
+        if (!empty($id)) {
             $qtdUser = User::where('cpf', $cpfLimpo)
                 ->where('id', '<>', $id)->count();
         } else {
@@ -97,11 +110,12 @@ class UserController extends Controller
     }
 
     // Retorna TRUE se o E-mail for único e FALSE se for repetido
-    public function verificaEmailUnico(Request $request) {
+    public function verificaEmailUnico(Request $request)
+    {
         $email = $request->input('email');
         $id = $request->input('id');
 
-        if(!empty($id)) {
+        if (!empty($id)) {
             $qtdUser = User::where('email', $email)
                 ->where('id', '<>', $id)->count();
         } else {

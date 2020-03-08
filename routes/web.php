@@ -24,6 +24,7 @@ Route::post('/usuario', 'UserController@store');
 Route::get('/usuario/list', 'UserController@list');
 Route::put('/usuario/{user}', 'UserController@update');
 Route::delete('/usuario/{user}', 'UserController@destroy');
+Route::put('/usuario/password/{user}', 'UserController@password');
 
 Route::get('/verificacoes/usuario/email', 'UserController@verificaEmailUnico');
 Route::get('/verificacoes/usuario/cpf', 'UserController@verificaCpfUnico');

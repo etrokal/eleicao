@@ -83666,6 +83666,473 @@ function (_React$Component) {
 
 /***/ }),
 
+/***/ "./resources/js/components/basic/hooks/useDataFetcher.js":
+/*!***************************************************************!*\
+  !*** ./resources/js/components/basic/hooks/useDataFetcher.js ***!
+  \***************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var immer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! immer */ "./node_modules/immer/dist/immer.esm.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+var initialState = {
+  records: [],
+  numRecords: 0,
+  params: {
+    orderBy: "id",
+    orderAsc: true,
+    offset: 0,
+    limit: 15,
+    filter: ""
+  }
+};
+
+var reducer = function reducer(state, action) {
+  //   const params = state.params;
+  switch (action.type) {
+    case "set-records":
+      return Object(immer__WEBPACK_IMPORTED_MODULE_1__["default"])(state, function (nextState) {
+        nextState.records = action.payload.records;
+        nextState.numRecords = action.payload.numRecords;
+      });
+
+    case "set-param-orderby":
+      return Object(immer__WEBPACK_IMPORTED_MODULE_1__["default"])(state, function (nextState) {
+        nextState.params.orderBy = action.payload;
+      });
+
+    case "set-param-orderasc":
+      return Object(immer__WEBPACK_IMPORTED_MODULE_1__["default"])(state, function (nextState) {
+        nextState.params.orderAsc = action.payload;
+      });
+
+    case "set-param-offset":
+      return Object(immer__WEBPACK_IMPORTED_MODULE_1__["default"])(state, function (nextState) {
+        nextState.params.offset = action.payload;
+      });
+
+    case "set-param-limit":
+      return Object(immer__WEBPACK_IMPORTED_MODULE_1__["default"])(state, function (nextState) {
+        nextState.params.limit = action.payload;
+        nextState.params.offset = nextState.params.offset - nextState.params.offset % nextState.params.limit;
+      });
+
+    case "set-param-filter":
+      return Object(immer__WEBPACK_IMPORTED_MODULE_1__["default"])(state, function (nextState) {
+        nextState.params.filter = action.payload;
+      });
+
+    default:
+      throw new Error("invalid action type: " + action.type);
+  }
+};
+
+var useDataFetcher = function useDataFetcher(url) {
+  var _useReducer = Object(react__WEBPACK_IMPORTED_MODULE_0__["useReducer"])(reducer, initialState),
+      _useReducer2 = _slicedToArray(_useReducer, 2),
+      state = _useReducer2[0],
+      dispatch = _useReducer2[1];
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    return _fetchData(state.params);
+  }, [state.params]);
+
+  var _fetchData = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(_.debounce(function (params, callback) {
+    axios__WEBPACK_IMPORTED_MODULE_2___default.a.get(url, {
+      params: {
+        offset: params.offset,
+        limit: params.limit,
+        orderBy: params.orderBy,
+        orderAsc: params.orderAsc,
+        filter: params.filter
+      }
+    }).then(function (result) {
+      dispatch({
+        type: "set-records",
+        payload: {
+          records: result.data.records,
+          numRecords: result.data.totalNumRecords
+        }
+      });
+      if (callback) callback();
+    }) // TODO usar função para lidar com erros do axios
+    ["catch"](function (error) {
+      console.error(error);
+    });
+  }, 500), []);
+
+  return {
+    records: state.records,
+    orderParams: state.params,
+    totalNumRecords: state.numRecords,
+    paramsDispatch: dispatch,
+    fetchData: function fetchData(callback) {
+      return _fetchData(state.params, callback);
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (useDataFetcher);
+
+/***/ }),
+
+/***/ "./resources/js/components/basic/hooks/useDeleter.js":
+/*!***********************************************************!*\
+  !*** ./resources/js/components/basic/hooks/useDeleter.js ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_2__);
+
+
+ // remove trailing slash if it was given
+
+var cleanUrl = function cleanUrl(dirtyUrl) {
+  if ("/" == dirtyUrl.charAt(dirtyUrl.length - 1)) {
+    return dirtyUrl.slice(0, -1);
+  }
+
+  return dirtyUrl;
+};
+
+var useDeleter = function useDeleter(baseUrl) {
+  baseUrl = cleanUrl(baseUrl);
+
+  var deleteRecord = function deleteRecord(id, callback) {
+    axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"](baseUrl + "/" + id).then(function (result) {
+      sweetalert2__WEBPACK_IMPORTED_MODULE_2___default.a.fire({
+        title: "Sucesso!",
+        text: "Os dados foram apagados com sucesso!",
+        icon: "success",
+        showConfirmButton: false,
+        timer: 1000
+      });
+      if (callback) callback();
+    });
+  };
+
+  return {
+    deleteRecord: deleteRecord
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (useDeleter);
+
+/***/ }),
+
+/***/ "./resources/js/components/basic/hooks/useForm.js":
+/*!********************************************************!*\
+  !*** ./resources/js/components/basic/hooks/useForm.js ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+ // const initialState = {
+//   id: "",
+//   name: "",
+//   email: "",
+//   password: "",
+//   password_confirmation: "",
+//   cpf: "",
+//   rg: "",
+//   admin: false
+// };
+
+var reducer = function reducer(state, action) {
+  switch (action.type) {
+    case "set-data":
+      return _objectSpread({}, state, {}, action.payload);
+
+    case "change-data":
+      return _objectSpread({}, state, _defineProperty({}, action.payload.name, action.payload.value));
+
+    default:
+      throw new Error("invalid action type " + action.type);
+  }
+};
+
+var useForm = function useForm(baseUrl, initialState) {
+  var _useReducer = Object(react__WEBPACK_IMPORTED_MODULE_0__["useReducer"])(reducer, initialState),
+      _useReducer2 = _slicedToArray(_useReducer, 2),
+      state = _useReducer2[0],
+      dispatch = _useReducer2[1];
+
+  var submitForm = function submitForm(callback) {
+    var promise;
+
+    if (state.id) {
+      promise = axios__WEBPACK_IMPORTED_MODULE_1___default.a.put(baseUrl + "/" + state.id, state);
+    } else {
+      promise = axios__WEBPACK_IMPORTED_MODULE_1___default.a.post(baseUrl, state);
+    }
+
+    promise.then(function (result) {
+      setData(result.data); // toastr.success("Dados salvos com sucesso!");
+
+      Swal.fire({
+        title: "Sucesso!",
+        text: "Dados salvos com sucesso!",
+        icon: "success",
+        timer: 1000,
+        showConfirmButton: false
+      });
+      if (callback) callback();
+    })["catch"](function (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Erro",
+        text: "Ocorreu um erro ao salvar os dados!"
+      });
+      console.error(error);
+      console.log(error.response.data.errors);
+    });
+  };
+
+  var handleInputChange = function handleInputChange(event) {
+    var el = event.target;
+    var name = el.name;
+    var value;
+
+    if (el.type === "checkbox") {
+      value = el.checked;
+    } else {
+      value = el.value;
+    }
+
+    dispatch({
+      type: "change-data",
+      payload: {
+        name: name,
+        value: value
+      }
+    });
+  };
+
+  var setData = function setData(data) {
+    dispatch({
+      type: "set-data",
+      payload: data
+    });
+  };
+
+  return {
+    inputData: state,
+    handleInputChange: handleInputChange,
+    submitForm: submitForm,
+    setData: setData
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (useForm);
+
+/***/ }),
+
+/***/ "./resources/js/components/basic/hooks/usePasswordConfirm.js":
+/*!*******************************************************************!*\
+  !*** ./resources/js/components/basic/hooks/usePasswordConfirm.js ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var usePasswordConfirm = function usePasswordConfirm(passwordInputId, inputHandler) {
+  var handlePasswordConfirmChange = function handlePasswordConfirmChange(e) {
+    e.persist();
+    var inputPassword = document.getElementById(passwordInputId);
+    var inputPasswordConfirm = e.target;
+
+    if (inputPassword.value === inputPasswordConfirm.value) {
+      inputPasswordConfirm.setCustomValidity("");
+    } else {
+      inputPasswordConfirm.setCustomValidity("As senhas devem ser iguais");
+    }
+
+    inputHandler(e);
+  };
+
+  return {
+    handlePasswordConfirmChange: handlePasswordConfirmChange
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (usePasswordConfirm);
+
+/***/ }),
+
+/***/ "./resources/js/components/usuario/cadastro/AlterPasswordForm.js":
+/*!***********************************************************************!*\
+  !*** ./resources/js/components/usuario/cadastro/AlterPasswordForm.js ***!
+  \***********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _basic_hooks_usePasswordConfirm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../basic/hooks/usePasswordConfirm */ "./resources/js/components/basic/hooks/usePasswordConfirm.js");
+/* harmony import */ var _util_Formatter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../util/Formatter */ "./resources/js/util/Formatter.js");
+
+
+
+
+var AlterPasswordForm = function AlterPasswordForm(props) {
+  var _usePasswordConfirm = Object(_basic_hooks_usePasswordConfirm__WEBPACK_IMPORTED_MODULE_1__["default"])("password", props.handleInputChange),
+      handlePasswordConfirmChange = _usePasswordConfirm.handlePasswordConfirmChange;
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    $("#form-password-modal").modal({
+      backdrop: "static",
+      show: true
+    });
+  }, []);
+
+  var handleSubmit = function handleSubmit(e) {
+    e.preventDefault();
+    props.handleSubmit(function () {
+      return $("#form-password-modal").modal("hide");
+    });
+  };
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "form-password-modal",
+    className: "modal",
+    tabIndex: "-1",
+    role: "dialog"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "modal-dialog",
+    role: "document"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "modal-content"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    action: "",
+    method: "POST",
+    onSubmit: handleSubmit
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "hidden",
+    name: "id",
+    value: props.inputData.id
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "modal-header"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+    className: "modal-title"
+  }, "Altera\xE7\xE3o de Senha")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "modal-body"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dl", {
+    className: "row"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dt", {
+    className: "col-sm-3"
+  }, "Id"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", {
+    className: "col-sm-9"
+  }, props.inputData.id)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dl", {
+    className: "row"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dt", {
+    className: "col-sm-3"
+  }, "Nome"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", {
+    className: "col-sm-9"
+  }, props.inputData.name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dl", {
+    className: "row"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dt", {
+    className: "col-sm-3"
+  }, "E-mail"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", {
+    className: "col-sm-9"
+  }, props.inputData.email)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dl", {
+    className: "row"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dt", {
+    className: "col-sm-3"
+  }, "CPF"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dd", {
+    className: "col-sm-9"
+  }, _util_Formatter__WEBPACK_IMPORTED_MODULE_2__["default"].cpfFormat(props.inputData.cpf)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: "password"
+  }, "Nova Senha"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "password",
+    id: "password",
+    className: "form-control",
+    required: true,
+    minLength: "6",
+    maxLength: "191",
+    value: props.inputData.password,
+    onChange: props.handleInputChange,
+    name: "password"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: "password_confirmation"
+  }, "Confirmar nova senha"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "password",
+    id: "password_confirmation",
+    className: "form-control",
+    required: true,
+    minLength: "6",
+    maxLength: "191",
+    value: props.inputData.password_confirmation,
+    onChange: handlePasswordConfirmChange,
+    name: "password_confirmation"
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "modal-footer"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    type: "button",
+    className: "btn btn-secondary",
+    "data-dismiss": "modal",
+    onClick: props.handleCancelButton
+  }, "Fechar"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    type: "submit",
+    className: "btn btn-primary"
+  }, "Salvar")))))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (AlterPasswordForm);
+
+/***/ }),
+
 /***/ "./resources/js/components/usuario/cadastro/BarraDeComandos.js":
 /*!*********************************************************************!*\
   !*** ./resources/js/components/usuario/cadastro/BarraDeComandos.js ***!
@@ -83744,15 +84211,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var immer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! immer */ "./node_modules/immer/dist/immer.esm.js");
-/* harmony import */ var _hooks_useForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./hooks/useForm */ "./resources/js/components/usuario/cadastro/hooks/useForm.js");
-/* harmony import */ var _hooks_useDataFetcher__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./hooks/useDataFetcher */ "./resources/js/components/usuario/cadastro/hooks/useDataFetcher.js");
-/* harmony import */ var _hooks_useDeleter__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./hooks/useDeleter */ "./resources/js/components/usuario/cadastro/hooks/useDeleter.js");
+/* harmony import */ var _basic_hooks_useForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../basic/hooks/useForm */ "./resources/js/components/basic/hooks/useForm.js");
+/* harmony import */ var _basic_hooks_useDataFetcher__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../basic/hooks/useDataFetcher */ "./resources/js/components/basic/hooks/useDataFetcher.js");
+/* harmony import */ var _basic_hooks_useDeleter__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../basic/hooks/useDeleter */ "./resources/js/components/basic/hooks/useDeleter.js");
 /* harmony import */ var _BarraDeComandos__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./BarraDeComandos */ "./resources/js/components/usuario/cadastro/BarraDeComandos.js");
 /* harmony import */ var _FormUsuario__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./FormUsuario */ "./resources/js/components/usuario/cadastro/FormUsuario.js");
 /* harmony import */ var _DataTable__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./DataTable */ "./resources/js/components/usuario/cadastro/DataTable.js");
 /* harmony import */ var _UserDataModal__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./UserDataModal */ "./resources/js/components/usuario/cadastro/UserDataModal.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _AlterPasswordForm__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./AlterPasswordForm */ "./resources/js/components/usuario/cadastro/AlterPasswordForm.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -83784,6 +84250,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 var initialState = {
   shouldShowModal: false,
   shouldShowForm: false,
+  shouldShowAlterPasswordForm: false,
   formType: "create",
   modalUser: {}
 };
@@ -83821,6 +84288,18 @@ function reducer(state, action) {
         shouldShowForm: false
       });
 
+    case "show-password-form":
+      return _objectSpread({}, state, {
+        shouldShowAlterPasswordForm: true,
+        shouldShowModal: false,
+        shouldShowForm: false
+      });
+
+    case "hide-password-form":
+      return _objectSpread({}, state, {
+        shouldShowAlterPasswordForm: false
+      });
+
     default:
       throw new Error("invalid action type: " + action.type);
   }
@@ -83843,20 +84322,26 @@ var CadastroUsuario = function CadastroUsuario(props) {
     admin: false
   };
 
-  var _useForm = Object(_hooks_useForm__WEBPACK_IMPORTED_MODULE_3__["default"])("/usuario", newUser),
+  var _useForm = Object(_basic_hooks_useForm__WEBPACK_IMPORTED_MODULE_3__["default"])("/usuario", newUser),
       inputData = _useForm.inputData,
       handleInputChange = _useForm.handleInputChange,
       submitForm = _useForm.submitForm,
       setData = _useForm.setData;
 
-  var _useDataFetcher = Object(_hooks_useDataFetcher__WEBPACK_IMPORTED_MODULE_4__["default"])("/usuario/list"),
+  var passwordForm = Object(_basic_hooks_useForm__WEBPACK_IMPORTED_MODULE_3__["default"])("/usuario/password", {
+    password: "",
+    password_confirmation: "",
+    id: ""
+  });
+
+  var _useDataFetcher = Object(_basic_hooks_useDataFetcher__WEBPACK_IMPORTED_MODULE_4__["default"])("/usuario/list"),
       records = _useDataFetcher.records,
       orderParams = _useDataFetcher.orderParams,
       totalNumRecords = _useDataFetcher.totalNumRecords,
       paramsDispatch = _useDataFetcher.paramsDispatch,
       fetchData = _useDataFetcher.fetchData;
 
-  var _useDeleter = Object(_hooks_useDeleter__WEBPACK_IMPORTED_MODULE_5__["default"])("/usuario"),
+  var _useDeleter = Object(_basic_hooks_useDeleter__WEBPACK_IMPORTED_MODULE_5__["default"])("/usuario"),
       deleteRecord = _useDeleter.deleteRecord;
 
   var handleEditButton = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(function (e) {
@@ -83868,12 +84353,13 @@ var CadastroUsuario = function CadastroUsuario(props) {
     });
   }, [state]);
 
-  var handleSubmit = function handleSubmit(e) {
+  var handleUserFormSubmit = function handleUserFormSubmit(callback) {
     submitForm(function () {
+      fetchData();
+      if (callback) callback();
       dispatch({
         type: "hide-form"
       });
-      fetchData();
     });
   };
 
@@ -83901,7 +84387,30 @@ var CadastroUsuario = function CadastroUsuario(props) {
     });
   };
 
-  var formUsuario = state.shouldShowForm ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FormUsuario__WEBPACK_IMPORTED_MODULE_7__["default"], {
+  var handlePasswordChangeButton = function handlePasswordChangeButton() {
+    passwordForm.setData({
+      id: state.modalUser.id,
+      name: state.modalUser.name,
+      email: state.modalUser.email,
+      cpf: state.modalUser.cpf,
+      password: "",
+      password_confirmation: ""
+    });
+    dispatch({
+      type: "show-password-form"
+    });
+  };
+
+  var handlePasswordSubmit = function handlePasswordSubmit(callback) {
+    passwordForm.submitForm(function () {
+      if (callback) callback();
+      dispatch({
+        type: "hide-password-form"
+      });
+    });
+  };
+
+  var renderFormUsuario = state.shouldShowForm ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FormUsuario__WEBPACK_IMPORTED_MODULE_7__["default"], {
     user: inputData,
     formType: state.formType,
     handleInputChange: handleInputChange,
@@ -83910,15 +84419,25 @@ var CadastroUsuario = function CadastroUsuario(props) {
         type: "hide-form"
       });
     },
-    handleSubmit: handleSubmit
+    handleSubmit: handleUserFormSubmit
   }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null);
-  var userDataModal = state.shouldShowModal ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UserDataModal__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  var renderUserDataModal = state.shouldShowModal ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UserDataModal__WEBPACK_IMPORTED_MODULE_9__["default"], {
     user: state.modalUser,
     handleEditButton: handleEditButton,
-    handlePasswordChangeButton: function handlePasswordChangeButton() {},
+    handlePasswordChangeButton: handlePasswordChangeButton,
     handleCancelButton: function handleCancelButton() {
       return dispatch({
         type: "hide-modal"
+      });
+    }
+  }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null);
+  var renderPasswordForm = state.shouldShowAlterPasswordForm ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AlterPasswordForm__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    inputData: passwordForm.inputData,
+    handleInputChange: passwordForm.handleInputChange,
+    handleSubmit: handlePasswordSubmit,
+    handleCancelButton: function handleCancelButton() {
+      return dispatch({
+        type: "hide-password-form"
       });
     }
   }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null);
@@ -83937,7 +84456,7 @@ var CadastroUsuario = function CadastroUsuario(props) {
     novoUsuario: function novoUsuario() {
       return handleNewUserButton();
     }
-  }))), formUsuario, userDataModal);
+  }))), renderFormUsuario, renderUserDataModal, renderPasswordForm);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (CadastroUsuario);
@@ -83961,110 +84480,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var immer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! immer */ "./node_modules/immer/dist/immer.esm.js");
-/* harmony import */ var _Pagination__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Pagination */ "./resources/js/components/usuario/cadastro/Pagination.js");
-/* harmony import */ var _util_Formatter__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../util/Formatter */ "./resources/js/util/Formatter.js");
-/* harmony import */ var _QuantitySelector__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./QuantitySelector */ "./resources/js/components/usuario/cadastro/QuantitySelector.js");
-/* harmony import */ var _TextField__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./TextField */ "./resources/js/components/usuario/cadastro/TextField.js");
+/* harmony import */ var _Pagination__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Pagination */ "./resources/js/components/usuario/cadastro/Pagination.js");
+/* harmony import */ var _util_Formatter__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../util/Formatter */ "./resources/js/util/Formatter.js");
+/* harmony import */ var _QuantitySelector__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./QuantitySelector */ "./resources/js/components/usuario/cadastro/QuantitySelector.js");
+/* harmony import */ var _TextField__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./TextField */ "./resources/js/components/usuario/cadastro/TextField.js");
+/* harmony import */ var _basic_FieldSpinner__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../basic/FieldSpinner */ "./resources/js/components/basic/FieldSpinner.js");
 
 
 
 
 
 
- // class DataTablea extends React.Component {
-//   constructor(props) {
-//     super(props);
-//   }
-//   handleShow = element => {
-//     this.props.handleShow(element);
-//   };
-//   handleDelete = element => {
-//     fetchUserList = () => {
-//       this.props.fetchUserList();
-//     };
-//     renderTableLines = () => {
-//       const rows = this.props.rows.slice();
-//       const tableLines = [];
-//       for (let i = 0; i < rows.length; ++i) {
-//         tableLines.push(
-//           <tr key={rows[i].id}>
-//             <th scope="row">{rows[i].id}</th>
-//             <td>{rows[i].name}</td>
-//             <td>{rows[i].email}</td>
-//             <td>{Formatter.cpfFormat(rows[i].cpf)}</td>
-//             <td>
-//               <a
-//                 href="#"
-//                 onClick={() => this.handleShow(rows[i])}
-//                 className="btn btn-primary"
-//               >
-//                 Ver
-//               </a>
-//               <a
-//                 href="#"
-//                 onClick={() => this.handleDelete(rows[i])}
-//                 className="btn btn-danger ml-2"
-//               >
-//                 Excluir
-//               </a>
-//             </td>
-//           </tr>
-//         );
-//       }
-//       return tableLines;
-//     };
-//     render = () => {
-//       const tableLines = this.renderTableLines();
-//       const numRegistros =
-//         this.props.usuarios.length + this.props.orderParams.offset;
-//       return (
-//         <div>
-//           <div className="row mb-2">
-//             <div className="col-md-3 col-sm-12">
-//               <QuantitySelector
-//                 quantity={this.props.orderParams.limit}
-//                 handleQuantityChange={this.props.handleLimitChange}
-//               />
-//             </div>
-//             <div className="offset-md-5 col-md-4 col-sm-12">
-//               <TextField
-//                 value={this.props.orderParams.filter}
-//                 handleValueChange={this.props.handleFilterChange}
-//                 placeholder="Filtrar Registros"
-//               />
-//             </div>
-//           </div>
-//           <table className="table">
-//             <thead>
-//               <tr>
-//                 <th scope="col">ID</th>
-//                 <th scope="col">Nome</th>
-//                 <th scope="col">E-mail</th>
-//                 <th scope="col">CPF</th>
-//                 <th scope="col"></th>
-//               </tr>
-//             </thead>
-//             <tbody>{tableLines}</tbody>
-//           </table>
-//           <div className="row mt-2">
-//             <div className="col-md-3 col-sm-12">
-//               Mostrando {numRegistros} de {this.props.qtdRegistros}
-//             </div>
-//             <div className="offset-md-5 col-md-4 col-sm-12">
-//               <Pagination
-//                 offset={this.props.orderParams.offset}
-//                 limit={this.props.orderParams.limit}
-//                 qtdTotal={this.props.qtdRegistros}
-//                 handlePageChange={this.props.handlePageChange}
-//               />
-//             </div>
-//           </div>
-//         </div>
-//       );
-//     };
-//   };
-// }
+
 
 var DataTable = function DataTable(props) {
   var handleDelete = function handleDelete(obj) {
@@ -84086,6 +84513,12 @@ var DataTable = function DataTable(props) {
   };
 
   var renderTableLines = function renderTableLines(records) {
+    if (records.length === 0) {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
+        colSpan: "6"
+      }, "Carregando registros... ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_basic_FieldSpinner__WEBPACK_IMPORTED_MODULE_6__["default"], null)));
+    }
+
     var tableLines = [];
 
     var _loop = function _loop(i) {
@@ -84093,7 +84526,7 @@ var DataTable = function DataTable(props) {
         key: records[i].id
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
         scope: "row"
-      }, records[i].id), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, records[i].name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, records[i].email), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, _util_Formatter__WEBPACK_IMPORTED_MODULE_4__["default"].cpfFormat(records[i].cpf)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, records[i].admin ? "Sim" : "Não"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      }, records[i].id), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, records[i].name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, records[i].email), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, _util_Formatter__WEBPACK_IMPORTED_MODULE_3__["default"].cpfFormat(records[i].cpf)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, records[i].admin ? "Sim" : "Não"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         href: "#",
         onClick: function onClick() {
           return props.handleShowModal(records[i]);
@@ -84121,7 +84554,7 @@ var DataTable = function DataTable(props) {
     className: "row mb-2"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-md-3 col-sm-12"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_QuantitySelector__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_QuantitySelector__WEBPACK_IMPORTED_MODULE_4__["default"], {
     value: props.orderParams.limit,
     handleQuantityChange: function handleQuantityChange(quantity) {
       props.paramsDispatch({
@@ -84131,7 +84564,7 @@ var DataTable = function DataTable(props) {
     }
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "offset-md-5 col-md-4 col-sm-12"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_TextField__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_TextField__WEBPACK_IMPORTED_MODULE_5__["default"], {
     value: props.orderParams.filter,
     handleValueChange: function handleValueChange(value) {
       props.paramsDispatch({
@@ -84160,7 +84593,7 @@ var DataTable = function DataTable(props) {
     className: "col-md-3 col-sm-12"
   }, "Mostrando ", numRegistros, " de ", props.totalNumRecords), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "offset-md-5 col-md-4 col-sm-12"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Pagination__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Pagination__WEBPACK_IMPORTED_MODULE_2__["default"], {
     offset: props.orderParams.offset,
     limit: props.orderParams.limit,
     qtdTotal: props.totalNumRecords,
@@ -84183,10 +84616,11 @@ var DataTable = function DataTable(props) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _util_cpf__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../util/cpf */ "./resources/js/util/cpf.js");
+/* harmony import */ var _util_ValidarCpf__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../util/ValidarCpf */ "./resources/js/util/ValidarCpf.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _basic_FieldSpinner__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../basic/FieldSpinner */ "./resources/js/components/basic/FieldSpinner.js");
+/* harmony import */ var _basic_hooks_usePasswordConfirm__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../basic/hooks/usePasswordConfirm */ "./resources/js/components/basic/hooks/usePasswordConfirm.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -84200,6 +84634,7 @@ function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (O
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -84250,7 +84685,10 @@ var FormUsuario = function FormUsuario(props) {
   var _useReducer = Object(react__WEBPACK_IMPORTED_MODULE_0__["useReducer"])(reducer, initialState),
       _useReducer2 = _slicedToArray(_useReducer, 2),
       state = _useReducer2[0],
-      dispatch = _useReducer2[1]; // Roda na inicialização
+      dispatch = _useReducer2[1];
+
+  var _usePasswordConfirm = Object(_basic_hooks_usePasswordConfirm__WEBPACK_IMPORTED_MODULE_4__["default"])("password", props.handleInputChange),
+      handlePasswordConfirmChange = _usePasswordConfirm.handlePasswordConfirmChange; // Roda na inicialização
 
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
@@ -84324,7 +84762,7 @@ var FormUsuario = function FormUsuario(props) {
     checkCpfUnique(inputCpf.value, props.id, function (unique) {
       if (!unique) {
         inputCpf.setCustomValidity("O cpf já foi cadastrado no sistema.");
-      } else if (!Object(_util_cpf__WEBPACK_IMPORTED_MODULE_1__["default"])(inputCpf.value)) {
+      } else if (!Object(_util_ValidarCpf__WEBPACK_IMPORTED_MODULE_1__["default"])(inputCpf.value)) {
         inputCpf.setCustomValidity("O CPF deve ser válido.");
       } else {
         inputCpf.setCustomValidity("");
@@ -84354,25 +84792,12 @@ var FormUsuario = function FormUsuario(props) {
     props.handleInputChange(e);
   };
 
-  var handlePasswordConfirmChange = function handlePasswordConfirmChange(e) {
-    e.persist();
-    var inputPassword = document.getElementById("password");
-    var inputPasswordConfirm = e.target;
-
-    if (inputPassword.value === inputPasswordConfirm.value) {
-      inputPasswordConfirm.setCustomValidity("");
-    } else {
-      inputPasswordConfirm.setCustomValidity("As senhas devem ser iguais");
-    }
-
-    props.handleInputChange(e);
-  };
-
   var handleSubmit = function handleSubmit(e) {
     e.persist();
     e.preventDefault();
-    $("#form-usuario-modal").modal("hide");
-    props.handleSubmit(e);
+    props.handleSubmit(function () {
+      return $("#form-usuario-modal").modal("hide");
+    });
   };
   /** FIM DOS HANDLERS **/
   // RENDER
@@ -84992,6 +85417,7 @@ function (_React$Component) {
       }, "Editar"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "button",
         className: "btn btn-secondary",
+        "data-dismiss": "modal",
         onClick: _this.props.handlePasswordChangeButton
       }, "Alterar Senha"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "button",
@@ -85008,312 +85434,6 @@ function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 
-
-/***/ }),
-
-/***/ "./resources/js/components/usuario/cadastro/hooks/useDataFetcher.js":
-/*!**************************************************************************!*\
-  !*** ./resources/js/components/usuario/cadastro/hooks/useDataFetcher.js ***!
-  \**************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var immer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! immer */ "./node_modules/immer/dist/immer.esm.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
-
-function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-
-var initialState = {
-  records: [],
-  numRecords: 0,
-  params: {
-    orderBy: "id",
-    orderAsc: true,
-    offset: 0,
-    limit: 15,
-    filter: ""
-  }
-};
-
-var reducer = function reducer(state, action) {
-  //   const params = state.params;
-  switch (action.type) {
-    case "set-records":
-      return Object(immer__WEBPACK_IMPORTED_MODULE_1__["default"])(state, function (nextState) {
-        nextState.records = action.payload.records;
-        nextState.numRecords = action.payload.numRecords;
-      });
-
-    case "set-param-orderby":
-      return Object(immer__WEBPACK_IMPORTED_MODULE_1__["default"])(state, function (nextState) {
-        nextState.params.orderBy = action.payload;
-      });
-
-    case "set-param-orderasc":
-      return Object(immer__WEBPACK_IMPORTED_MODULE_1__["default"])(state, function (nextState) {
-        nextState.params.orderAsc = action.payload;
-      });
-
-    case "set-param-offset":
-      return Object(immer__WEBPACK_IMPORTED_MODULE_1__["default"])(state, function (nextState) {
-        nextState.params.offset = action.payload;
-      });
-
-    case "set-param-limit":
-      return Object(immer__WEBPACK_IMPORTED_MODULE_1__["default"])(state, function (nextState) {
-        nextState.params.limit = action.payload;
-        nextState.params.offset = nextState.params.offset - nextState.params.offset % nextState.params.limit;
-      });
-
-    case "set-param-filter":
-      return Object(immer__WEBPACK_IMPORTED_MODULE_1__["default"])(state, function (nextState) {
-        nextState.params.filter = action.payload;
-      });
-
-    default:
-      throw new Error("invalid action type: " + action.type);
-  }
-};
-
-var useDataFetcher = function useDataFetcher(url) {
-  var _useReducer = Object(react__WEBPACK_IMPORTED_MODULE_0__["useReducer"])(reducer, initialState),
-      _useReducer2 = _slicedToArray(_useReducer, 2),
-      state = _useReducer2[0],
-      dispatch = _useReducer2[1];
-
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    return _fetchData(state.params);
-  }, [state.params]);
-
-  var _fetchData = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(_.debounce(function (params, callback) {
-    axios__WEBPACK_IMPORTED_MODULE_2___default.a.get(url, {
-      params: {
-        offset: params.offset,
-        limit: params.limit,
-        orderBy: params.orderBy,
-        orderAsc: params.orderAsc,
-        filter: params.filter
-      }
-    }).then(function (result) {
-      dispatch({
-        type: "set-records",
-        payload: {
-          records: result.data.records,
-          numRecords: result.data.totalNumRecords
-        }
-      });
-      if (callback) callback();
-    }) // TODO usar função para lidar com erros do axios
-    ["catch"](function (error) {
-      console.error(error);
-    });
-  }, 500), []);
-
-  return {
-    records: state.records,
-    orderParams: state.params,
-    totalNumRecords: state.numRecords,
-    paramsDispatch: dispatch,
-    fetchData: function fetchData(callback) {
-      return _fetchData(state.params, callback);
-    }
-  };
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (useDataFetcher);
-
-/***/ }),
-
-/***/ "./resources/js/components/usuario/cadastro/hooks/useDeleter.js":
-/*!**********************************************************************!*\
-  !*** ./resources/js/components/usuario/cadastro/hooks/useDeleter.js ***!
-  \**********************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_2__);
-
-
- // remove trailing slash if it was given
-
-var cleanUrl = function cleanUrl(dirtyUrl) {
-  if ("/" == dirtyUrl.charAt(dirtyUrl.length - 1)) {
-    return dirtyUrl.slice(0, -1);
-  }
-
-  return dirtyUrl;
-};
-
-var useDeleter = function useDeleter(baseUrl) {
-  baseUrl = cleanUrl(baseUrl);
-
-  var deleteRecord = function deleteRecord(id, callback) {
-    axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"](baseUrl + "/" + id).then(function (result) {
-      sweetalert2__WEBPACK_IMPORTED_MODULE_2___default.a.fire({
-        title: "Sucesso!",
-        text: "Os dados foram apagados com sucesso!",
-        icon: "success",
-        showConfirmButton: false,
-        timer: 1000
-      });
-      if (callback) callback();
-    });
-  };
-
-  return {
-    deleteRecord: deleteRecord
-  };
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (useDeleter);
-
-/***/ }),
-
-/***/ "./resources/js/components/usuario/cadastro/hooks/useForm.js":
-/*!*******************************************************************!*\
-  !*** ./resources/js/components/usuario/cadastro/hooks/useForm.js ***!
-  \*******************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
-
-function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
- // const initialState = {
-//   id: "",
-//   name: "",
-//   email: "",
-//   password: "",
-//   password_confirmation: "",
-//   cpf: "",
-//   rg: "",
-//   admin: false
-// };
-
-var reducer = function reducer(state, action) {
-  switch (action.type) {
-    case "set-data":
-      return _objectSpread({}, state, {}, action.payload);
-
-    case "change-data":
-      return _objectSpread({}, state, _defineProperty({}, action.payload.name, action.payload.value));
-
-    default:
-      throw new Error("invalid action type " + action.type);
-  }
-};
-
-var useForm = function useForm(baseUrl, initialState) {
-  var _useReducer = Object(react__WEBPACK_IMPORTED_MODULE_0__["useReducer"])(reducer, initialState),
-      _useReducer2 = _slicedToArray(_useReducer, 2),
-      state = _useReducer2[0],
-      dispatch = _useReducer2[1];
-
-  var submitForm = function submitForm(callback) {
-    var promise;
-
-    if (state.id) {
-      promise = axios__WEBPACK_IMPORTED_MODULE_1___default.a.put(baseUrl + "/" + state.id, state);
-    } else {
-      promise = axios__WEBPACK_IMPORTED_MODULE_1___default.a.post(baseUrl, state);
-    }
-
-    promise.then(function (result) {
-      setData(result.data); // toastr.success("Dados salvos com sucesso!");
-
-      Swal.fire({
-        title: "Sucesso!",
-        text: "Dados salvos com sucesso!",
-        icon: "success",
-        timer: 1000,
-        showConfirmButton: false
-      });
-      if (callback) callback();
-    })["catch"](function (error) {
-      Swal.fire({
-        icon: "error",
-        title: "Erro",
-        text: "Ocorreu um erro ao salvar os dados!"
-      });
-      console.error(error);
-      console.log(error.response.data.errors);
-    });
-  };
-
-  var handleInputChange = function handleInputChange(event) {
-    var el = event.target;
-    var name = el.name;
-    var value;
-
-    if (el.type === "checkbox") {
-      value = el.checked;
-    } else {
-      value = el.value;
-    }
-
-    dispatch({
-      type: "change-data",
-      payload: {
-        name: name,
-        value: value
-      }
-    });
-  };
-
-  var setData = function setData(data) {
-    dispatch({
-      type: "set-data",
-      payload: data
-    });
-  };
-
-  return {
-    inputData: state,
-    handleInputChange: handleInputChange,
-    submitForm: submitForm,
-    setData: setData
-  };
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (useForm);
 
 /***/ }),
 
@@ -85342,10 +85462,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/util/cpf.js":
-/*!**********************************!*\
-  !*** ./resources/js/util/cpf.js ***!
-  \**********************************/
+/***/ "./resources/js/util/ValidarCpf.js":
+/*!*****************************************!*\
+  !*** ./resources/js/util/ValidarCpf.js ***!
+  \*****************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
