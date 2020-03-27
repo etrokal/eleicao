@@ -17,6 +17,21 @@ class StoreUser extends FormRequest
     }
 
     /**
+     * Get data to be validated from the request.
+     *
+     * @return array
+     */
+    public function validationData()
+    {
+        return array_merge(
+            $this->all(),
+            [
+                'cpf' => preg_replace("/[^0-9]/", "", $this->cpf)
+            ]
+        );
+    }
+
+    /**
      * Get the validation rules that apply to the request.
      *
      * @return array

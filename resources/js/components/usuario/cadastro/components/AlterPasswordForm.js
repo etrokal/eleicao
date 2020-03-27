@@ -1,25 +1,62 @@
 import React, { useEffect } from "react";
 
-import usePasswordConfirm from "../../basic/hooks/usePasswordConfirm";
-import Formatter from "../../../util/Formatter";
+import useComponentDidUpdate from "../../../basic/hooks/useComponentDidUpdate";
+import Formatter from "../../../../util/Formatter";
+import Swal from "sweetalert2";
 
-const AlterPasswordForm = props => {
-  const { handlePasswordConfirmChange } = usePasswordConfirm(
-    "password",
-    props.handleInputChange
-  );
-
+const AlterPasswordForm = ({
+  handleSubmit,
+  selectedUser,
+  showModal,
+  handleInputChange,
+  changingPassword,
+  handleCancelButton,
+  result
+}) => {
   useEffect(() => {
-    $("#form-password-modal").modal({
-      backdrop: "static",
-      show: true
-    });
-  }, []);
+    if (showModal) {
+      $("#form-password-modal").modal({
+        backdrop: "static",
+        show: true
+      });
+    } else {
+      $("#form-password-modal").modal("hide");
+    }
+    return () => {
+      $("#form-password-modal").modal("hide");
+    };
+  }, [showModal]);
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    props.handleSubmit(() => $("#form-password-modal").modal("hide"));
-  };
+  useComponentDidUpdate(() => {
+    const passwordConfirmationInput = document.getElementById(
+      "password_confirmation"
+    );
+    const passwordInput = document.getElementById("password");
+    if (
+      selectedUser.password_confirmation != selectedUser.password &&
+      selectedUser.password_confirmation != "" &&
+      selectedUser.password != ""
+    ) {
+      const msg = "Os passwords devem ser idênticos.";
+      passwordConfirmationInput.setCustomValidity(msg);
+      passwordInput.setCustomValidity(msg);
+    } else {
+      passwordConfirmationInput.setCustomValidity("");
+      passwordInput.setCustomValidity("");
+    }
+  }, [selectedUser.password, selectedUser.password_confirmation]);
+
+  useComponentDidUpdate(() => {
+    if (result) {
+      Swal.fire({
+        icon: "success",
+        title: "Sucesso!",
+        text: "Os dados foram salvos com sucesso.",
+        showConfirmButton: false,
+        timer: 1000
+      });
+    }
+  }, [result]);
 
   return (
     <>
@@ -32,7 +69,7 @@ const AlterPasswordForm = props => {
         <div className="modal-dialog" role="document">
           <div className="modal-content">
             <form action="" method="POST" onSubmit={handleSubmit}>
-              <input type="hidden" name="id" value={props.inputData.id} />
+              <input type="hidden" name="id" value={selectedUser.id} />
               <div className="modal-header">
                 <h5 className="modal-title">Alteração de Senha</h5>
               </div>
@@ -40,23 +77,23 @@ const AlterPasswordForm = props => {
                 <div>
                   <dl className="row">
                     <dt className="col-sm-3">Id</dt>
-                    <dd className="col-sm-9">{props.inputData.id}</dd>
+                    <dd className="col-sm-9">{selectedUser.id}</dd>
                   </dl>
 
                   <dl className="row">
                     <dt className="col-sm-3">Nome</dt>
-                    <dd className="col-sm-9">{props.inputData.name}</dd>
+                    <dd className="col-sm-9">{selectedUser.name}</dd>
                   </dl>
 
                   <dl className="row">
                     <dt className="col-sm-3">E-mail</dt>
-                    <dd className="col-sm-9">{props.inputData.email}</dd>
+                    <dd className="col-sm-9">{selectedUser.email}</dd>
                   </dl>
 
                   <dl className="row">
                     <dt className="col-sm-3">CPF</dt>
                     <dd className="col-sm-9">
-                      {Formatter.cpfFormat(props.inputData.cpf)}
+                      {Formatter.cpfFormat(selectedUser.cpf)}
                     </dd>
                   </dl>
                 </div>
@@ -70,8 +107,8 @@ const AlterPasswordForm = props => {
                     required
                     minLength="6"
                     maxLength="191"
-                    value={props.inputData.password}
-                    onChange={props.handleInputChange}
+                    value={selectedUser.password}
+                    onChange={handleInputChange}
                     name="password"
                   />
                 </div>
@@ -87,8 +124,8 @@ const AlterPasswordForm = props => {
                     required
                     minLength="6"
                     maxLength="191"
-                    value={props.inputData.password_confirmation}
-                    onChange={handlePasswordConfirmChange}
+                    value={selectedUser.password_confirmation}
+                    onChange={handleInputChange}
                     name="password_confirmation"
                   />
                 </div>
@@ -97,12 +134,15 @@ const AlterPasswordForm = props => {
                 <button
                   type="button"
                   className="btn btn-secondary"
-                  data-dismiss="modal"
-                  onClick={props.handleCancelButton}
+                  onClick={handleCancelButton}
                 >
                   Fechar
                 </button>
-                <button type="submit" className="btn btn-primary">
+                <button
+                  type="submit"
+                  className="btn btn-primary"
+                  disabled={changingPassword}
+                >
                   Salvar
                 </button>
               </div>

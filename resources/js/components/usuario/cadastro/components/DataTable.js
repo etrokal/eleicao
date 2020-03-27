@@ -1,38 +1,36 @@
-import React, { useCallback } from "react";
+import React from "react";
 import Swal from "sweetalert2";
 
-import Pagination from "./Pagination";
-import Formatter from "../../../util/Formatter";
+import Formatter from "../../../../util/Formatter";
+
+import Pagination from "../containers/PaginationContainer";
 import QuantitySelector from "./QuantitySelector";
 import TextField from "./TextField";
-import FieldSpinner from "../../basic/FieldSpinner";
+import FieldSpinner from "../../../basic/FieldSpinner";
+import BarraDeComandos from "./BarraDeComandos";
 
-const DataTable = props => {
-  const handleDelete = obj => {
-    Swal.fire({
-      icon: "warning",
-      title: "Excluir Usuário",
-      text: "Essa ação não pode ser desfeita!",
-      confirmButtonText: "Sim, excluir o usuário!",
-      focusConfirm: false,
-      showCancelButton: true,
-      cancelButtonText: "Cancelar",
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#3085d6"
-    }).then(result => {
-      if (result.value) {
-        props.handleDelete(obj);
-      }
-    });
-  };
-
+const DataTable = ({
+  handleParamsChange,
+  totalNumRecords,
+  records,
+  orderParams,
+  handleShowUser,
+  fetchingData,
+  handleNewUser
+}) => {
   const renderTableLines = records => {
-    if (records.length === 0) {
+    if (fetchingData) {
       return (
         <tr>
           <td colSpan="6">
             Carregando registros... <FieldSpinner />
           </td>
+        </tr>
+      );
+    } else if (records.length === 0) {
+      return (
+        <tr>
+          <td colSpan="6">Nenhum registro encontrado.</td>
         </tr>
       );
     }
@@ -48,14 +46,14 @@ const DataTable = props => {
           <td>
             <a
               href="#"
-              onClick={() => props.handleShowModal(records[i])}
+              onClick={() => handleShowUser(records[i])}
               className="btn btn-primary"
             >
               Ver
             </a>
             <a
               href="#"
-              onClick={() => props.handleDelete(records[i])}
+              onClick={() => handleDelete(records[i])}
               className="btn btn-danger ml-2"
             >
               Excluir
@@ -67,30 +65,37 @@ const DataTable = props => {
     return tableLines;
   };
 
-  const tableLines = renderTableLines(props.records);
-  const numRegistros = props.records.length + props.orderParams.offset;
+  const tableLines = renderTableLines(records);
+  const numRegistros = records.length + orderParams.offset;
+  const pagination = fetchingData ? (
+    <></>
+  ) : (
+    <Pagination
+      offset={orderParams.offset}
+      limit={orderParams.limit}
+      qtdTotal={totalNumRecords}
+    />
+  );
 
   return (
-    <div>
+    <>
       <div className="row mb-2">
         <div className="col-md-3 col-sm-12">
           <QuantitySelector
-            value={props.orderParams.limit}
+            value={orderParams.limit}
             handleQuantityChange={quantity => {
-              props.paramsDispatch({
-                type: "set-param-limit",
-                payload: quantity
+              handleParamsChange({
+                limit: quantity
               });
             }}
           />
         </div>
         <div className="offset-md-5 col-md-4 col-sm-12">
           <TextField
-            value={props.orderParams.filter}
+            value={orderParams.filter}
             handleValueChange={value => {
-              props.paramsDispatch({
-                type: "set-param-filter",
-                payload: value
+              handleParamsChange({
+                filter: value
               });
             }}
             placeholder="Filtrar Registros"
@@ -113,18 +118,12 @@ const DataTable = props => {
       </table>
       <div className="row mt-2">
         <div className="col-md-3 col-sm-12">
-          Mostrando {numRegistros} de {props.totalNumRecords}
+          Mostrando {numRegistros} de {totalNumRecords}
         </div>
-        <div className="offset-md-5 col-md-4 col-sm-12">
-          <Pagination
-            offset={props.orderParams.offset}
-            limit={props.orderParams.limit}
-            qtdTotal={props.totalNumRecords}
-            paramsDispatch={props.paramsDispatch}
-          />
-        </div>
+        <div className="offset-md-5 col-md-4 col-sm-12">{pagination}</div>
       </div>
-    </div>
+      <BarraDeComandos handleNovoUsuario={handleNewUser} />
+    </>
   );
 };
 
