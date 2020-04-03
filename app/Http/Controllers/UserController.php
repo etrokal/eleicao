@@ -9,16 +9,63 @@ use App\Models\User;
 use App\Http\Requests\StoreUser;
 use App\Http\Requests\UpdateUserRequest;
 use App\Http\Requests\AlterPasswordUserRequest;
+use App\Services\DatatableService;
+use Illuminate\Support\Facades\Validator;
+
+
 
 use Debugbar;
+use Symfony\Component\HttpKernel\HttpCache\Store;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        // TODO: Somente administradores podem fazer isso
+        $offset = $request->input('offset') ? $request->input('offset') : 0;
+        $limit = $request->input('limit') ? $request->input('limit') : 15;
+        $orderBy = $request->input('orderBy') ? preg_replace('/\W/', '', $request->input('orderBy')) : 'id';
+        $orderAsc = $request->input('orderAsc') === null ? true : !!$request->input('orderAsc');
+        $filter = $request->input('filter');
 
-        return view('user.index');
+        $usersQuery = User::query();
+
+        $service = new DatatableService($usersQuery, function ($query, $filter) {
+            $query
+                ->where('name', 'like', '%' . $filter . '%')
+                ->orWhere('email', 'like', '%' . $filter . '%')
+                ->orWhere('cpf', 'like', '%' . $filter . '%');
+        });
+
+        $service->setFilter($filter);
+        $service->setOrderAsc($orderAsc);
+        $service->setOrderBy($orderBy);
+        $service->setLimit($limit);
+        $service->setOffset($offset);
+
+        $result = $service->getResults();
+
+        $params = compact(
+            'offset',
+            'limit',
+            'orderBy',
+            'orderAsc',
+            'filter'
+        );
+
+        return view(
+            'user.index',
+            [
+                'users' => $result['records'],
+                'total' => $result['total'],
+                'rowCount' => $result['rowCount'],
+                'params' => $params
+            ]
+        );
+    }
+
+    public function create()
+    {
+        return view('user.create')->with('user', new User());
     }
 
     public function store(StoreUser $request)
@@ -27,7 +74,17 @@ class UserController extends Controller
         $campos['password'] = Hash::make($campos['password']);
 
         $user = User::create($campos);
-        return response()->json($user);
+        return redirect()->route('user.index');
+    }
+
+    public function show(User $user)
+    {
+        return view('user.show')->with('user', $user);
+    }
+
+    public function edit(User $user)
+    {
+        return view('user.edit')->with('user', $user);
     }
 
     public function update(UpdateUserRequest $request, User $user)
@@ -38,43 +95,19 @@ class UserController extends Controller
         $user->fill($data);
         $user->save();
 
-        return response()->json($user);
-    }
-
-    public function list(Request $request)
-    {
-        $offset = $request->input('offset') ? $request->input('offset') : 0;
-        $limit = $request->input('limit') ? $request->input('limit') : 15;
-        $orderBy = $request->input('orderBy') ? preg_replace('/\W/', '', $request->input('orderBy')) : 'id';
-        $orderAsc = $request->input('orderAsc') === FALSE ? 'desc' : 'asc';
-        $filter = $request->input('filter');
-
-        $usersQuery = User::skip($offset)->take($limit);
-        $usersQuery->orderBy($orderBy, $orderAsc);
-
-        if (!empty($filter)) {
-            $usersQuery
-                ->where('name', 'like', '%' . $filter . '%')
-                ->orWhere('email', 'like', '%' . $filter . '%')
-                ->orWhere('cpf', 'like', '%' . $filter . '%');
-        }
-
-        $users = $usersQuery->get();
-        $qtdTotal = User::count();
-
-        $resultado = [
-            'records' => $users,
-            'totalNumRecords' => $qtdTotal
-        ];
-
-        return response()->json($resultado);
+        return redirect()->route('user.index');
     }
 
     public function destroy(User $user)
     {
-        // TODO only admin
         $user->delete();
-        return response()->json($user);
+        return redirect()->route('user.index');
+    }
+
+    public function passwordForm(User $user)
+    {
+        $user->password = '';
+        return view('user.passwordForm')->with('user', $user);
     }
 
     public function password(AlterPasswordUserRequest $request, User $user)
@@ -84,49 +117,63 @@ class UserController extends Controller
         $user->save();
     }
 
-
-    // VERIFICACOES
-    // Retorna TRUE se o CPF for único e FALSE se for repetido
-    public function verificaCpfUnico(Request $request)
+    public function validatePasswordAjax(Request $request, $attribute = null)
     {
-        $cpf = $request->input('cpf');
-        $id = $request->input('id');
+        $data = $request->all();
 
-        $cpfLimpo = preg_replace('/\D/', '', $cpf);
+        $rules = (new AlterPasswordUserRequest())->rules();
 
-        if (!empty($id)) {
-            $qtdUser = User::where('cpf', $cpfLimpo)
-                ->where('id', '<>', $id)->count();
+        $validator = Validator::make($data, $rules);
+        $user = new \stdClass();
+        foreach ($data as $k => $v)
+            $user->$k = $v;
+
+        $errors = $validator->errors();
+
+        if ($validator->fails()) {
+            if ($errors->has($attribute)) {
+                return response()->view('user.partials.passwordForm', ['user' => $user, 'errors' => $errors])->header('X-IC-Trigger', 'disableSubmit');;
+            } else {
+                return response()->view('user.partials.passwordForm', ['user' => $user])->header('X-IC-Trigger', 'disableSubmit');;
+            }
         } else {
-            $qtdUser = User::where('cpf', $cpfLimpo)
-                ->count();
+            return response()
+                ->view('user.partials.passwordForm', ['user' => $user])
+                ->header('X-IC-Trigger', 'enableSubmit');
         }
-
-        $resposta = [
-            'unico' => $qtdUser == 0
-        ];
-
-        return response()->json($resposta);
     }
 
-    // Retorna TRUE se o E-mail for único e FALSE se for repetido
-    public function verificaEmailUnico(Request $request)
+    public function validateAjax(Request $request, $attribute = null)
     {
-        $email = $request->input('email');
-        $id = $request->input('id');
+        $data = $request->all();
 
-        if (!empty($id)) {
-            $qtdUser = User::where('email', $email)
-                ->where('id', '<>', $id)->count();
-        } else {
-            $qtdUser = User::where('email', $email)
-                ->count();
+        if (isset($data['cpf'])) {
+            $data['cpf'] = preg_replace('/\D+/', '', $data['cpf']);
         }
 
-        $resposta = [
-            'unico' => $qtdUser == 0
-        ];
+        if ($request->input('id')) {
+            $rules = (new UpdateUserRequest())->rules();
+        } else {
+            $rules = (new StoreUser())->rules();
+        }
 
-        return response()->json($resposta);
+        $validator = Validator::make($data, $rules);
+        $user = new \stdClass();
+        foreach ($data as $k => $v)
+            $user->$k = $v;
+
+        $errors = $validator->errors();
+
+        if ($validator->fails()) {
+            if ($errors->has($attribute)) {
+                return response()->view('user.partials.' . $attribute, ['user' => $user, 'errors' => $errors])->header('X-IC-Trigger', 'disableSubmit');;
+            } else {
+                return response()->view('user.partials.' . $attribute, ['user' => $user])->header('X-IC-Trigger', 'disableSubmit');;
+            }
+        } else {
+            return response()
+                ->view('user.partials.' . $attribute, ['user' => $user])
+                ->header('X-IC-Trigger', 'enableSubmit');
+        }
     }
 }

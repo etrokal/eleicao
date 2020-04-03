@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
     "content-hash": "bf3f08bd89cc55dd78bc645d4dca07ac",
@@ -1527,16 +1527,16 @@
         },
         {
             "name": "lucascudo/laravel-pt-br-localization",
-            "version": "v1.0.3",
+            "version": "v1.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lucascudo/laravel-pt-BR-localization.git",
-                "reference": "e2195ed6f83237eec2040528ba1440cd12d53556"
+                "reference": "b016de71b941b75ad7daf3eedcffc0394329ef85"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lucascudo/laravel-pt-BR-localization/zipball/e2195ed6f83237eec2040528ba1440cd12d53556",
-                "reference": "e2195ed6f83237eec2040528ba1440cd12d53556",
+                "url": "https://api.github.com/repos/lucascudo/laravel-pt-BR-localization/zipball/b016de71b941b75ad7daf3eedcffc0394329ef85",
+                "reference": "b016de71b941b75ad7daf3eedcffc0394329ef85",
                 "shasum": ""
             },
             "type": "library",
@@ -1563,7 +1563,7 @@
                 }
             ],
             "description": "Arquivos de linguagem em Português do Brasil (pt-BR) para Laravel >= 5.6",
-            "time": "2020-02-01T23:26:48+00:00"
+            "time": "2020-03-26T09:57:51+00:00"
         },
         {
             "name": "monolog/monolog",

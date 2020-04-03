@@ -24,12 +24,22 @@ class UpdateUserRequest extends FormRequest
      */
     public function rules()
     {
-        $id = $this->route('user')->id;
+        $id = $this->input('id');
         return [
             'name' => 'required|max:191',
             'email' => "required|email|unique:App\Models\User,email,{$id},id,deleted_at,NULL",
             'cpf' => "required|cpf|unique:App\Models\User,cpf,{$id},id,deleted_at,NULL",
             'rg' => 'required',
         ];
+    }
+
+    public function validationData()
+    {
+        return array_merge(
+            $this->all(),
+            [
+                'cpf' => preg_replace("/[^0-9]/", "", $this->cpf)
+            ]
+        );
     }
 }

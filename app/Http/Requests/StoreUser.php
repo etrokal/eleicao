@@ -31,4 +31,14 @@ class StoreUser extends FormRequest
             'password' => 'required|min:6|max:64|confirmed',
         ];
     }
+
+    public function validationData()
+    {
+        return array_merge(
+            $this->all(),
+            [
+                'cpf' => preg_replace("/[^0-9]/", "", $this->cpf)
+            ]
+        );
+    }
 }

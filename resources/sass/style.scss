@@ -1,0 +1,11 @@
+.up-modal-dialog {
+  width: 60%;
+}
+
+.show-control {
+  display: none;
+}
+
+div.alert.ic-removing {
+    @extend .fadeOutUp;
+}

@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+
 class User extends Authenticatable
 {
     use Notifiable;
@@ -37,7 +38,19 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function setCpfAttribute($value) {
+    public function setCpfAttribute($value)
+    {
         $this->attributes['cpf'] = preg_replace('/\D/', '', $value);
+    }
+
+    public function getCpfFormatado()
+    {
+        return  substr($this->cpf, 0, 3) .
+            '.' .
+            substr($this->cpf, 3, 3) .
+            '.' .
+            substr($this->cpf, 6, 3) .
+            '-' .
+            substr($this->cpf, 9, 2);
     }
 }
