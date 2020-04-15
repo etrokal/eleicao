@@ -1,11 +1,19 @@
 const getDataFromEvent = e => {
-  const input = e.target;
-  const name = input.name;
+  let name;
   let value;
-  if (input.type === "checkbox") {
-    value = !!input.checked;
+
+  if (e.type === "customInput") {
+    name = e.detail.name;
+    value = e.detail.value;
   } else {
-    value = input.value;
+    const input = e.target;
+    name = input.name;
+
+    if (input.type === "checkbox") {
+      value = !!input.checked;
+    } else {
+      value = input.value;
+    }
   }
 
   return { name, value };

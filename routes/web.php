@@ -29,5 +29,9 @@ Route::put('/usuario/password/{user}', 'UserController@password');
 Route::get('/verificacoes/usuario/email', 'UserController@verificaEmailUnico');
 Route::get('/verificacoes/usuario/cpf', 'UserController@verificaCpfUnico');
 
+Route::get('/eleicao', 'EleicaoController@index')->name('eleicao.index');
+Route::get('/eleicao/list', 'EleicaoController@list');
+Route::post('/eleicao', 'EleicaoController@store');
+
 
 

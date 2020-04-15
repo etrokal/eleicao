@@ -1,17 +1,20 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url("https://fonts.googleapis.com/css?family=Nunito");
 
 // Variables
-@import 'variables';
+@import "variables";
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
 
 // Toastr
-@import '~toastr/toastr';
+@import "~toastr/toastr";
 
 // Animate.CSS
-@import '~animate.css/animate.css';
+@import "~animate.css/animate.css";
+
+// Fontawesome
+@import "~@fortawesome/fontawesome-free/css/all.css";
 
 // Sweet Alert 2
-@import '~sweetalert2/dist/sweetalert2.css';
+@import "~sweetalert2/dist/sweetalert2.css";

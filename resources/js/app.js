@@ -14,4 +14,5 @@ require("./bootstrap");
 
 // require('./components/Example');
 
-require("./components/usuario/cadastro/index");
+require("./views/user/index");
+require("./views/eleicao");

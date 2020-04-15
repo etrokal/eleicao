@@ -46,11 +46,12 @@ class UserController extends Controller
         $offset = $request->input('offset') ? $request->input('offset') : 0;
         $limit = $request->input('limit') ? $request->input('limit') : 15;
         $orderBy = $request->input('orderBy') ? preg_replace('/\W/', '', $request->input('orderBy')) : 'id';
-        $orderAsc = $request->input('orderAsc') === FALSE ? 'desc' : 'asc';
+        $orderAsc = $request->input('orderAsc') === 'true';
+        $dbOrderAsc = (!!$orderAsc ? 'asc' : 'desc');
         $filter = $request->input('filter');
 
         $usersQuery = User::skip($offset)->take($limit);
-        $usersQuery->orderBy($orderBy, $orderAsc);
+        $usersQuery->orderBy($orderBy, $dbOrderAsc);
 
         if (!empty($filter)) {
             $usersQuery
