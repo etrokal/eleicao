@@ -16,6 +16,8 @@ try {
   window.Swal = require("sweetalert2");
 
   require("bootstrap");
+  require('unpoly/dist/unpoly');
+  require('unpoly/dist/unpoly-bootstrap3');
 } catch (e) {}
 
 /**

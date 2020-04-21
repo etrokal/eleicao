@@ -48,9 +48,7 @@
             @endcomponent
         </div>
     </div>
-    <form action="" method="GET" id="form-datatable" ic-get-from="{{urlGenerator($srcUrl)}}" ic-target="div.datatable"
-        ic-select-from-response="div.datatable" ic-trigger-from=".FormTrigger" ic-include="#limit,#filter"
-        ic-trigger-on="input" ic-trigger-delay="1000">
+    <form action="" method="GET" id="form-datatable" up-target="table.datatable" up-autosubmit up-delay="1000">
         <input type="hidden" name="orderBy" value="{{$params['orderBy']}}">
         <input type="hidden" name="orderAsc" value="{{$params['orderAsc']}}">
         <input type="hidden" name="offset" value="{{$params['offset']}}">

@@ -16,7 +16,7 @@ class XLocationMiddleware
     public function handle($request, Closure $next)
     {
         $response = $next($request);
-        $response->header('X-IC-SetLocation', url()->current());
+        $response->header('X-Up-Location', url()->current());
 
         return $response;
     }

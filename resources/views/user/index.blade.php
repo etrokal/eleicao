@@ -30,8 +30,7 @@
         <td>{{$u->admin ? 'Sim' : 'Não'}}</td>
         <td>
             <a href="{{route('user.show', [$u->id])}}" class="btn btn-primary triggerUserModal"
-                ic-get-from="{{route('user.show', [$u->id])}}" ic-target="#userShowModal div.modal-content"
-                ic-select-from-response="div.ic-content">
+                up-modal="div.user-form">
                 Ver
             </a>
             <a href="{{route('user.destroy', [$u->id])}}" class="btn btn-danger ml-2 delete-link">
@@ -44,13 +43,12 @@
         <td colspan="6">Não há usuários.</td>
     </tr>
     @endforelse
-
     @endcomponent
 </div>
 
 {{-- BOOTSTRAP MODALS --}}
 
-<a href="{{route('user.create')}}" class="btn btn-primary mt-3 triggerUserFormModal">Novo
+<a href="{{route('user.create')}}" class="btn btn-primary mt-3 triggerUserFormModal" up-modal="div.user-form">Novo
     Usuário</a>
 
 <div class="modal fade" id="userShowModal" tabindex="-1" role="dialog" aria-labelledby="userShowModal"
@@ -65,5 +63,4 @@
         </div>
     </div>
 </div>
-
 @endsection

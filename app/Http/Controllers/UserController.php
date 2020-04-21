@@ -68,13 +68,22 @@ class UserController extends Controller
         return view('user.create')->with('user', new User());
     }
 
-    public function store(StoreUser $request)
+    public function store(Request $request)
     {
-        $campos = $request->all();
-        $campos['password'] = Hash::make($campos['password']);
+        $validator = $this->getValidator($request->all());
 
-        $user = User::create($campos);
-        return redirect()->route('user.index');
+        if ($validator->fails()) {
+            $user = new User($request->all());
+            return response()->view('user.create', [
+                'errors' => $validator->errors(),
+                'user' => $user
+            ], 400);
+        } else {
+            $campos = $validator->valid();
+            $campos['password'] = Hash::make($campos['password']);
+            $user = User::create($campos);
+            return redirect()->route('user.index')->with('success', 'Usuário criado com sucesso.');
+        }
     }
 
     public function show(User $user)
@@ -175,5 +184,19 @@ class UserController extends Controller
                 ->view('user.partials.' . $attribute, ['user' => $user])
                 ->header('X-IC-Trigger', 'enableSubmit');
         }
+    }
+
+    protected function getValidator($data)
+    {
+
+        $data['cpf'] = isset($data['cpf']) ? preg_replace("/[^0-9]/", "", $data['cpf']) : null;
+        $id = isset($data['id']) ? $data['id'] : 'null';
+
+        return Validator::make($data, [
+            'name' => 'required|max:191',
+            'email' => "required|email|unique:App\Models\User,email,{$id},id,deleted_at,NULL",
+            'cpf' => "required|cpf|unique:App\Models\User,cpf,{$id},id,deleted_at,NULL",
+            'rg' => 'required',
+        ], []);
     }
 }

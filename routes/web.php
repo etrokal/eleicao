@@ -33,7 +33,5 @@ Route::post('/usuario/{user}/password', 'UserController@password')->name('user.p
 Route::post('/validate/user/password/change', 'UserController@validatePasswordAjax')->name('validate.user.password');
 
 
-
-
 Route::get('/verificacoes/usuario/email', 'UserController@verificaEmailUnico');
 Route::get('/verificacoes/usuario/cpf', 'UserController@verificaCpfUnico');

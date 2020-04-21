@@ -7,5 +7,11 @@
 }
 
 div.alert.ic-removing {
-    @extend .fadeOutUp;
+  @extend .fadeOutUp;
+}
+
+.up-modal-content {
+  padding-top: 5%;
+  padding-left: 3%;
+  padding-right: 3%;
 }

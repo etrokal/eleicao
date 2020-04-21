@@ -17,24 +17,19 @@ $numInterations = 2 * $pagesBeforeAndAfter + 1;
         @else
         <li class="page-item">
             <a class="page-link" href="{{getUrlFromPageNumber($srcUrl, $currentPage - 1, $params)}}"
-                ic-get-from="{{getUrlFromPageNumber($srcUrl, $currentPage - 1, $params)}}" ic-target="div.datatable"
-                ic-select-from-response="div.datatable">
+                up-target="div.datatable">
                 Anterior
             </a>
         </li>
         @endif
 
-        @for($i = $currentPage - $pagesBeforeAndAfter; $i <= $numInterations; $i++)
-        @php
-            if($i < 1 || $i > $qtdPaginas)
-                continue;
-        @endphp
-        <li class="page-item {{$currentPage === $i ? 'active' : ''}}">
-            <a class="page-link" href="{{getUrlFromPageNumber($srcUrl, $i, $params)}}"
-                ic-get-from="{{getUrlFromPageNumber($srcUrl, $i, $params)}}" ic-target="div.datatable"
-                ic-select-from-response="div.datatable">
-                {{$i}}
-            </a>
+        @for($i = $currentPage - $pagesBeforeAndAfter; $i <= $numInterations; $i++) @php if($i < 1 || $i> $qtdPaginas)
+            continue;
+            @endphp
+            <li class="page-item {{$currentPage === $i ? 'active' : ''}}">
+                <a class="page-link" href="{{getUrlFromPageNumber($srcUrl, $i, $params)}}" up-target="div.datatable">
+                    {{$i}}
+                </a>
             </li>
             @endfor
 
@@ -45,8 +40,7 @@ $numInterations = 2 * $pagesBeforeAndAfter + 1;
             @else
             <li class="page-item">
                 <a class="page-link" href="{{getUrlFromPageNumber($srcUrl, $currentPage + 1, $params)}}"
-                    ic-get-from="{{getUrlFromPageNumber($srcUrl, $currentPage + 1, $params)}}" ic-target="div.datatable"
-                    ic-select-from-response="div.datatable">
+                    up-target="div.datatable">
                     Próximo
                 </a>
             </li>

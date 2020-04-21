@@ -6,13 +6,5 @@
 
 require("./bootstrap");
 
-const Intercooler = require("intercooler");
-window.Intercooler = Intercooler;
 
-// Components
-require("./components/global");
-require("./components/userForm");
-require("./components/userModal");
-require("./components/passwordForm");
-require("./components/loadingModal");
 

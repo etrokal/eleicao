@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="ic-content">
+<div class="user-form">
     <h2 class="modal-title">@yield('title')</h2>
-    <form action="@yield('action')" method="POST" class="userForm" ic-post-to="@yield('action')">
+    <form action="@yield('action')" method="POST" class="userForm" up-target="body">
         @csrf
         @if($user->id)
         @method('PUT')
@@ -22,7 +22,7 @@
         @include('user.partials.admin')
 
         <div class="form-group mt-3">
-            <a href="{{route('user.index')}}" class="btn btn-secondary">
+            <a href="{{route('user.index')}}" class="btn btn-secondary" up-dash="div.datatable">
                 Cancelar
             </a>
 
