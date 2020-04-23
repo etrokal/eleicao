@@ -30,7 +30,7 @@
         <td>{{$u->admin ? 'Sim' : 'Não'}}</td>
         <td>
             <a href="{{route('user.show', [$u->id])}}" class="btn btn-primary triggerUserModal"
-                up-modal="div.user-form">
+                up-modal="div.user-data">
                 Ver
             </a>
             <a href="{{route('user.destroy', [$u->id])}}" class="btn btn-danger ml-2 delete-link">

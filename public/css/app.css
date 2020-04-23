@@ -17349,8 +17349,7 @@ button.toast-close-button {
   }
 }
 
-.fadeOutUp,
-div.alert.ic-removing {
+.fadeOutUp {
   -webkit-animation-name: fadeOutUp;
   animation-name: fadeOutUp;
 }
@@ -18872,5 +18871,6 @@ div.alert.ic-removing {
   padding-top: 5%;
   padding-left: 3%;
   padding-right: 3%;
+  padding-bottom: 5%;
 }
 

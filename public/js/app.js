@@ -43302,47 +43302,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
 
 /***/ }),
 
-/***/ "./node_modules/unpoly/dist/unpoly-bootstrap3.js":
-/*!*******************************************************!*\
-  !*** ./node_modules/unpoly/dist/unpoly-bootstrap3.js ***!
-  \*******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-(function() {
-  up.feedback.config.currentClasses.push('active');
-
-  up.feedback.config.navs.push('.nav');
-
-}).call(this);
-(function() {
-  up.form.config.validateTargets.unshift('.form-group:has(&)');
-
-}).call(this);
-(function() {
-  up.modal.config.template = "<div class=\"up-modal\">\n  <div class=\"up-modal-backdrop\"></div>\n  <div class=\"up-modal-viewport\">\n    <div class=\"up-modal-dialog modal-dialog\">\n      <div class=\"up-modal-content modal-content\"></div>\n    </div>\n  </div>\n</div>";
-
-}).call(this);
-(function() {
-  up.viewport.config.fixedTop.push('.navbar-fixed-top');
-
-  up.viewport.config.fixedBottom.push('.navbar-fixed-bottom');
-
-  up.viewport.config.anchoredRight.push('.navbar-fixed-top');
-
-  up.viewport.config.anchoredRight.push('.navbar-fixed-bottom');
-
-  up.viewport.config.anchoredRight.push('.footer');
-
-}).call(this);
-(function() {
-
-
-}).call(this);
-
-
-/***/ }),
-
 /***/ "./node_modules/unpoly/dist/unpoly.js":
 /*!********************************************!*\
   !*** ./node_modules/unpoly/dist/unpoly.js ***!
@@ -43384,7 +43343,7 @@ to not include another library in your asset bundle.
 
     /***
     A function that does nothing.
-    
+
     @function up.util.noop
     @experimental
      */
@@ -43393,7 +43352,7 @@ to not include another library in your asset bundle.
 
     /***
     A function that returns a resolved promise.
-    
+
     @function up.util.asyncNoop
     @internal
      */
@@ -43404,10 +43363,10 @@ to not include another library in your asset bundle.
     /***
     Ensures that the given function can only be called a single time.
     Subsequent calls will return the return value of the first call.
-    
+
     Note that this is a simple implementation that
     doesn't distinguish between argument lists.
-    
+
     @function up.util.memoize
     @internal
      */
@@ -43429,7 +43388,7 @@ to not include another library in your asset bundle.
 
     /***
     Returns if the given port is the default port for the given protocol.
-    
+
     @function up.util.isStandardPort
     @internal
      */
@@ -43441,9 +43400,9 @@ to not include another library in your asset bundle.
     /***
     Normalizes relative paths and absolute paths to a full URL
     that can be checked for equality with other normalized URLs.
-    
+
     By default hashes are ignored, search queries are included.
-    
+
     @function up.util.normalizeUrl
     @param {boolean} [options.hash=false]
       Whether to include an `#hash` anchor in the normalized URL
@@ -43482,10 +43441,10 @@ to not include another library in your asset bundle.
 
     /***
     Parses the given URL into components such as hostname and path.
-    
+
     If the given URL is not fully qualified, it is assumed to be relative
     to the current page.
-    
+
     @function up.util.parseUrl
     @return {Object}
       The parsed URL as an object with
@@ -43548,7 +43507,7 @@ to not include another library in your asset bundle.
 
     /***
     Merge the own properties of one or more `sources` into the `target` object.
-    
+
     @function up.util.assign
     @param {Object} target
     @param {Array<Object>} sources...
@@ -43567,7 +43526,7 @@ to not include another library in your asset bundle.
 
     /***
     Returns an array of values of the given object.
-    
+
     @function up.util.values
     @param {Object} object
     @return {Array<string>}
@@ -43586,12 +43545,12 @@ to not include another library in your asset bundle.
 
     /***
     Translate all items in an array to new array of items.
-    
+
     @function up.util.map
     @param {Array} array
     @param {Function(element, index): any|String} block
       A function that will be called with each element and (optional) iteration index.
-    
+
       You can also pass a property name as a String,
       which will be collected from each item in the array.
     @return {Array}
@@ -43628,7 +43587,7 @@ to not include another library in your asset bundle.
     /***
     Calls the given function for each element (and, optional, index)
     of the given array.
-    
+
     @function up.util.each
     @param {Array} array
     @param {Function(element, index)} block
@@ -43647,7 +43606,7 @@ to not include another library in your asset bundle.
 
     /***
     Calls the given function for the given number of times.
-    
+
     @function up.util.times
     @param {number} count
     @param {Function()} block
@@ -43664,7 +43623,7 @@ to not include another library in your asset bundle.
 
     /***
     Returns whether the given argument is `null`.
-    
+
     @function up.util.isNull
     @param object
     @return {boolean}
@@ -43676,7 +43635,7 @@ to not include another library in your asset bundle.
 
     /***
     Returns whether the given argument is `undefined`.
-    
+
     @function up.util.isUndefined
     @param object
     @return {boolean}
@@ -43688,7 +43647,7 @@ to not include another library in your asset bundle.
 
     /***
     Returns whether the given argument is not `undefined`.
-    
+
     @function up.util.isDefined
     @param object
     @return {boolean}
@@ -43700,11 +43659,11 @@ to not include another library in your asset bundle.
 
     /***
     Returns whether the given argument is either `undefined` or `null`.
-    
+
     Note that empty strings or zero are *not* considered to be "missing".
-    
+
     For the opposite of `up.util.isMissing()` see [`up.util.isGiven()`](/up.util.isGiven).
-    
+
     @function up.util.isMissing
     @param object
     @return {boolean}
@@ -43716,11 +43675,11 @@ to not include another library in your asset bundle.
 
     /***
     Returns whether the given argument is neither `undefined` nor `null`.
-    
+
     Note that empty strings or zero *are* considered to be "given".
-    
+
     For the opposite of `up.util.isGiven()` see [`up.util.isMissing()`](/up.util.isMissing).
-    
+
     @function up.util.isGiven
     @param object
     @return {boolean}
@@ -43732,20 +43691,20 @@ to not include another library in your asset bundle.
 
     /***
     Return whether the given argument is considered to be blank.
-    
+
     By default, this function returns `true` for:
-    
+
     - `undefined`
     - `null`
     - Empty strings
     - Empty arrays
     - A plain object without own enumerable properties
-    
+
     All other arguments return `false`.
-    
+
     To check implement blank-ness checks for user-defined classes,
     see `up.util.isBlank.key`.
-    
+
     @function up.util.isBlank
     @param value
       The value is to check.
@@ -43772,39 +43731,39 @@ to not include another library in your asset bundle.
     /***
     This property contains the name of a method that user-defined classes
     may implement to hook into the `up.util.isBlank()` protocol.
-    
+
     \#\#\# Example
-    
+
     We have a user-defined `Account` class that we want to use with `up.util.isBlank()`:
-    
+
     ```
     class Account {
       constructor(email) {
         this.email = email
       }
-    
+
       [up.util.isBlank.key]() {
         return up.util.isBlank(this.email)
       }
     }
     ```
-    
+
     Note that the protocol method is not actually named `'up.util.isBlank.key'`.
     Instead it is named after the *value* of the `up.util.isBlank.key` property.
     To do so, the code sample above is using a
     [computed property name](https://medium.com/front-end-weekly/javascript-object-creation-356e504173a8)
     in square brackets.
-    
+
     We may now use `Account` instances with `up.util.isBlank()`:
-    
+
     ```
     foo = new Account('foo@foo.com')
     bar = new Account('')
-    
+
     console.log(up.util.isBlank(foo)) // prints false
     console.log(up.util.isBlank(bar)) // prints true
     ```
-    
+
     @property up.util.isBlank.key
     @experimental
      */
@@ -43813,7 +43772,7 @@ to not include another library in your asset bundle.
     /***
     Returns the given argument if the argument is [present](/up.util.isPresent),
     otherwise returns `undefined`.
-    
+
     @function up.util.presence
     @param value
     @param {Function(value): boolean} [tester=up.util.isPresent]
@@ -43834,7 +43793,7 @@ to not include another library in your asset bundle.
 
     /***
     Returns whether the given argument is not [blank](/up.util.isBlank).
-    
+
     @function up.util.isPresent
     @param object
     @return {boolean}
@@ -43846,7 +43805,7 @@ to not include another library in your asset bundle.
 
     /***
     Returns whether the given argument is a function.
-    
+
     @function up.util.isFunction
     @param object
     @return {boolean}
@@ -43858,7 +43817,7 @@ to not include another library in your asset bundle.
 
     /***
     Returns whether the given argument is a string.
-    
+
     @function up.util.isString
     @param object
     @return {boolean}
@@ -43870,7 +43829,7 @@ to not include another library in your asset bundle.
 
     /***
     Returns whether the given argument is a boolean value.
-    
+
     @function up.util.isBoolean
     @param object
     @return {boolean}
@@ -43882,10 +43841,10 @@ to not include another library in your asset bundle.
 
     /***
     Returns whether the given argument is a number.
-    
+
     Note that this will check the argument's *type*.
     It will return `false` for a string like `"123"`.
-    
+
     @function up.util.isNumber
     @param object
     @return {boolean}
@@ -43897,10 +43856,10 @@ to not include another library in your asset bundle.
 
     /***
     Returns whether the given argument is an options hash,
-    
+
     Differently from [`up.util.isObject()`], this returns false for
     functions, jQuery collections, promises, `FormData` instances and arrays.
-    
+
     @function up.util.isOptions
     @param object
     @return {boolean}
@@ -43912,9 +43871,9 @@ to not include another library in your asset bundle.
 
     /***
     Returns whether the given argument is an object.
-    
+
     This also returns `true` for functions, which may behave like objects in JavaScript.
-    
+
     @function up.util.isObject
     @param object
     @return {boolean}
@@ -43928,7 +43887,7 @@ to not include another library in your asset bundle.
 
     /***
     Returns whether the given argument is a [DOM element](https://developer.mozilla.org/de/docs/Web/API/Element).
-    
+
     @function up.util.isElement
     @param object
     @return {boolean}
@@ -43940,7 +43899,7 @@ to not include another library in your asset bundle.
 
     /***
     Returns whether the given argument is a [jQuery collection](https://learn.jquery.com/using-jquery-core/jquery-object/).
-    
+
     @function up.util.isJQuery
     @param object
     @return {boolean}
@@ -43952,7 +43911,7 @@ to not include another library in your asset bundle.
 
     /***
     Returns whether the given argument is an object with a `then` method.
-    
+
     @function up.util.isPromise
     @param object
     @return {boolean}
@@ -43964,7 +43923,7 @@ to not include another library in your asset bundle.
 
     /***
     Returns whether the given argument is an array.
-    
+
     @function up.util.isArray
     @param object
     @return {boolean}
@@ -43974,9 +43933,9 @@ to not include another library in your asset bundle.
 
     /***
     Returns whether the given argument is a `FormData` instance.
-    
+
     Always returns `false` in browsers that don't support `FormData`.
-    
+
     @function up.util.isFormData
     @param object
     @return {boolean}
@@ -43988,9 +43947,9 @@ to not include another library in your asset bundle.
 
     /***
     Converts the given [array-like value](/up.util.isList) into an array.
-    
+
     If the given value is already an array, it is returned unchanged.
-    
+
     @function up.util.toArray
     @param object
     @return {Array}
@@ -44006,14 +43965,14 @@ to not include another library in your asset bundle.
 
     /****
     Returns whether the given argument is an array-like value.
-    
+
     Return true for `Array`, a
     [`NodeList`](https://developer.mozilla.org/en-US/docs/Web/API/NodeList),
      the [arguments object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments)
      or a jQuery collection.
-    
+
     Use [`up.util.isArray()`](/up.util.isArray) to test whether a value is an actual `Array`.
-    
+
     @function up.util.isList
     @param value
     @return {Boolean}
@@ -44025,9 +43984,9 @@ to not include another library in your asset bundle.
 
     /***
     Returns whether the given value is a [`NodeList`](https://developer.mozilla.org/en-US/docs/Web/API/NodeList).
-    
+
     `NodeLists` are array-like objects returned by [`document.querySelectorAll()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/querySelectorAll).
-    
+
     @function up.util.isNodeList
     @param value
     @return {Boolean}
@@ -44042,7 +44001,7 @@ to not include another library in your asset bundle.
 
     /***
     Returns whether the given value is an [arguments object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments).
-    
+
     @function up.util.isArguments
     @param value
     @return {Boolean}
@@ -44069,9 +44028,9 @@ to not include another library in your asset bundle.
 
     /***
     Returns a shallow copy of the given value.
-    
+
     \#\#\# Copying protocol
-    
+
     - By default `up.util.copy()` can copy [array-like values](/up.util.isList),
       plain objects and `Date` instances.
     - Array-like objects are copied into new arrays.
@@ -44079,7 +44038,7 @@ to not include another library in your asset bundle.
     - To make the copying protocol work with user-defined class,
       see `up.util.copy.key`.
     - Immutable objects, like strings or numbers, do not need to be copied.
-    
+
     @function up.util.copy
     @param {any} object
     @return {any}
@@ -44108,41 +44067,41 @@ to not include another library in your asset bundle.
     /***
     This property contains the name of a method that user-defined classes
     may implement to hook into the `up.util.copy()` protocol.
-    
+
     \#\#\# Example
-    
+
     We have a user-defined `Account` class that we want to use with `up.util.copy()`:
-    
+
     ```
     class Account {
       constructor(email) {
         this.email = email
       }
-    
+
       [up.util.copy.key]() {
         return new Account(this.email)
       }
     }
     ```
-    
+
     Note that the protocol method is not actually named `'up.util.copy.key'`.
     Instead it is named after the *value* of the `up.util.copy.key` property.
     To do so, the code sample above is using a
     [computed property name](https://medium.com/front-end-weekly/javascript-object-creation-356e504173a8)
     in square brackets.
-    
+
     We may now use `Account` instances with `up.util.copy()`:
-    
+
     ```
     original = new User('foo@foo.com')
-    
+
     copy = up.util.copy(original)
     console.log(copy.email) // prints 'foo@foo.com'
-    
+
     original.email = 'bar@bar.com' // change the original
     console.log(copy.email) // still prints 'foo@foo.com'
     ```
-    
+
     @property up.util.copy.key
     @param {string} key
     @experimental
@@ -44154,7 +44113,7 @@ to not include another library in your asset bundle.
 
     /***
     Returns a deep copy of the given array or object.
-    
+
     @function up.util.deepCopy
     @param {Object|Array} object
     @return {Object|Array}
@@ -44166,7 +44125,7 @@ to not include another library in your asset bundle.
 
     /***
     Creates a new object by merging together the properties from the given objects.
-    
+
     @function up.util.merge
     @param {Array<Object>} sources...
     @return Object
@@ -44180,10 +44139,10 @@ to not include another library in your asset bundle.
 
     /***
     Creates an options hash from the given argument and some defaults.
-    
+
     The semantics of this function are confusing.
     We want to get rid of this in the future.
-    
+
     @function up.util.options
     @param {Object} object
     @param {Object} [defaults]
@@ -44203,9 +44162,9 @@ to not include another library in your asset bundle.
     /***
     Passes each element in the given [array-like value](/up.util.isList) to the given function.
     Returns the first element for which the function returns a truthy value.
-    
+
     If no object matches, returns `undefined`.
-    
+
     @function up.util.find
     @param {List<T>} list
     @param {Function(value): boolean} tester
@@ -44228,12 +44187,12 @@ to not include another library in your asset bundle.
     /***
     Returns whether the given function returns a truthy value
     for any element in the given [array-like value](/up.util.isList).
-    
+
     @function up.util.some
     @param {List} list
     @param {Function(value, index): boolean} tester
       A function that will be called with each element and (optional) iteration index.
-    
+
     @return {boolean}
     @stable
      */
@@ -44244,15 +44203,15 @@ to not include another library in your asset bundle.
     /***
     Consecutively calls the given function which each element
     in the given array. Returns the first truthy return value.
-    
+
     Returned `undefined` iff the function does not return a truthy
     value for any element in the array.
-    
+
     @function up.util.findResult
     @param {Array} array
     @param {Function(element): any} tester
       A function that will be called with each element and (optional) iteration index.
-    
+
     @return {any|undefined}
     @experimental
      */
@@ -44271,12 +44230,12 @@ to not include another library in your asset bundle.
     /***
     Returns whether the given function returns a truthy value
     for all elements in the given [array-like value](/up.util.isList).
-    
+
     @function up.util.every
     @param {List} list
     @param {Function(element, index): boolean} tester
       A function that will be called with each element and (optional) iteration index.
-    
+
     @return {boolean}
     @experimental
      */
@@ -44297,7 +44256,7 @@ to not include another library in your asset bundle.
     /***
     Returns all elements from the given array that are
     neither `null` or `undefined`.
-    
+
     @function up.util.compact
     @param {Array<T>} array
     @return {Array<T>}
@@ -44309,7 +44268,7 @@ to not include another library in your asset bundle.
 
     /***
     Returns the given array without duplicates.
-    
+
     @function up.util.uniq
     @param {Array<T>} array
     @return {Array<T>}
@@ -44326,7 +44285,7 @@ to not include another library in your asset bundle.
     This function is like [`uniq`](/up.util.uniq), accept that
     the given function is invoked for each element to generate the value
     for which uniquness is computed.
-    
+
     @function up.util.uniqBy
     @param {Array} array
     @param {Function(value): any} array
@@ -44381,7 +44340,7 @@ to not include another library in your asset bundle.
     /***
     Returns all elements from the given [array-like value](/up.util.isList) that return
     a truthy value when passed to the given function.
-    
+
     @function up.util.filter
     @param {List} list
     @param {Function(value, index): boolean} tester
@@ -44403,7 +44362,7 @@ to not include another library in your asset bundle.
     /***
     Returns all elements from the given [array-like value](/up.util.isList) that do not return
     a truthy value when passed to the given function.
-    
+
     @function up.util.reject
     @param {List} list
     @param {Function(element, index): boolean} tester
@@ -44419,9 +44378,9 @@ to not include another library in your asset bundle.
 
     /***
     Returns the intersection of the given two arrays.
-    
+
     Implementation is not optimized. Don't use it for large arrays.
-    
+
     @function up.util.intersect
     @internal
      */
@@ -44433,9 +44392,9 @@ to not include another library in your asset bundle.
 
     /***
     Waits for the given number of milliseconds, the runs the given callback.
-    
+
     Instead of `up.util.timer(0, fn)` you can also use [`up.util.task(fn)`](/up.util.task).
-    
+
     @function up.util.timer
     @param {number} millis
     @param {Function()} callback
@@ -44447,11 +44406,11 @@ to not include another library in your asset bundle.
 
     /***
     Pushes the given function to the [JavaScript task queue](https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/) (also "macrotask queue").
-    
+
     Equivalent to calling `setTimeout(fn, 0)`.
-    
+
     Also see `up.util.microtask()`.
-    
+
     @function up.util.task
     @param {Function()} block
     @stable
@@ -44462,7 +44421,7 @@ to not include another library in your asset bundle.
 
     /***
     Pushes the given function to the [JavaScript microtask queue](https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/).
-    
+
     @function up.util.microtask
     @param {Function()} task
     @return {Promise}
@@ -44474,7 +44433,7 @@ to not include another library in your asset bundle.
 
     /***
     Returns the last element of the given array.
-    
+
     @function up.util.last
     @param {Array<T>} array
     @return {T}
@@ -44485,7 +44444,7 @@ to not include another library in your asset bundle.
 
     /***
     Returns whether the given keyboard event involved the ESC key.
-    
+
     @function up.util.escapePressed
     @internal
      */
@@ -44497,7 +44456,7 @@ to not include another library in your asset bundle.
 
     /***
     Returns whether the given array or string contains the given element or substring.
-    
+
     @function up.util.contains
     @param {Array|string} arrayOrString
     @param elementOrSubstring
@@ -44510,7 +44469,7 @@ to not include another library in your asset bundle.
     /***
     Returns a copy of the given object that only contains
     the given properties.
-    
+
     @function up.util.only
     @param {Object} object
     @param {Array} keys...
@@ -44532,7 +44491,7 @@ to not include another library in your asset bundle.
     /***
     Returns a copy of the given object that contains all except
     the given properties.
-    
+
     @function up.util.except
     @param {Object} object
     @param {Array} keys...
@@ -44569,7 +44528,7 @@ to not include another library in your asset bundle.
 
     /***
     Returns a promise that will never be resolved.
-    
+
     @function up.util.unresolvablePromise
     @internal
      */
@@ -44579,9 +44538,9 @@ to not include another library in your asset bundle.
 
     /***
     Removes the given element from the given array.
-    
+
     This changes the given array.
-    
+
     @function up.util.remove
     @param {Array<T>} array
     @param {T} element
@@ -44599,7 +44558,7 @@ to not include another library in your asset bundle.
     /***
     If the given `value` is a function, calls the function with the given `args`.
     Otherwise it just returns `value`.
-    
+
     @function up.util.evalOption
     @internal
      */
@@ -44616,20 +44575,20 @@ to not include another library in your asset bundle.
     /***
     Throws a [JavaScript error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)
     with the given message.
-    
+
     The message will also be printed to the [error log](/up.log.error). Also a notification will be shown at the bottom of the screen.
-    
+
     The message may contain [substitution marks](https://developer.mozilla.org/en-US/docs/Web/API/console#Using_string_substitutions).
-    
+
     \#\#\# Examples
-    
+
         up.fail('Division by zero')
         up.fail('Unexpected result %o', result)
-    
+
     @function up.fail
     @param {string} message
       A message with details about the error.
-    
+
       The message can contain [substitution marks](https://developer.mozilla.org/en-US/docs/Web/API/console#Using_string_substitutions)
       like `%s` or `%o`.
     @param {Array<string>} vars...
@@ -44662,7 +44621,7 @@ to not include another library in your asset bundle.
 
     /***
     Escapes the given string of HTML by replacing control chars with their HTML entities.
-    
+
     @function up.util.escapeHtml
     @param {string} string
       The text that should be escaped
@@ -44719,14 +44678,14 @@ to not include another library in your asset bundle.
     /***
     Given a function that will return a promise, returns a proxy function
     with an additional `.promise` attribute.
-    
+
     When the proxy is called, the inner function is called.
     The proxy's `.promise` attribute is available even before the function is called
     and will resolve when the inner function's returned promise resolves.
-    
+
     If the inner function does not return a promise, the proxy's `.promise` attribute
     will resolve as soon as the inner function returns.
-    
+
     @function up.util.previewable
     @internal
      */
@@ -44749,7 +44708,7 @@ to not include another library in your asset bundle.
     @param {Array<Function()>} functions
     @return {Function()}
       A function that will call all `functions` if called.
-    
+
     @internal
      */
     sequence = function(functions) {
@@ -44767,7 +44726,7 @@ to not include another library in your asset bundle.
     /***
     Returns `'left'` if the center of the given element is in the left 50% of the screen.
     Otherwise returns `'right'`.
-    
+
     @function up.util.horizontalScreenHalf
     @internal
      */
@@ -44785,7 +44744,7 @@ to not include another library in your asset bundle.
 
     /***
     Flattens the given `array` a single level deep.
-    
+
     @function up.util.flatten
     @param {Array} array
       An array which might contain other arrays
@@ -44810,7 +44769,7 @@ to not include another library in your asset bundle.
     /***
     Maps each element using a mapping function,
     then flattens the result into a new array.
-    
+
     @function up.util.flatMap
     @param {Array} array
     @param {Function(element)} mapping
@@ -44823,7 +44782,7 @@ to not include another library in your asset bundle.
 
     /***
     Returns whether the given value is truthy.
-    
+
     @function up.util.isTruthy
     @internal
      */
@@ -44833,7 +44792,7 @@ to not include another library in your asset bundle.
 
     /***
     Sets the given callback as both fulfillment and rejection handler for the given promise.
-    
+
     @function up.util.always
     @internal
      */
@@ -44892,7 +44851,7 @@ to not include another library in your asset bundle.
     /***
     Calls the given block. If the block throws an exception,
     a rejected promise is returned instead.
-    
+
     @function up.util.rejectOnError
     @internal
      */
@@ -44924,16 +44883,16 @@ to not include another library in your asset bundle.
 
     /***
     Returns whether the two arguments are equal by value.
-    
+
     \#\#\# Comparison protocol
-    
+
     - By default `up.util.isEqual()` can compare strings, numbers,
       [array-like values](/up.util.isList), plain objects and `Date` objects.
     - To make the copying protocol work with user-defined classes,
       see `up.util.isEqual.key`.
     - Objects without a defined comparison protocol are
       defined by reference (`===`).
-    
+
     @function up.util.isEqual
     @param {any} a
     @param {any} b
@@ -44973,43 +44932,43 @@ to not include another library in your asset bundle.
     /***
     This property contains the name of a method that user-defined classes
     may implement to hook into the `up.util.isEqual()` protocol.
-    
+
     \#\#\# Example
-    
+
     We have a user-defined `Account` class that we want to use with `up.util.isEqual()`:
-    
+
     ```
     class Account {
       constructor(email) {
         this.email = email
       }
-    
+
       [up.util.isEqual.key](other) {
         return this.email === other.email;
       }
     }
     ```
-    
+
     Note that the protocol method is not actually named `'up.util.isEqual.key'`.
     Instead it is named after the *value* of the `up.util.isEqual.key` property.
     To do so, the code sample above is using a
     [computed property name](https://medium.com/front-end-weekly/javascript-object-creation-356e504173a8)
     in square brackets.
-    
+
     We may now use `Account` instances with `up.util.isEqual()`:
-    
+
     ```
     one = new User('foo@foo.com')
     two = new User('foo@foo.com')
     three = new User('bar@bar.com')
-    
+
     isEqual = up.util.isEqual(one, two)
     // isEqual is now true
-    
+
     isEqual = up.util.isEqual(one, three)
     // isEqual is now false
     ```
-    
+
     @property up.util.isEqual.key
     @param {string} key
     @experimental
@@ -45274,7 +45233,7 @@ Internet Explorer 10 or lower
 
     /***
     For mocking in specs.
-    
+
     @method submitForm
      */
     submitForm = function(form) {
@@ -45293,13 +45252,13 @@ Internet Explorer 10 or lower
     /***
     Returns whether this browser supports manipulation of the current URL
     via [`history.pushState`](https://developer.mozilla.org/en-US/docs/Web/API/History/pushState).
-    
+
     When `pushState`  (e.g. through [`up.follow()`](/up.follow)), it will gracefully
     fall back to a full page load.
-    
+
     Note that Unpoly will not use `pushState` if the initial page was loaded with
     a request method other than GET.
-    
+
     @function up.browser.canPushState
     @return {boolean}
     @experimental
@@ -45311,11 +45270,11 @@ Internet Explorer 10 or lower
     /***
     Returns whether this browser supports animation using
     [CSS transitions](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions).
-    
+
     When Unpoly is asked to animate history on a browser that doesn't support
     CSS transitions (e.g. through [`up.animate()`](/up.animate)), it will skip the
     animation by instantly jumping to the last frame.
-    
+
     @function up.browser.canCssTransition
     @return {boolean}
     @internal
@@ -45326,7 +45285,7 @@ Internet Explorer 10 or lower
 
     /***
     Returns whether this browser supports the DOM event [`input`](https://developer.mozilla.org/de/docs/Web/Events/input).
-    
+
     @function up.browser.canInputEvent
     @return {boolean}
     @internal
@@ -45337,7 +45296,7 @@ Internet Explorer 10 or lower
 
     /***
     Returns whether this browser supports promises.
-    
+
     @function up.browser.canPromise
     @return {boolean}
     @internal
@@ -45349,7 +45308,7 @@ Internet Explorer 10 or lower
     /***
     Returns whether this browser supports the [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData)
     interface.
-    
+
     @function up.browser.canFormData
     @return {boolean}
     @experimental
@@ -45370,7 +45329,7 @@ Internet Explorer 10 or lower
     /***
     Returns whether this browser supports the [`DOMParser`](https://developer.mozilla.org/en-US/docs/Web/API/DOMParser)
     interface.
-    
+
     @function up.browser.canDOMParser
     @return {boolean}
     @internal
@@ -45381,7 +45340,7 @@ Internet Explorer 10 or lower
 
     /***
     Returns whether this browser supports the [`debugging console`](https://developer.mozilla.org/en-US/docs/Web/API/Console).
-    
+
     @function up.browser.canConsole
     @return {boolean}
     @internal
@@ -45427,13 +45386,13 @@ Internet Explorer 10 or lower
 
     /***
     Returns whether Unpoly supports the current browser.
-    
+
     If this returns `false` Unpoly will prevent itself from [booting](/up.boot)
     and ignores all registered [event handlers](/up.on) and [compilers](/up.compiler).
     This leaves you with a classic server-side application.
     This is usually a better fallback than loading incompatible Javascript and causing
     many errors on load.
-    
+
     @function up.browser.isSupported
     @stable
      */
@@ -45585,7 +45544,7 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     Returns a null-object that mostly behaves like an `Element`.
-    
+
     @function up.element.none()
     @internal
      */
@@ -45597,11 +45556,11 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     Matches all elements that have a descendant matching the given selector.
-    
+
     \#\#\# Example
-    
+
     `up.element.all('div:has(span)')`  matches all `<div>` elements with at least one `<span>` among its descendants:
-    
+
     ```html
     <div>
       <span>Will be matched</span>
@@ -45613,18 +45572,18 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
       <span>Will be matched</span>
     </div>
     ```
-    
+
     \#\#\# Compatibility
-    
+
     `:has()` is supported by all Unpoly functions (like `up.element.all()`) and
      selectors (like `a[up-target]`).
-    
+
     As a [level 4 CSS selector](https://drafts.csswg.org/selectors-4/#relational),
     `:has()` [has yet to be implemented](https://caniuse.com/#feat=css-has)
     in native browser functions like [`document.querySelectorAll()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/querySelectorAll).
-    
+
     You can also use [`:has()` in jQuery](https://api.jquery.com/has-selector/).
-    
+
     @selector :has()
     @experimental
      */
@@ -45634,20 +45593,20 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     Returns the first descendant element matching the given selector.
-    
+
     It is similar to [`element.querySelector()`](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector),
     but also supports the [`:has()`](/has) selector.
-    
+
     @function up.element.first
     @param {Element} [parent=document]
       The parent element whose descendants to search.
-    
+
       If omitted, all elements in the `document` will be searched.
     @param {string} selector
       The CSS selector to match.
     @return {Element|undefined|null}
       The first element matching the selector.
-    
+
       Returns `null` or `undefined` if no element macthes.
     @experimental
      */
@@ -45661,17 +45620,17 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     Returns all descendant elements matching the given selector.
-    
+
     @function up.element.all
     @param {Element} [parent=document]
       The parent element whose descendants to search.
-    
+
       If omitted, all elements in the `document` will be searched.
     @param {string} selector
       The CSS selector to match.
     @return {NodeList<Element>|Array<Element>}
       A list of all elements matching the selector.
-    
+
       Returns an empty list if there are no matches.
     @experimental
      */
@@ -45686,7 +45645,7 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
     /***
     Returns a list of the given parent's descendants matching the given selector.
     The list will also include the parent element if it matches the selector itself.
-    
+
     @function up.element.subtree
     @param {Element} parent
       The parent element for the search.
@@ -45703,7 +45662,7 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
     /***
     Returns the first element that matches the selector by testing the element itself
     and traversing up through its ancestors in the DOM tree.
-    
+
     @function up.element.closest
     @param {Element} element
       The element on which to start the search.
@@ -45711,7 +45670,7 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
       The CSS selector to match.
     @return {Element|null|undefined} element
       The matching element.
-    
+
       Returns `null` or `undefined` if no element matches.
     @experimental
      */
@@ -45721,7 +45680,7 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     Returns whether the given element matches the given CSS selector.
-    
+
     @function up.element.matches
     @param {Element} element
       The element to check.
@@ -45745,18 +45704,18 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     Casts the given value to a native [Element](https://developer.mozilla.org/en-US/docs/Web/API/Element).
-    
+
     This is useful when working with jQuery values, or to allow callers to pass CSS selectors
     instead of elements.
-    
+
     \#\#\# Casting rules
-    
+
     - If given an element, returns that element.
     - If given a CSS selector string, returns the [first element matching](/up.element.first) that selector.
     - If given a jQuery collection , returns the first element in the collection.
       Throws an error if the collection contains more than one element.
     - If given any other argument (`undefined`, `null`, `document`, `window`…), returns the argument unchanged.
-    
+
     @function up.element.get
     @param {Element|jQuery|string} value
       The value to cast.
@@ -45781,24 +45740,24 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     Composes a list of elements from the given arguments.
-    
+
     \#\#\# Casting rules
-    
+
     - If given a string, returns the all elements matching that string.
     - If given any other argument, returns the argument [wrapped as a list](/up.util.wrapList).
-    
+
     \#\#\# Example
-    
+
     ```javascript
     $jquery = $('.jquery')                          // returns jQuery (2) [div.jquery, div.jquery]
     nodeList = document.querySelectorAll('.node')   // returns NodeList (2) [div.node, div.node]
     element = document.querySelector('.element')    // returns Element div.element
     selector = '.selector'                          // returns String '.selector'
-    
+
     elements = up.element.list($jquery, nodeList, undefined, element, selector)
     // returns [div.jquery, div.jquery, div.node, div.node, div.element, div.selector]
     ```
-    
+
     @function up.element.list
     @param {Array<jQuery|Element|Array<Element>|String|undefined|null>} ...args
     @return {Array<Element>}
@@ -45819,10 +45778,10 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     Removes the given element from the DOM tree.
-    
+
     If you don't need IE11 support you may also use the built-in
     [`Element#remove()`](https://developer.mozilla.org/en-US/docs/Web/API/ChildNode/remove) to the same effect.
-    
+
     @function up.element.remove
     @param {Element} element
       The element to remove.
@@ -45839,12 +45798,12 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     Hides the given element.
-    
+
     The element is hidden by setting an [inline style](https://www.codecademy.com/articles/html-inline-styles)
     of `{ display: none }`.
-    
+
     Also see `up.element.show()`.
-    
+
     @function up.element.hide
     @param {Element} element
     @experimental
@@ -45855,21 +45814,21 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     Shows the given element.
-    
+
     Also see `up.element.hide()`.
-    
+
     \#\#\# Limitations
-    
+
     The element is shown by setting an [inline style](https://www.codecademy.com/articles/html-inline-styles)
     of `{ display: '' }`.
-    
+
     You might have CSS rules causing the element to remain hidden after calling `up.element.show(element)`.
     Unpoly will not handle such cases in order to keep this function performant. As a workaround, you may
     manually set the `element.style.display` property. Also see discussion
     in jQuery issues [#88](https://github.com/jquery/jquery.com/issues/88),
     [#2057](https://github.com/jquery/jquery/issues/2057) and
     [this WHATWG mailing list post](http://lists.w3.org/Archives/Public/public-whatwg-archive/2014Apr/0094.html).
-    
+
     @function up.element.show
     @experimental
      */
@@ -45879,12 +45838,12 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     Display or hide the given element, depending on its current visibility.
-    
+
     @function up.element.toggle
     @param {Element} element
     @param {Boolean} [newVisible]
       Pass `true` to show the element or `false` to hide it.
-    
+
       If omitted, the element will be hidden if shown and shown if hidden.
     @experimental
      */
@@ -45901,10 +45860,10 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     Adds or removes the given class from the given element.
-    
+
     If you don't need IE11 support you may also use the built-in
     [`Element#classList.toggle(className)`](https://developer.mozilla.org/en-US/docs/Web/API/Element/classList) to the same effect.
-    
+
     @function up.element.toggleClass
     @param {Element} element
       The element for which to add or remove the class.
@@ -45929,11 +45888,11 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     Sets all key/values from the given object as attributes on the given element.
-    
+
     \#\#\# Example
-    
+
         up.element.setAttrs(element, { title: 'Tooltip', tabindex: 1 })
-    
+
     @function up.element.setAttrs
     @param {Element} element
       The element on which to set attributes.
@@ -45971,12 +45930,12 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     Replaces the given old element with the given new element.
-    
+
     The old element will be removed from the DOM tree.
-    
+
     If you don't need IE11 support you may also use the built-in
     [`Element#replaceWith()`](https://developer.mozilla.org/en-US/docs/Web/API/ChildNode/replaceWith) to the same effect.
-    
+
     @function up.element.replace
     @param {Element} oldElement
     @param {Element} newElement
@@ -45988,53 +45947,53 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     Creates an element matching the given CSS selector.
-    
+
     The created element will not yet be attached to the DOM tree.
     Attach it with [`Element#appendChild()`](https://developer.mozilla.org/en-US/docs/Web/API/Node/appendChild)
     or use `up.element.affix()` to create an attached element.
-    
+
     \#\#\# Examples
-    
+
     To create an element with a given tag name:
-    
+
         element = up.element.createFromSelector('span')
         // element is <span></span>
-    
+
     To create an element with a given class:
-    
+
         element = up.element.createFromSelector('.klass')
         // element is <div class="klass"></div>
-    
+
     To create an element with a given ID:
-    
+
         element = up.element.createFromSelector('#foo')
         // element is <div id="foo"></div>
-    
+
     To create an element with a given boolean attribute:
-    
+
         element = up.element.createFromSelector('[attr]')
         // element is <div attr></div>
-    
+
     To create an element with a given attribute value:
-    
+
         element = up.element.createFromSelector('[attr="value"]')
         // element is <div attr="value"></div>
-    
+
     You may also pass an object of attribute names/values as a second argument:
-    
+
         element = up.element.createFromSelector('div', { attr: 'value' })
         // element is <div attr="value"></div>
-    
+
     You may set the element's inner text by passing a `{ text }` option:
-    
+
         element = up.element.createFromSelector('div', { text: 'inner text' })
         // element is <div>inner text</div>
-    
+
     You may set inline styles by passing an object of CSS properties as a second argument:
-    
+
         element = up.element.createFromSelector('div', { style: { color: 'red' }})
         // element is <div style="color: red"></div>
-    
+
     @function up.element.createFromSelector
     @param {string} selector
       The CSS selector from which to create an element.
@@ -46112,16 +46071,16 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     Creates an element matching the given CSS selector and attaches it to the given parent element.
-    
+
     To create a detached element from a selector,
     see `up.element.createFromSelector()`.
-    
+
     \#\#\# Example
-    
+
         element = up.element.affix(document.body, '.klass')
         element.parentElement // returns document.body
         element.className // returns 'klass'
-    
+
     @function up.element.affix
     @params {Element} parent
       The parent to which to attach the created element.
@@ -46147,23 +46106,23 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     Returns a CSS selector that matches the given element as good as possible.
-    
+
     To build the selector, the following element properties are used in decreasing
     order of priority:
-    
+
     - The element's `[up-id]` attribute
     - The element's `[id]` attribute
     - The element's `[name]` attribute
     - The element's `[class]` names
     - The element's [`[aria-label]`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-label_attribute) attribute
     - The element's tag name
-    
+
     \#\#\# Example
-    
+
         element = document.createElement('span')
         element.className = 'klass'
         selector = up.element.toSelector(element) // returns '.klass'
-    
+
     @function up.element.toSelector
     @param {string|Element|jQuery}
       The element for which to create a selector.
@@ -46204,34 +46163,34 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     Sets an unique identifier for this element.
-    
+
     This identifier is used by `up.element.toSelector()`
     to create a CSS selector that matches this element precisely.
-    
+
     If the element already has other attributes that make a good identifier,
     like a `[id]`, `[class]` or `[aria-label]`, it is not necessary to
     set `[up-id]`.
-    
+
     \#\#\# Example
-    
+
     Take this element:
-    
+
         <a href="/">Homepage</a>
-    
+
     Unpoly cannot generate a good CSS selector for this element:
-    
+
         up.element.toSelector(element)
         // returns 'a'
-    
+
     We can improve this by assigning an `[up-id]`:
-    
+
         <a href="/" up-id="link-to-home">Open user 4</a>
-    
+
     The attribute value is used to create a better selector:
-    
+
         up.element.toSelector(element)
         // returns '[up-id="link-to-home"]'
-    
+
     @selector [up-id]
     @param {string} up-id
       A string that uniquely identifies this element.
@@ -46278,14 +46237,14 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     Creates an element from the given HTML fragment.
-    
+
     \#\#\# Example
-    
+
         element = up.element.createFromHtml('<div class="foo"><span>text</span></div>')
         element.className // returns 'foo'
         element.children[0] // returns <span> element
         element.children[0].textContent // returns 'text'
-    
+
     @function up.element.createFromHtml
     @experimental
      */
@@ -46305,7 +46264,7 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     Forces the browser to paint the given element now.
-    
+
     @function up.element.paint
     @internal
      */
@@ -46328,7 +46287,7 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     Returns whether the given element has a CSS transition set.
-    
+
     @function up.element.hasCssTransition
     @return {boolean}
     @internal
@@ -46365,7 +46324,7 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     On the given element, set attributes that are still missing.
-    
+
     @function up.element.setMissingAttrs
     @internal
      */
@@ -46399,20 +46358,20 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     Returns the value of the given attribute on the given element, cast as a boolean value.
-    
+
     If the attribute value cannot be cast to `true` or `false`, `undefined` is returned.
-    
+
     \#\#\# Casting rules
-    
+
     This function deviates from the
     [HTML Standard for boolean attributes](https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#boolean-attributes)
     in order to allow `undefined` values. When an attribute is missing, Unpoly considers the value to be `undefined`
     (where the standard would assume `false`).
-    
+
     Unpoly also allows `"true"` and `"false"` as attribute values.
-    
+
     The table below shows return values for `up.element.booleanAttr(element, 'foo')` given different elements:
-    
+
     | Element             | Return value |
     |---------------------|--------------|
     | `<div foo>`         | `true`       |
@@ -46422,7 +46381,7 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
     | `<div foo="false">` | `false`      |
     | `<div>`             | `undefined`  |
     | `<div foo="bar">`   | `undefined`  |
-    
+
     @function up.element.booleanAttr
     @param {Element} element
       The element from which to retrieve the attribute value.
@@ -46451,9 +46410,9 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     Returns the given attribute value cast as boolean.
-    
+
     If the attribute value cannot be cast, returns the attribute value unchanged.
-    
+
     @internal
      */
     booleanOrStringAttr = function(element, attribute) {
@@ -46462,9 +46421,9 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     Returns the value of the given attribute on the given element, cast to a number.
-    
+
     If the attribute value cannot be cast to a number, `undefined` is returned.
-    
+
     @function up.element.numberAttr
     @param {Element} element
       The element from which to retrieve the attribute value.
@@ -46484,11 +46443,11 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     Reads the given attribute from the element, parsed as [JSON](https://www.json.org/).
-    
+
     Returns `undefined` if the attribute value is [blank](/up.util.isBlank).
-    
+
     Throws a `SyntaxError` if the attribute value is an invalid JSON string.
-    
+
     @function up.element.jsonAttr
     @param {Element} element
       The element from which to retrieve the attribute value.
@@ -46507,17 +46466,17 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     Temporarily sets the inline CSS styles on the given element.
-    
+
     Returns a function that restores the original inline styles when called.
-    
+
     \#\#\# Example
-    
+
         element = document.querySelector('div')
         unhide = up.element.setTemporaryStyle(element, { 'visibility': 'hidden' })
         // do things while element is invisible
         unhide()
         // element is visible again
-    
+
     @function up.element.setTemporaryStyle
     @param {Element} element
       The element to style.
@@ -46539,19 +46498,19 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
     /***
     Receives [computed CSS styles](https://developer.mozilla.org/en-US/docs/Web/API/Window/getComputedStyle)
     for the given element.
-    
+
     \#\#\# Examples
-    
+
     When requesting a single CSS property, its value will be returned as a string:
-    
+
         value = up.element.style(element, 'font-size')
         // value is '16px'
-    
+
     When requesting multiple CSS properties, the function returns an object of property names and values:
-    
+
         value = up.element.style(element, ['font-size', 'margin-top'])
         // value is { 'font-size': '16px', 'margin-top': '10px' }
-    
+
     @function up.element.style
     @param {Element} element
     @param {String|Array} propOrProps
@@ -46568,23 +46527,23 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
     /***
     Receives a [computed CSS property value](https://developer.mozilla.org/en-US/docs/Web/API/Window/getComputedStyle)
     for the given element, casted as a number.
-    
+
     The value is casted by removing the property's [unit](https://www.w3schools.com/cssref/css_units.asp) (which is usually `px` for computed properties).
     The result is then parsed as a floating point number.
-    
+
     Returns `undefined` if the property value is missing, or if it cannot
     be parsed as a number.
-    
+
     \#\#\# Examples
-    
+
     When requesting a single CSS property, its value will be returned as a string:
-    
+
         value = up.element.style(element, 'font-size')
         // value is '16px'
-    
+
         value = up.element.styleNumber(element, 'font-size')
         // value is 16
-    
+
     @function up.element.styleNumber
     @param {Element} element
     @param {String} prop
@@ -46604,7 +46563,7 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     Gets the given inline style(s) from the given element's `[style]` attribute.
-    
+
     @function up.element.inlineStyle
     @param {Element} element
     @param {String|Array} propOrProps
@@ -46627,7 +46586,7 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     Sets the given CSS properties as inline styles on the given element.
-    
+
     @function up.element.setStyle
     @param {Element} element
     @param {Object} props
@@ -46658,7 +46617,7 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     Converts the given value to a CSS length value, adding a `px` unit if required.
-    
+
     @function cssLength
     @internal
      */
@@ -46673,10 +46632,10 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
     /***
     Resolves the given CSS selector (which might contain `&` references)
     to a full CSS selector without ampersands.
-    
+
     If passed an `Element` or `jQuery` element, returns a CSS selector string
     for that element.
-    
+
     @function up.element.resolveSelector
     @param {string|Element|jQuery} selectorOrElement
     @param {string|Element|jQuery} origin
@@ -46705,12 +46664,12 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     Returns whether the given element is currently visible.
-    
+
     An element is considered visible if it consumes space in the document.
     Elements with `{ visibility: hidden }` or `{ opacity: 0 }` are considered visible, since they still consume space in the layout.
-    
+
     Elements not attached to the DOM are considered hidden.
-    
+
     @function up.element.isVisible
     @param {Element} element
       The element to check.
@@ -47374,7 +47333,7 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
   /***
   A linear task queue whose (2..n)th tasks can be changed at any time.
-  
+
   @function up.DivertibleChain
   @internal
    */
@@ -47501,12 +47460,12 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /*
     Parses the following arg variants into an object:
-    
+
     - [elements, eventNames, selector, callback]
     - [elements, eventNames,           callback]
     - [          eventNames, selector, callback]
     - [          eventNames,           callback]
-    
+
     @function up.EventListener#parseArgs
     @internal
      */
@@ -48225,15 +48184,15 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
     /***
     Finishes all animations in the given elements' ancestors and
     descendants, then calls the given function.
-    
+
     The function is expected to return a promise that is fulfilled when
     the animation ends. The function is also expected to listen to
     `this.finishEvent` and instantly skip to the last frame
     when the event is observed.
-    
+
     The animation is tracked so it can be
     [`finished`](/up.MotionController.finish) later.
-    
+
     @method startFunction
     @param {Element|List<Element>} cluster
       A list of elements that will be affected by the motion.
@@ -48275,10 +48234,10 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
     /**
     Finishes all animations in the given elements' ancestors and
     descendants, then calls `motion.start()`.
-    
+
     Also listens to `this.finishEvent` on the given elements.
     When this event is observed, calls `motion.finish()`.
-    
+
     @method startMotion
     @param {Element|List<Element>} cluster
     @param {up.Motion} motion
@@ -48430,21 +48389,21 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
   /***
   The `up.Params` class offers a consistent API to read and manipulate request parameters
   independent of their type.
-  
+
   Request parameters are used in [form submissions](/up.Params#fromForm) and
   [URLs](/up.Params#fromURL). Methods like `up.submit()` or `up.replace()` accept
   request parameters as a `{ params }` option.
-  
+
   \#\#\# Supported parameter types
-  
+
   The following types of parameter representation are supported:
-  
+
   1. An object like `{ email: 'foo@bar.com' }`
   2. A query string like `'email=foo%40bar.com'`
   3. An array of `{ name, value }` objects like `[{ name: 'email', value: 'foo@bar.com' }]`
   4. A [FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData) object.
      On IE 11 and Edge, `FormData` payloads require a [polyfill for `FormData#entries()`](https://github.com/jimmywarting/FormData).
-  
+
   @class up.Params
    */
 
@@ -48452,11 +48411,11 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     Constructs a new `up.Params` instance.
-    
+
     @constructor up.Params
     @param {Object|Array|string|up.Params} [params]
       An existing list of params with which to initialize the new `up.Params` object.
-    
+
       The given params value may be of any [supported type](/up.Params).
     @return {up.Params}
     @experimental
@@ -48470,7 +48429,7 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     Removes all params from this object.
-    
+
     @method up.Params#clear
     @experimental
      */
@@ -48486,20 +48445,20 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     Returns an object representation of this `up.Params` instance.
-    
+
     The returned value is a simple JavaScript object with properties
     that correspond to the key/values in the given `params`.
-    
+
     \#\#\# Example
-    
+
         var params = new up.Params('foo=bar&baz=bam')
         var object = params.toObject()
-    
+
         // object is now: {
         //   foo: 'bar',
         //   baz: 'bam'
         // ]
-    
+
     @function up.Params#toObject
     @return {Object}
     @experimental
@@ -48527,20 +48486,20 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     Returns an array representation of this `up.Params` instance.
-    
+
     The returned value is a JavaScript array with elements that are objects with
     `{ key }` and `{ value }` properties.
-    
+
     \#\#\# Example
-    
+
         var params = new up.Params('foo=bar&baz=bam')
         var array = params.toArray()
-    
+
         // array is now: [
         //   { name: 'foo', value: 'bar' },
         //   { name: 'baz', value: 'bam' }
         // ]
-    
+
     @function up.Params#toArray
     @return {Array}
     @experimental
@@ -48554,15 +48513,15 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
     /***
     Returns a [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) representation
     of this `up.Params` instance.
-    
+
     \#\#\# Example
-    
+
         var params = new up.Params('foo=bar&baz=bam')
         var formData = params.toFormData()
-    
+
         formData.get('foo') // 'bar'
         formData.get('baz') // 'bam'
-    
+
     @function up.Params#toFormData
     @return {FormData}
     @experimental
@@ -48582,18 +48541,18 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     Returns an [query string](https://en.wikipedia.org/wiki/Query_string) for this `up.Params` instance.
-    
+
     The keys and values in the returned query string will be [percent-encoded](https://developer.mozilla.org/en-US/docs/Glossary/percent-encoding).
     Non-primitive values (like [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File) will be omitted from
     the retuned query string.
-    
+
     \#\#\# Example
-    
+
         var params = new up.Params({ foo: 'bar', baz: 'bam' })
         var query = params.toQuery()
-    
+
         // query is now: 'foo=bar&baz=bam'
-    
+
     @function up.Params#toQuery
     @param {Object|FormData|string|Array|undefined} params
       the params to convert
@@ -48626,10 +48585,10 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     Returns whether the given value can be encoded into a query string.
-    
+
     We will have `File` values in our params when we serialize a form with a file input.
     These entries will be filtered out when converting to a query string.
-    
+
     @function up.Params#isPrimitiveValue
     @internal
      */
@@ -48642,10 +48601,10 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
     /***
     Builds an URL string from the given base URL and
     this `up.Params` instance as a [query string](/up.Params.toString).
-    
+
     The base URL may or may not already contain a query string. The
     additional query string will be joined with an `&` or `?` character accordingly.
-    
+
     @function up.Params#toURL
     @param {string} base
       The base URL that will be prepended to this `up.Params` object as a [query string](/up.Params.toString).
@@ -48665,18 +48624,18 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     Adds a new entry with the given `name` and `value`.
-    
+
     An `up.Params` instance can hold multiple entries with the same name.
     To overwrite all existing entries with the given `name`, use `up.Params#set()` instead.
-    
+
     \#\#\# Example
-    
+
         var params = new up.Params()
         params.add('foo', 'fooValue')
-    
+
         var foo = params.get('foo')
         // foo is now 'fooValue'
-    
+
     @function up.Params#add
     @param {string} name
       The name of the new entry.
@@ -48695,9 +48654,9 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     Adds all entries from the given list of params.
-    
+
     The given params value may be of any [supported type](/up.Params).
-    
+
     @function up.Params#addAll
     @param {Object|Array|string|up.Params|undefined} params
     @experimental
@@ -48774,11 +48733,11 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     Sets the `value` for the entry with given `name`.
-    
+
     An `up.Params` instance can hold multiple entries with the same name.
     All existing entries with the given `name` are [deleted](/up.Params#delete) before the
     new entry is set. To add a new entry even if the `name` is taken, use `up.Params#add()`.
-    
+
     @function up.Params#set
     @param {string} name
       The name of the entry to set.
@@ -48795,7 +48754,7 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     Deletes all entries with the given `name`.
-    
+
     @function up.Params#delete
     @param {string} name
     @experimental
@@ -48814,31 +48773,31 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     Returns the first param value with the given `name` from the given `params`.
-    
+
     Returns `undefined` if no param value with that name is set.
-    
+
     If the `name` denotes an array field (e.g. `foo[]`), *all* param values with the given `name`
     are returned as an array. If no param value with that array name is set, an empty
     array is returned.
-    
+
     To always return a single value use `up.Params#getFirst()` instead.
     To always return an array of values use `up.Params#getAll()` instead.
-    
+
     \#\#\# Example
-    
+
         var params = new up.Params({ foo: 'fooValue', bar: 'barValue' })
         var params = new up.Params([
           { name: 'foo', value: 'fooValue' }
           { name: 'bar[]', value: 'barValue1' }
           { name: 'bar[]', value: 'barValue2' })
         ]})
-    
+
         var foo = params.get('foo')
         // foo is now 'fooValue'
-    
+
         var bar = params.get('bar')
         // bar is now ['barValue1', 'barValue2']
-    
+
     @function up.Params#get
     @param {string} name
     @experimental
@@ -48855,9 +48814,9 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     Returns the first param value with the given `name`.
-    
+
     Returns `undefined` if no param value with that name is set.
-    
+
     @function up.Params#getFirst
     @param {string} name
     @return {any}
@@ -48873,9 +48832,9 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     Returns an array of all param values with the given `name`.
-    
+
     Returns an empty array if no param value with that name is set.
-    
+
     @function up.Params#getAll
     @param {string} name
     @return {Array}
@@ -48903,13 +48862,13 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     Constructs a new `up.Params` instance from the given `<form>`.
-    
+
     The returned params may be passed as `{ params }` option to
     [`up.request()`](/up.request) or [`up.replace()`](/up.replace).
-    
+
     The constructed `up.Params` will include exactly those form values that would be
     included in a regular form submission. In particular:
-    
+
     - All `<input>` types are suppported
     - Field values are usually strings, but an `<input type="file">` will produce
       [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File) values.
@@ -48921,22 +48880,22 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
     - Fields without a `[name]` attribute are ignored.
     - The serialized params will include the form's submit button, if that
       button as a `name` attribute.
-    
+
     \#\#\# Example
-    
+
     Given this HTML form:
-    
+
         <form>
           <input type="text" name="email" value="foo@bar.com">
           <input type="password" name="pass" value="secret">
         </form>
-    
+
     This would serialize the form into an array representation:
-    
+
         var params = up.Params.fromForm('input[name=email]')
         var email = params.get('email') // email is now 'foo@bar.com'
         var pass = params.get('pass') // pass is now 'secret'
-    
+
     @function up.Params.fromForm
     @param {Element|jQuery|string} form
       A `<form>` element or a selector that matches a `<form>` element.
@@ -48957,13 +48916,13 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
     /***
     Constructs a new `up.Params` instance from one or more
     [HTML form field](https://www.w3schools.com/html/html_form_elements.asp).
-    
+
     The constructed `up.Params` will include exactly those form values that would be
     included for the given fields in a regular form submission. If a given field wouldn't
     submit a value (like an unchecked `<input type="checkbox">`, nothing will be added.
-    
+
     See `up.Params.fromForm()` for more details and examples.
-    
+
     @function up.Params.fromFields
     @param {Element|List<Element>|jQuery} fields
     @return {up.Params}
@@ -48984,13 +48943,13 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     Adds params from the given [HTML form field](https://www.w3schools.com/html/html_form_elements.asp).
-    
+
     The added params will include exactly those form values that would be
     included for the given field in a regular form submission. If the given field wouldn't
       submit a value (like an unchecked `<input type="checkbox">`, nothing will be added.
-    
+
     See `up.Params.fromForm()` for more details and examples.
-    
+
     @function up.Params#addField
     @param {Element|jQuery} field
     @experimental
@@ -49040,15 +48999,15 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
     /***
     Constructs a new `up.Params` instance from the given URL's
     [query string](https://en.wikipedia.org/wiki/Query_string).
-    
+
     Constructs an empty `up.Params` instance if the given URL has no query string.
-    
+
     \#\#\# Example
-    
+
         var params = up.Params.fromURL('http://foo.com?foo=fooValue&bar=barValue')
         var foo = params.get('foo')
         // foo is now: 'fooValue'
-    
+
     @function up.Params.fromURL
     @param {string} url
       The URL from which to extract the query string.
@@ -49071,12 +49030,12 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     Returns the given URL without its [query string](https://en.wikipedia.org/wiki/Query_string).
-    
+
     \#\#\# Example
-    
+
         var url = up.Params.stripURL('http://foo.com?key=value')
         // url is now: 'http://foo.com'
-    
+
     @function up.Params.stripURL
     @param {string} url
       A URL (with or without a query string).
@@ -49095,10 +49054,10 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
     /***
     If passed an `up.Params` instance, it is returned unchanged.
     Otherwise constructs an `up.Params` instance from the given value.
-    
+
     The given params value may be of any [supported type](/up.Params)
     The return value is always an `up.Params` instance.
-    
+
     @function up.Params.wrap
     @param {Object|Array|string|up.Params|undefined} params
     @return {up.Params}
@@ -49149,7 +49108,7 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
   /***
   Instances of `up.Request` normalizes properties of an [`AJAX request`](/up.request)
   such as the requested URL, form parameters and HTTP method.
-  
+
   @class up.Request
    */
 
@@ -49159,7 +49118,7 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     The HTTP method for the request.
-    
+
     @property up.Request#method
     @param {string} method
     @stable
@@ -49168,7 +49127,7 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     The URL for the request.
-    
+
     @property up.Request#url
     @param {string} url
     @stable
@@ -49177,7 +49136,7 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     [Parameters](/up.Params) that should be sent as the request's payload.
-    
+
     @property up.Request#params
     @param {Object|FormData|string|Array} params
     @stable
@@ -49186,7 +49145,7 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     The CSS selector that will be sent as an [`X-Up-Target` header](/up.protocol#optimizing-responses).
-    
+
     @property up.Request#target
     @param {string} target
     @stable
@@ -49195,7 +49154,7 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     The CSS selector that will be sent as an [`X-Up-Fail-Target` header](/up.protocol#optimizing-responses).
-    
+
     @property up.Request#failTarget
     @param {string} failTarget
     @stable
@@ -49204,7 +49163,7 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     An object of additional HTTP headers.
-    
+
     @property up.Request#headers
     @param {Object} headers
     @stable
@@ -49213,10 +49172,10 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     A timeout in milliseconds.
-    
+
     If [`up.proxy.config.maxRequests`](/up.proxy.config#config.maxRequests) is set,
     the timeout will not include the time spent waiting in the queue.
-    
+
     @property up.Request#timeout
     @param {Object|undefined} timeout
     @stable
@@ -49229,9 +49188,9 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     Creates a new `up.Request` object.
-    
+
     This will not actually send the request over the network. For that use `up.request()`.
-    
+
     @constructor up.Request
     @param {string} attrs.url
     @param {string} [attrs.method='get']
@@ -49441,14 +49400,14 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
   /***
   Instances of `up.Response` describe the server response to an [`AJAX request`](/up.request).
-  
+
   \#\#\# Example
-  
+
       up.request('/foo').then(function(response) {
         console.log(response.status) // 200
         console.log(response.text)   // "<html><body>..."
       })
-  
+
   @class up.Response
    */
 
@@ -49458,11 +49417,11 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     The HTTP method used for the response.
-    
+
     This is usually the HTTP method used by the request.
     However, after a redirect the server should signal a `GET` method using
     an [`X-Up-Method: GET` header](/up.protocol#redirect-detection).
-    
+
     @property up.Response#method
     @param {string} method
     @stable
@@ -49471,11 +49430,11 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     The URL used for the response.
-    
+
     This is usually the requested URL.
     However, after a redirect the server should signal a the new URL
     using an [`X-Up-Location: /new-url` header](/up.protocol#redirect-detection).
-    
+
     @property up.Response#url
     @param {string} method
     @stable
@@ -49484,7 +49443,7 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     The response body as a `string`.
-    
+
     @property up.Response#text
     @param {string} text
     @stable
@@ -49495,9 +49454,9 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
     The response's
     [HTTP status code](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
     as a `number`.
-    
+
     A successful response will usually have a `200` or `201' status code.
-    
+
     @property up.Response#status
     @param {number} status
     @stable
@@ -49506,7 +49465,7 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     The [request](/up.Request) that triggered this response.
-    
+
     @property up.Response#request
     @param {up.Request} request
     @experimental
@@ -49516,7 +49475,7 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
     /***
     The [`XMLHttpRequest`](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest)
     object that was used to create this response.
-    
+
     @property up.Response#xhr
     @param {XMLHttpRequest} xhr
     @experimental
@@ -49525,9 +49484,9 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     A [document title pushed by the server](/up.protocol#pushing-a-document-title-to-the-client).
-    
+
     If the server pushed no title via HTTP header, this will be `undefined`.
-    
+
     @property up.Response#title
     @param {string} [title]
     @stable
@@ -49554,7 +49513,7 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     Returns whether the server responded with a 2xx HTTP status.
-    
+
     @function up.Response#isSuccess
     @return {boolean}
     @experimental
@@ -49567,10 +49526,10 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     Returns whether the response was not [successful](/up.Request.prototype.isSuccess).
-    
+
     This also returns `true` when the request encountered a [fatal error](/up.Request.prototype.isFatalError)
     like a timeout or loss of network connectivity.
-    
+
     @function up.Response#isError
     @return {boolean}
     @experimental
@@ -49584,10 +49543,10 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
     /***
     Returns whether the request encountered a [fatal error](/up.Request.prototype.isFatalError)
     like a timeout or loss of network connectivity.
-    
+
     When the server produces an error message with an HTTP status like `500`,
     this is not considered a fatal error and `false` is returned.
-    
+
     @function up.Response#isFatalError
     @return {boolean}
     @experimental
@@ -49600,11 +49559,11 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     Returns the HTTP header value with the given name.
-    
+
     The search for the header name is case-insensitive.
-    
+
     Returns `undefined` if the given header name was not included in the response.
-    
+
     @function up.Response#getHeader
     @param {string} name
     @return {string|undefined} value
@@ -50142,9 +50101,9 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
     Resets Unpoly to the state when it was booted.
     All custom event handlers, animations, etc. that have been registered
     will be discarded.
-    
+
     Emits event [`up:framework:reset`](/up:framework:reset).
-    
+
     @function up.framework.reset
     @internal
      */
@@ -50156,19 +50115,19 @@ It complements [native `Element` methods](https://www.w3schools.com/jsref/dom_ob
 
     /***
     This event is [emitted](/up.emit) when Unpoly is [reset](/up.framework.reset) during unit tests.
-    
+
     @event up:framework:reset
     @internal
      */
 
     /***
     Boots the Unpoly framework.
-    
+
     **This is called automatically** by including the Unpoly JavaScript files.
-    
+
     Unpoly will not boot if the current browser is [not supported](/up.browser.isSupported).
     This leaves you with a classic server-side application on legacy browsers.
-    
+
     @function up.boot
     @internal
      */
@@ -50277,10 +50236,10 @@ There are some advantages to using `up.on()`:
     /***
     Listens to a [DOM event](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Events)
     on `document` or a given element.
-    
+
     `up.on()` has some quality of life improvements over
     [`Element#addEventListener()`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener):
-    
+
     - You may pass a selector for [event delegation](https://davidwalsh.name/event-delegate).
     - The event target is automatically passed as a second argument.
     - You may register a listener to multiple events by passing a space-separated list of event name (e.g. `"click mousedown"`)
@@ -50291,73 +50250,73 @@ There are some advantages to using `up.on()`:
     - Event listeners on [unsupported browsers](/up.browser.isSupported) are silently discarded,
       leaving you with an application without JavaScript. This is typically preferable to
       a soup of randomly broken JavaScript in ancient browsers.
-    
+
     \#\#\# Examples
-    
+
     The code below will call the listener when a `<a>` is clicked
     anywhere in the `document`:
-    
+
         up.on('click', 'a', function(event, element) {
           console.log("Click on a link %o", element)
         })
-    
+
     You may also bind the listener to a given element instead of `document`:
-    
+
         var form = document.querySelector('form')
         up.on(form, 'click', function(event, form) {
           console.log("Click within %o", form)
         })
-    
+
     You may also pass both an element and a selector
     for [event delegation](https://davidwalsh.name/event-delegate):
-    
+
         var form = document.querySelector('form')
         document.addEventListener(form, 'click', 'a', function(event, link) {
           console.log("Click on a link %o within %o", link, form)
         })
-    
+
     \#\#\# Attaching structured data
-    
+
     In case you want to attach structured data to the event you're observing,
     you can serialize the data to JSON and put it into an `[up-data]` attribute:
-    
+
         <span class='person' up-data='{ "age": 18, "name": "Bob" }'>Bob</span>
         <span class='person' up-data='{ "age": 22, "name": "Jim" }'>Jim</span>
-    
+
     The JSON will be parsed and handed to your event handler as a third argument:
-    
+
         up.on('click', '.person', function(event, element, data) {
           console.log("This is %o who is %o years old", data.name, data.age)
         })
-    
+
     \#\#\# Unbinding an event listener
-    
+
     `up.on()` returns a function that unbinds the event listeners when called:
-    
+
         // Define the listener
         var listener =  function(event) { ... }
-    
+
         // Binding the listener returns an unbind function
         var unbind = up.on('click', listener)
-    
+
         // Unbind the listener
         unbind()
-    
+
     There is also a function [`up.off()`](/up.off) which you can use for the same purpose:
-    
+
         // Define the listener
         var listener =  function(event) { ... }
-    
+
         // Bind the listener
         up.on('click', listener)
-    
+
         // Unbind the listener
         up.off('click', listener)
-    
+
     @function up.on
     @param {Element|jQuery} [element=document]
       The element on which to register the event listener.
-    
+
       If no element is given, the listener is registered on the `document`.
     @param {string} events
       A space-separated list of event names to bind to.
@@ -50367,7 +50326,7 @@ There are some advantages to using `up.on()`:
       of the event target.
     @param {Function(event, [element], [data])} listener
       The listener function that should be called.
-    
+
       The function takes the affected element as the first argument).
       If the element has an [`up-data`](/up-data) attribute, its value is parsed as JSON
       and passed as a second argument.
@@ -50385,22 +50344,22 @@ There are some advantages to using `up.on()`:
     Listens to an event on `document` or a given element.
     The event handler is called with the event target as a
     [jQuery collection](https://learn.jquery.com/using-jquery-core/jquery-object/).
-    
+
     If you're not using jQuery, use `up.on()` instead, which calls
     event handlers with a native element.
-    
+
     \#\#\# Example
-    
+
     ```
     up.$on('click', 'a', function(event, $link) {
       console.log("Click on a link with destination %s", $element.attr('href'))
     })
     ```
-    
+
     @function up.$on
     @param {Element|jQuery} [element=document]
       The element on which to register the event listener.
-    
+
       If no element is given, the listener is registered on the `document`.
     @param {string} events
       A space-separated list of event names to bind to.
@@ -50410,7 +50369,7 @@ There are some advantages to using `up.on()`:
       of the event target.
     @param {Function(event, [element], [data])} listener
       The listener function that should be called.
-    
+
       The function takes the affected element as the first argument).
       If the element has an [`up-data`](/up-data) attribute, its value is parsed as JSON
       and passed as a second argument.
@@ -50434,21 +50393,21 @@ There are some advantages to using `up.on()`:
 
     /***
     Unbinds an event listener previously bound with [`up.on()`](/up.on).
-    
+
     \#\#\# Example
-    
+
     Let's say you are listing to clicks on `.button` elements:
-    
+
         var listener = function() { ... }
         up.on('click', '.button', listener)
-    
+
     You can stop listening to these events like this:
-    
+
         up.off('click', '.button', listener)
-    
+
     Note that you need to pass `up.off()` a reference to the same listener function
     that was passed to `up.on()` earlier.
-    
+
     @function up.off
     @stable
      */
@@ -50460,26 +50419,26 @@ There are some advantages to using `up.on()`:
 
     /***
     Emits a event with the given name and properties.
-    
+
     The event will be triggered as an event on `document` or on the given element.
-    
+
     Other code can subscribe to events with that name using
     [`Element#addEventListener()`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener)
     or [`up.on()`](/up.on).
-    
+
     \#\#\# Example
-    
+
         up.on('my:event', function(event) {
           console.log(event.foo)
         })
-    
+
         up.emit('my:event', { foo: 'bar' })
         // Prints "bar" to the console
-    
+
     @function up.emit
     @param {Element|jQuery} [target=document]
       The element on which the event is triggered.
-    
+
       If omitted, the event will be emitted on the `document`.
     @param {string} eventName
       The name of the event.
@@ -50490,7 +50449,7 @@ There are some advantages to using `up.on()`:
       or `stopPropagation()`.
     @param {string|Array} [eventProps.log=false]
       A message to print to the console when the event is emitted.
-    
+
       Pass `true` to print a default message
     @param {Element|jQuery} [eventProps.target=document]
       The element on which the event is triggered.
@@ -50562,7 +50521,7 @@ There are some advantages to using `up.on()`:
     /***
     [Emits an event](/up.emit) and returns whether no listener
     has prevented the default action.
-    
+
     @function up.event.nobodyPrevents
     @param {string} eventName
     @param {Object} eventProps
@@ -50581,10 +50540,10 @@ There are some advantages to using `up.on()`:
     /***
     [Emits](/up.emit) the given event and returns a promise
     that will be fulfilled if no listener has prevented the default action.
-    
+
     If any listener prevented the default listener
     the returned promise will never be resolved.
-    
+
     @function up.event.whenEmitted
     @param {string} eventName
     @param {Object} eventProps
@@ -50607,7 +50566,7 @@ There are some advantages to using `up.on()`:
     /***
     Registers an event listener to be called when the user
     presses the `Escape` key.
-    
+
     @function up.event.onEscape
     @param {Function(event)} listener
       The listener function to register.
@@ -50627,13 +50586,13 @@ There are some advantages to using `up.on()`:
     Prevents the event from bubbling up the DOM.
     Also prevents other event handlers bound on the same element.
     Also prevents the event's default action.
-    
+
     \#\#\# Example
-    
+
         up.on('click', 'link.disabled', function(event) {
           up.event.halt(event)
         })
-    
+
     @function up.event.halt
     @param {Event} event
     @experimental
@@ -50909,7 +50868,7 @@ an existing cookie should be deleted.
     Server-side companion libraries like unpoly-rails set this cookie so we
     have a way to detect the request method of the initial page load.
     There is no JavaScript API for this.
-    
+
     @function up.protocol.initialRequestMethod
     @internal
      */
@@ -50922,7 +50881,7 @@ an existing cookie should be deleted.
 
     /***
     Configures strings used in the optional [server protocol](/up.protocol).
-    
+
     @property up.protocol.config
     @param {String} [config.targetHeader='X-Up-Target']
     @param {String} [config.failTargetHeader='X-Up-Fail-Target']
@@ -50944,26 +50903,26 @@ an existing cookie should be deleted.
       The `name` of the hidden `<input>` used for sending a
       [CSRF token](https://en.wikipedia.org/wiki/Cross-site_request_forgery#Synchronizer_token_pattern) when
       submitting a default, non-AJAX form. For AJAX request the token is sent as an HTTP header instead.
-    
+
       The parameter name can be configured as a string or as function that returns the parameter name.
       If no name is set, no token will be sent.
-    
+
       Defaults to the `content` attribute of a `<meta>` tag named `csrf-param`:
-    
+
           <meta name="csrf-param" content="authenticity_token" />
-    
+
     @param {string|Function(): string} [config.csrfToken]
       The [CSRF token](https://en.wikipedia.org/wiki/Cross-site_request_forgery#Synchronizer_token_pattern)
       to send for unsafe requests. The token will be sent as either a HTTP header (for AJAX requests)
       or hidden form `<input>` (for default, non-AJAX form submissions).
-    
+
       The token can either be configured as a string or as function that returns the token.
       If no token is set, no token will be sent.
-    
+
       Defaults to the `content` attribute of a `<meta>` tag named `csrf-token`:
-    
+
           <meta name='csrf-token' content='secret12345'>
-    
+
     @experimental
      */
     config = new up.Config({
@@ -51034,17 +50993,17 @@ The output can be configured using the [`up.log.config`](/up.log.config) propert
 
     /***
     Configures the logging output on the developer console.
-    
+
     @property up.log.config
     @param {boolean} [options.enabled=false]
       Whether Unpoly will print debugging information to the developer console.
-    
+
       Debugging information includes which elements are being [compiled](/up.syntax)
       and which [events](/up.event) are being emitted.
       Note that errors will always be printed, regardless of this setting.
     @param {boolean} [options.collapse=false]
       Whether debugging information is printed as a collapsed tree.
-    
+
       Set this to `true` if you are overwhelmed by the debugging information Unpoly
       prints to the developer console.
     @param {string} [options.prefix='[UP] ']
@@ -51065,16 +51024,16 @@ The output can be configured using the [`up.log.config`](/up.log.config) propert
 
     /***
     A cross-browser way to interact with `console.log`, `console.error`, etc.
-    
+
     This function falls back to `console.log` if the output stream is not implemented.
     It also prints substitution strings (e.g. `console.log("From %o to %o", "a", "b")`)
     as a single string if the browser console does not support substitution strings.
-    
+
     \#\#\# Example
-    
+
         up.browser.puts('log', 'Hi world')
         up.browser.puts('error', 'There was an error in %o', obj)
-    
+
     @function up.browser.puts
     @internal
      */
@@ -51127,7 +51086,7 @@ The output can be configured using the [`up.log.config`](/up.log.config) propert
 
     /***
     See https://developer.mozilla.org/en-US/docs/Web/API/Console#Using_string_substitutions
-    
+
     @function up.browser.sprintf
     @internal
      */
@@ -51159,7 +51118,7 @@ The output can be configured using the [`up.log.config`](/up.log.config) propert
 
     /***
     Prints a debugging message to the browser console.
-    
+
     @function up.log.debug
     @param {string} message
     @param {Array} ...args
@@ -51175,7 +51134,7 @@ The output can be configured using the [`up.log.config`](/up.log.config) propert
 
     /***
     Prints a logging message to the browser console.
-    
+
     @function up.puts
     @param {string} message
     @param {Array} ...args
@@ -51204,7 +51163,7 @@ The output can be configured using the [`up.log.config`](/up.log.config) propert
     /***
     - Makes sure the group always closes
     - Does not make a group if the message is nil
-    
+
     @function up.log.group
     @internal
      */
@@ -51257,10 +51216,10 @@ The output can be configured using the [`up.log.config`](/up.log.config) propert
 
     /***
     Makes future Unpoly events print vast amounts of debugging information to the developer console.
-    
+
     Debugging information includes which elements are being [compiled](/up.syntax)
     and which [events](/up.event) are being emitted.
-    
+
     @function up.log.enable
     @stable
      */
@@ -51270,9 +51229,9 @@ The output can be configured using the [`up.log.config`](/up.log.config) propert
 
     /***
     Prevents future Unpoly events from printing vast amounts of debugging information to the developer console.
-    
+
     Errors will still be printed, even with logging disabled.
-    
+
     @function up.log.disable
     @stable
      */
@@ -51421,98 +51380,98 @@ or when a matching fragment is [inserted via AJAX](/up.link) later.
     /***
     Registers a function to be called when an element with
     the given selector is inserted into the DOM.
-    
+
     Use compilers to activate your custom Javascript behavior on matching
     elements.
-    
+
     You should migrate your [`DOMContentLoaded`](https://api.jquery.com/ready/)
     callbacks to compilers. This will make sure they run both at page load and
     when [a new fragment is inserted later](/a-up-target).
     It will also organize your JavaScript snippets by selector of affected elements.
-    
-    
+
+
     \#\#\# Example
-    
+
     This jQuery compiler will insert the current time into a
     `<div class='current-time'></div>`:
-    
+
         up.compiler('.current-time', function(element) {
           var now = new Date()
           element.textContent = now.toString()
         })
-    
+
     The compiler function will be called once for each matching element when
     the page loads, or when a matching fragment is [inserted](/up.replace) later.
-    
-    
+
+
     \#\#\# Integrating JavaScript libraries
-    
+
     `up.compiler()` is a great way to integrate JavaScript libraries.
     Let's say your JavaScript plugin wants you to call `lightboxify()`
     on links that should open a lightbox. You decide to
     do this for all links with an `lightbox` class:
-    
+
         <a href="river.png" class="lightbox">River</a>
         <a href="ocean.png" class="lightbox">Ocean</a>
-    
+
     This JavaScript will do exactly that:
-    
+
         up.compiler('a.lightbox', function(element) {
           lightboxify(element)
         })
-    
+
     \#\#\# Cleaning up after yourself
-    
+
     If your compiler returns a function, Unpoly will use this as a *destructor* to
     clean up if the element leaves the DOM. Note that in Unpoly the same DOM and JavaScript environment
     will persist through many page loads, so it's important to not create
     [memory leaks](https://makandracards.com/makandra/31325-how-to-create-memory-leaks-in-jquery).
-    
+
     You should clean up after yourself whenever your compilers have global
     side effects, like a [`setInterval`](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval)
     or [event handlers bound to the document root](/up.on).
-    
+
     Here is a version of `.current-time` that updates
     the time every second, and cleans up once it's done. Note how it returns
     a function that calls `clearInterval`:
-    
+
         up.compiler('.current-time', function(element) {
-    
+
           function update() {
             var now = new Date()
             element.textContent = now.toString()
           }
-    
+
           setInterval(update, 1000)
-    
+
           return function() {
             clearInterval(update)
           };
-    
+
         })
-    
+
     If we didn't clean up after ourselves, we would have many ticking intervals
     operating on detached DOM elements after we have created and removed a couple
     of `<clock>` elements.
-    
-    
+
+
     \#\#\# Attaching structured data
-    
+
     In case you want to attach structured data to the event you're observing,
     you can serialize the data to JSON and put it into an `[up-data]` attribute.
     For instance, a container for a [Google Map](https://developers.google.com/maps/documentation/javascript/tutorial)
     might attach the location and names of its marker pins:
-    
+
         <div class='google-map' up-data='[
           { "lat": 48.36, "lng": 10.99, "title": "Friedberg" },
           { "lat": 48.75, "lng": 11.45, "title": "Ingolstadt" }
         ]'></div>
-    
+
     The JSON will be parsed and handed to your compiler as a second argument:
-    
+
         up.compiler('.google-map', function(element, pins) {
           var map = new google.maps.Map(element)
-    
+
           pins.forEach(function(pin) {
             var position = new google.maps.LatLng(pin.lat, pin.lng)
             new google.maps.Marker({
@@ -51522,8 +51481,8 @@ or when a matching fragment is [inserted via AJAX](/up.link) later.
             })
           })
         })
-    
-    
+
+
     @function up.compiler
     @param {string} selector
       The selector to match.
@@ -51534,19 +51493,19 @@ or when a matching fragment is [inserted via AJAX](/up.link) later.
     @param {boolean} [options.batch=false]
       If set to `true` and a fragment insertion contains multiple
       elements matching the selector, `compiler` is only called once
-      with a jQuery collection containing all matching elements. 
+      with a jQuery collection containing all matching elements.
     @param {boolean} [options.keep=false]
       If set to `true` compiled fragment will be [persisted](/up-keep) during
       [page updates](/a-up-target).
-    
+
       This has the same effect as setting an `up-keep` attribute on the element.
     @param {Function(element, data)} compiler
       The function to call when a matching element is inserted.
-    
+
       The function takes the new element as the first argument.
       If the element has an [`up-data`](/up-data) attribute, its value is parsed as JSON
       and passed as a second argument.
-    
+
       The function may return a destructor function that cleans the compiled
       object before it is removed from the DOM. The destructor is supposed to
       [clear global state](/up.compiler#cleaning-up-after-yourself)
@@ -51567,20 +51526,20 @@ or when a matching fragment is [inserted via AJAX](/up.link) later.
     the given selector is inserted into the DOM. The function is called
     with each matching element as a
     [jQuery object](https://learn.jquery.com/using-jquery-core/jquery-object/).
-    
+
     If you're not using jQuery, use `up.compiler()` instead, which calls
     the compiler function with a native element.
-    
+
     \#\#\# Example
-    
+
     This jQuery compiler will insert the current time into a
     `<div class='current-time'></div>`:
-    
+
         up.$compiler('.current-time', function($element) {
           var now = new Date()
           $element.text(now.toString())
         })
-    
+
     @function up.$compiler
     @param {string} selector
       The selector to match.
@@ -51588,7 +51547,7 @@ or when a matching fragment is [inserted via AJAX](/up.link) later.
       See [`options` argument for `up.compiler()`](/up.compiler#parameters).
     @param {Function($element, data)} compiler
       The function to call when a matching element is inserted.
-    
+
       See [`compiler` argument for `up.compiler()`](/up.compiler#parameters).
       @stable
      */
@@ -51602,35 +51561,35 @@ or when a matching fragment is [inserted via AJAX](/up.link) later.
 
     /***
     Registers a [compiler](/up.compiler) that is run before all other compilers.
-    
+
     Use `up.macro()` to register a compiler that sets multiple Unpoly attributes.
-    
+
     \#\#\# Example
-    
+
     You will sometimes find yourself setting the same combination of UJS attributes again and again:
-    
+
         <a href="/page1" up-target=".content" up-transition="cross-fade" up-duration="300">Page 1</a>
         <a href="/page2" up-target=".content" up-transition="cross-fade" up-duration="300">Page 2</a>
         <a href="/page3" up-target=".content" up-transition="cross-fade" up-duration="300">Page 3</a>
-    
+
     We would much rather define a new `[content-link]` attribute that let's us
     write the same links like this:
-    
+
         <a href="/page1" content-link>Page 1</a>
         <a href="/page2" content-link>Page 2</a>
         <a href="/page3" content-link>Page 3</a>
-    
+
     We can define the `[content-link]` attribute by registering a macro that
     sets the `[up-target]`, `[up-transition]` and `[up-duration]` attributes for us:
-    
+
         up.macro('[content-link]', function(link) {
           link.setAttribute('up-target', '.content')
           link.setAttribute('up-transition', 'cross-fade')
           link.setAttribute('up-duration', '300')
         })
-    
+
     Examples for built-in macros are [`a[up-dash]`](/a-up-dash) and [`[up-expand]`](/up-expand).
-    
+
     @function up.macro
     @param {string} selector
       The selector to match.
@@ -51638,7 +51597,7 @@ or when a matching fragment is [inserted via AJAX](/up.link) later.
       See options for [`up.compiler()`](/up.compiler).
     @param {Function(element, data)} macro
       The function to call when a matching element is inserted.
-    
+
       See [`up.compiler()`](/up.compiler#parameters) for details.
     @stable
      */
@@ -51656,12 +51615,12 @@ or when a matching fragment is [inserted via AJAX](/up.link) later.
     Registers a [compiler](/up.compiler) that is run before all other compilers.
     The compiler function is called with each matching element as a
     [jQuery object](https://learn.jquery.com/using-jquery-core/jquery-object/).
-    
+
     If you're not using jQuery, use `up.macro()` instead, which calls
     the macro function with a native element.
-    
+
     \#\#\# Example
-    
+
         up.$macro('[content-link]', function($link) {
           $link.attr(
             'up-target': '.content',
@@ -51669,7 +51628,7 @@ or when a matching fragment is [inserted via AJAX](/up.link) later.
             'up-duration':'300'
           )
         })
-    
+
     @function up.$macro
     @param {string} selector
       The selector to match.
@@ -51677,7 +51636,7 @@ or when a matching fragment is [inserted via AJAX](/up.link) later.
       See [`options` argument for `up.compiler()`](/up.compiler#parameters).
     @param {Function(element, data)} macro
       The function to call when a matching element is inserted.
-    
+
       See [`compiler` argument for `up.compiler()`](/up.compiler#parameters).
     @stable
      */
@@ -51730,7 +51689,7 @@ or when a matching fragment is [inserted via AJAX](/up.link) later.
     /***
     Applies all compilers on the given element and its descendants.
     Unlike [`up.hello()`](/up.hello), this doesn't emit any events.
-    
+
     @function up.syntax.compile
     @param {Array<Element>} [options.skip]
       A list of elements whose subtrees should not be compiled.
@@ -51746,10 +51705,10 @@ or when a matching fragment is [inserted via AJAX](/up.link) later.
     /***
     Registers a function to be called when the given element
     is [destroyed](/up.destroy).
-    
+
     The preferred way to register a destructor function is to `return`
     it from a [compiler function](/up.compiler).
-    
+
     @function up.destructor
     @param {Element} element
     @param {Function|Array<Function>} destructor
@@ -51774,7 +51733,7 @@ or when a matching fragment is [inserted via AJAX](/up.link) later.
     Runs any destructor on the given fragment and its descendants.
     Unlike [`up.destroy()`](/up.destroy), this doesn't emit any events
     and does not remove the element from the DOM.
-    
+
     @function up.syntax.clean
     @internal
      */
@@ -51797,24 +51756,24 @@ or when a matching fragment is [inserted via AJAX](/up.link) later.
     /***
     Checks if the given element has an [`up-data`](/up-data) attribute.
     If yes, parses the attribute value as JSON and returns the parsed object.
-    
+
     Returns `undefined` if the element has no `up-data` attribute.
-    
+
     \#\#\# Example
-    
+
     You have an element with JSON data serialized into an `up-data` attribute:
-    
+
         <span class='person' up-data='{ "age": 18, "name": "Bob" }'>Bob</span>
-    
+
     Calling `up.syntax.data()` will deserialize the JSON string into a JavaScript object:
-    
+
         up.syntax.data('.person') // returns { age: 18, name: 'Bob' }
-    
+
     @function up.syntax.data
     @param {string|Element|jQuery} elementOrSelector
     @return
       The JSON-decoded value of the `up-data` attribute.
-    
+
       Returns `undefined` if the element has no (or an empty) `up-data` attribute.
     @experimental
      */
@@ -51823,17 +51782,17 @@ or when a matching fragment is [inserted via AJAX](/up.link) later.
     If an element with an `up-data` attribute enters the DOM,
     Unpoly will parse the JSON and pass the resulting object to any matching
     [`up.compiler()`](/up.compiler) handlers.
-    
+
     For instance, a container for a [Google Map](https://developers.google.com/maps/documentation/javascript/tutorial)
     might attach the location and names of its marker pins:
-    
+
         <div class='google-map' up-data='[
           { "lat": 48.36, "lng": 10.99, "title": "Friedberg" },
           { "lat": 48.75, "lng": 11.45, "title": "Ingolstadt" }
         ]'></div>
-    
+
     The JSON will be parsed and handed to your compiler as a second argument:
-    
+
         up.compiler('.google-map', function(element, pins) {
           var map = new google.maps.Map(element)
           pins.forEach(function(pin) {
@@ -51845,15 +51804,15 @@ or when a matching fragment is [inserted via AJAX](/up.link) later.
             })
           })
         })
-    
+
     Similarly, when an event is triggered on an element annotated with
     [`up-data`], the parsed object will be passed to any matching
     [`up.on()`](/up.on) handlers.
-    
+
         up.on('click', '.google-map', function(event, element, pins) {
           console.log("There are %d pins on the clicked map", pins.length)
         })
-    
+
     @selector [up-data]
     @param {JSON} up-data
       A serialized JSON string
@@ -51868,7 +51827,7 @@ or when a matching fragment is [inserted via AJAX](/up.link) later.
     /***
     Resets the list of registered compiler directives to the
     moment when the framework was booted.
-    
+
     @internal
      */
     reset = function() {
@@ -51919,7 +51878,7 @@ In an Unpoly app, every page has an URL.
 
     /***
     Configures behavior when the user goes back or forward in browser history.
-    
+
     @property up.history.config
     @param {Array} [config.popTargets=['body']]
       An array of CSS selectors to replace when the user goes
@@ -51937,11 +51896,11 @@ In an Unpoly app, every page has an URL.
 
     /***
     Returns the previous URL in the browser history.
-    
+
     Note that this will only work reliably for history changes that
     were applied by [`up.history.push()`](/up.history.replace) or
     [`up.history.replace()`](/up.history.replace).
-    
+
     @function up.history.previousUrl
     @internal
      */
@@ -51960,7 +51919,7 @@ In an Unpoly app, every page has an URL.
 
     /***
     Returns a normalized URL for the current history entry.
-    
+
     @function up.history.url
     @experimental
      */
@@ -51977,7 +51936,7 @@ In an Unpoly app, every page has an URL.
 
     /***
     Remembers the given URL so we can offer `up.history.previousUrl()`.
-    
+
     @function observeNewUrl
     @internal
      */
@@ -51992,15 +51951,15 @@ In an Unpoly app, every page has an URL.
     /***
     Replaces the current history entry and updates the
     browser's location bar with the given URL.
-    
+
     When the user navigates to the replaced history entry at a later time,
     Unpoly will [`replace`](/up.replace) the document body with
     the body from that URL.
-    
+
     Note that functions like [`up.replace()`](/up.replace) or
     [`up.submit()`](/up.submit) will automatically update the
     browser's location bar for you.
-    
+
     @function up.history.replace
     @param {string} url
     @internal
@@ -52016,17 +51975,17 @@ In an Unpoly app, every page has an URL.
     /***
     Adds a new history entry and updates the browser's
     address bar with the given URL.
-    
+
     When the user navigates to the added  history entry at a later time,
     Unpoly will [`replace`](/up.replace) the document body with
     the body from that URL.
-    
+
     Note that functions like [`up.replace()`](/up.replace) or
     [`up.submit()`](/up.submit) will automatically update the
     browser's location bar for you.
-    
+
     Emits events [`up:history:push`](/up:history:push) and [`up:history:pushed`](/up:history:pushed).
-    
+
     @function up.history.push
     @param {string} url
       The URL for the history entry to be added.
@@ -52057,7 +52016,7 @@ In an Unpoly app, every page has an URL.
 
     /***
     This event is [emitted](/up.emit) before a new history entry is added.
-    
+
     @event up:history:push
     @param {string} event.url
       The URL for the history entry that is going to be added.
@@ -52068,7 +52027,7 @@ In an Unpoly app, every page has an URL.
 
     /***
     This event is [emitted](/up.emit) after a new history entry has been added.
-    
+
     @event up:history:pushed
     @param {string} event.url
       The URL for the history entry that has been added.
@@ -52130,9 +52089,9 @@ In an Unpoly app, every page has an URL.
 
     /***
     This event is [emitted](/up.emit) before a history entry will be restored.
-    
+
     History entries are restored when the user uses the *Back* or *Forward* button.
-    
+
     @event up:history:restore
     @param {string} event.url
       The URL for the history entry that has been restored.
@@ -52141,9 +52100,9 @@ In an Unpoly app, every page has an URL.
 
     /***
     This event is [emitted](/up.emit) after a history entry has been restored.
-    
+
     History entries are restored when the user uses the *Back* or *Forward* button.
-    
+
     @event up:history:restored
     @param {string} event.url
       The URL for the history entry that has been restored.
@@ -52171,26 +52130,26 @@ In an Unpoly app, every page has an URL.
 
     /***
     Changes the link's destination so it points to the previous URL.
-    
+
     Note that this will *not* call `location.back()`, but will set
     the link's `up-href` attribute to the actual, previous URL.
-    
+
     If no previous URL is known, the link will not be changed.
-    
+
     \#\#\# Example
-    
+
     This link ...
-    
+
         <a href="/default" up-back>
           Go back
         </a>
-    
+
     ... will be transformed to:
-    
+
         <a href="/default" up-href="/previous-page" up-restore-scroll up-follow>
           Go back
         </a>
-    
+
     @selector a[up-back]
     @stable
      */
@@ -52262,7 +52221,7 @@ Unpoly will automatically be aware of sticky Bootstrap components such as
 
     /***
     Configures the application layout.
-    
+
     @property up.viewport.config
     @param {Array} [config.viewports]
       An array of CSS selectors that find viewports
@@ -52287,7 +52246,7 @@ Unpoly will automatically be aware of sticky Bootstrap components such as
       closest [viewport](/up.viewport) edge (in pixels).
     @param {number} [config.scrollSpeed=1]
       The speed of the scrolling motion when [scrolling](/up.scroll) with `{ behavior: 'smooth' }`.
-    
+
       The default value (`1`) roughly corresponds to the speed of Chrome's
       [native smooth scrolling](https://developer.mozilla.org/en-US/docs/Web/API/ScrollToOptions/behavior).
     @stable
@@ -52315,26 +52274,26 @@ Unpoly will automatically be aware of sticky Bootstrap components such as
 
     /***
     Scrolls the given viewport to the given Y-position.
-    
+
     A "viewport" is an element that has scrollbars, e.g. `<body>` or
     a container with `overflow-x: scroll`.
-    
+
     \#\#\# Example
-    
+
     This will scroll a `<div class="main">...</div>` to a Y-position of 100 pixels:
-    
+
         up.scroll('.main', 100)
-    
+
     \#\#\# Animating the scrolling motion
-    
+
     The scrolling can (optionally) be animated.
-    
+
         up.scroll('.main', 100, { behavior: 'smooth' })
-    
+
     If the given viewport is already in a scroll animation when `up.scroll()`
     is called a second time, the previous animation will instantly jump to the
     last frame before the next animation is started.
-    
+
     @function up.scroll
     @param {string|Element|jQuery} viewport
       The container element to scroll.
@@ -52342,11 +52301,11 @@ Unpoly will automatically be aware of sticky Bootstrap components such as
       The absolute number of pixels to set the scroll position to.
     @param {string}[options.behavior='auto']
       When set to `'auto'`, this will immediately scroll to the new position.
-    
+
       When set to `'smooth'`, this will scroll smoothly to the new position.
     @param {number}[options.speed]
       The speed of the scrolling motion when scrolling with `{ behavior: 'smooth' }`.
-    
+
       Defaults to `up.viewport.config.scrollSpeed`.
     @return {Promise}
       A promise that will be fulfilled when the scrolling ends.
@@ -52360,7 +52319,7 @@ Unpoly will automatically be aware of sticky Bootstrap components such as
 
     /***
     Finishes scrolling animations in the given element, its ancestors or its descendants.
-    
+
     @function up.viewport.finishScrolling
     @param {string|Element|jQuery}
     @return {Promise}
@@ -52418,33 +52377,33 @@ Unpoly will automatically be aware of sticky Bootstrap components such as
     /***
     Scroll's the given element's viewport so the first rows of the
     element are visible for the user.
-    
+
     By default Unpoly will always reveal an element before
     updating it with JavaScript functions like [`up.replace()`](/up.replace)
     or UJS behavior like [`[up-target]`](/a-up-target).
-    
+
     \#\#\# How Unpoly finds the viewport
-    
+
     The viewport (the container that is going to be scrolled)
     is the closest parent of the element that is either:
-    
+
     - the currently open [modal](/up.modal)
     - an element with the attribute `[up-viewport]`
     - the `<body>` element
     - an element matching the selector you have configured using `up.viewport.config.viewports.push('my-custom-selector')`
-    
+
     \#\#\# Fixed elements obstruction the viewport
-    
+
     Many applications have a navigation bar fixed to the top or bottom,
     obstructing the view on an element.
-    
+
     You can make `up.reveal()` aware of these fixed elements
     so it can scroll the viewport far enough so the revealed element is fully visible.
     To make `up.reveal()` aware fixed elements you can either:
-    
+
     - give the element an attribute [`up-fixed="top"`](/up-fixed-top) or [`up-fixed="bottom"`](up-fixed-bottom)
     - [configure default options](/up.viewport.config) for `fixedTop` or `fixedBottom`
-    
+
     @function up.reveal
     @param {string|Element|jQuery} element
     @param {number} [options.speed]
@@ -52455,11 +52414,11 @@ Unpoly will automatically be aware of sticky Bootstrap components such as
       with the top edge of the viewport.
     @param {string}[options.behavior='auto']
       When set to `'auto'`, this will immediately scroll to the new position.
-    
+
       When set to `'smooth'`, this will scroll smoothly to the new position.
     @param {number}[options.speed]
       The speed of the scrolling motion when scrolling with `{ behavior: 'smooth' }`.
-    
+
       Defaults to `up.viewport.config.scrollSpeed`.
     @param {number} [config.padding=0]
       The desired padding between the revealed element and the
@@ -52467,11 +52426,11 @@ Unpoly will automatically be aware of sticky Bootstrap components such as
     @param {number|boolean} [config.snap]
       Whether to snap to the top of the viewport if the new scroll position
       after revealing the element is close to the top edge.
-    
+
       You may pass a maximum number of pixels under which to snap to the top.
-    
+
       Passing `false` will disable snapping.
-    
+
       Passing `true` will use the snap pixel value from `up.viewport.config.revealSnap`.
     @return {Promise}
       A promise that fulfills when the element is revealed.
@@ -52529,23 +52488,23 @@ Unpoly will automatically be aware of sticky Bootstrap components such as
 
     /***
     [Reveals](/up.reveal) an element matching the given `#hash` anchor.
-    
+
     Other than the default behavior found in browsers, `up.revealHash` works with
     [multiple viewports](/up-viewport) and honors [fixed elements](/up-fixed-top) obstructing the user's
     view of the viewport.
-    
+
     When the page loads initially, this function is automatically called with the hash from
     the current URL.
-    
+
     If no element matches the given `#hash` anchor, a resolved promise is returned.
-    
+
     \#\#\# Example
-    
+
         up.revealHash('#chapter2')
-    
+
     @function up.viewport.revealHash
     @param {string} hash
-    
+
     @return {Promise}
       A promise that is fulfilled when scroll position has changed to match the location hash.
     @experimental
@@ -52566,10 +52525,10 @@ Unpoly will automatically be aware of sticky Bootstrap components such as
 
     /***
     Returns the scrolling container for the given element.
-    
+
     Returns the [document's scrolling element](/up.viewport.root)
     if no closer viewport exists.
-    
+
     @function up.viewport.closest
     @param {string|Element|jQuery} selectorOrElement
     @return {Element}
@@ -52584,7 +52543,7 @@ Unpoly will automatically be aware of sticky Bootstrap components such as
     /***
     Returns a jQuery collection of all the viewports contained within the
     given selector or element.
-    
+
     @function up.viewport.subtree
     @param {string|Element|jQuery} selectorOrElement
     @return List<Element>
@@ -52603,7 +52562,7 @@ Unpoly will automatically be aware of sticky Bootstrap components such as
 
     /***
     Returns a list of all the viewports on the screen.
-    
+
     @function up.viewport.all
     @internal
      */
@@ -52622,7 +52581,7 @@ Unpoly will automatically be aware of sticky Bootstrap components such as
     /***
     Return the [scrolling element](https://developer.mozilla.org/en-US/docs/Web/API/document/scrollingElement)
     for the browser's main content area.
-    
+
     @function up.viewport.root
     @return {Element}
     @experimental
@@ -52642,7 +52601,7 @@ Unpoly will automatically be aware of sticky Bootstrap components such as
 
     /***
     Returns whether the given element is currently showing a vertical scrollbar.
-    
+
     @function up.viewport.rootHasVerticalScrollbar
     @internal
      */
@@ -52653,7 +52612,7 @@ Unpoly will automatically be aware of sticky Bootstrap components such as
     /***
     Returns the element that controls the `overflow-y` behavior for the
     [document viewport](/up.viewport.root()).
-    
+
     @function up.viewport.rootOverflowElement
     @internal
      */
@@ -52668,11 +52627,11 @@ Unpoly will automatically be aware of sticky Bootstrap components such as
     /***
     Returns whether the given element was chosen as the overflowing
     element by the developer.
-    
+
     We have no control whether developers set the property on <body> or
     <html>. The developer also won't know what is going to be the
     [scrolling element](/up.viewport.root()) on the user's brower.
-    
+
     @function wasChosenAsOverflowingElement
     @internal
      */
@@ -52684,9 +52643,9 @@ Unpoly will automatically be aware of sticky Bootstrap components such as
 
     /***
     Returns the width of a scrollbar.
-    
+
     This only runs once per page load.
-    
+
     @function up.viewport.scrollbarWidth
     @internal
      */
@@ -52713,13 +52672,13 @@ Unpoly will automatically be aware of sticky Bootstrap components such as
 
     /***
     Returns a hash with scroll positions.
-    
+
     Each key in the hash is a viewport selector. The corresponding
     value is the viewport's top scroll position:
-    
+
         up.viewport.scrollTops()
         => { '.main': 0, '.sidebar': 73 }
-    
+
     @function up.viewport.scrollTops
     @return Object<string, number>
     @internal
@@ -52746,25 +52705,25 @@ Unpoly will automatically be aware of sticky Bootstrap components such as
     /***
     Saves the top scroll positions of all the
     viewports configured in [`up.viewport.config.viewports`](/up.viewport.config).
-    
+
     The scroll positions will be associated with the current URL.
     They can later be restored by calling [`up.viewport.restoreScroll()`](/up.viewport.restoreScroll)
     at the same URL, or by following a link with an [`[up-restore-scroll]`](/a-up-follow#up-restore-scroll)
     attribute.
-    
+
     Unpoly automatically saves scroll positions before a [fragment update](/up.replace)
     you will rarely need to call this function yourself.
-    
+
     \#\#\# Examples
-    
+
     Should you need to save the current scroll positions outside of a [fragment update](/up.replace),
     you may call:
-    
+
         up.viewport.saveScroll()
-    
+
     Instead of saving the current scroll positions for the current URL, you may also pass another
     url or vertical scroll positionsfor each viewport:
-    
+
         up.viewport.saveScroll({
           url: '/inbox',
           tops: {
@@ -52773,7 +52732,7 @@ Unpoly will automatically be aware of sticky Bootstrap components such as
             '.main', 320
           }
         })
-    
+
     @function up.viewport.saveScroll
     @param {string} [options.url]
       The URL for which to save scroll positions.
@@ -52795,10 +52754,10 @@ Unpoly will automatically be aware of sticky Bootstrap components such as
     /***
     Restores [previously saved](/up.viewport.saveScroll) scroll positions of viewports
     viewports configured in [`up.viewport.config.viewports`](/up.viewport.config).
-    
+
     Unpoly automatically restores scroll positions when the user presses the back button.
     You can disable this behavior by setting [`up.history.config.restoreScroll = false`](/up.history.config).
-    
+
     @function up.viewport.restoreScroll
     @param {Element} [options.around]
       If set, only restores viewports that are either an ancestor
@@ -52879,19 +52838,19 @@ Unpoly will automatically be aware of sticky Bootstrap components such as
 
     /***
     Marks this element as a scrolling container ("viewport").
-    
+
     Apply this attribute if your app uses a custom panel layout with fixed positioning
     instead of scrolling `<body>`. As an alternative you can also push a selector
     matching your custom viewport to the [`up.viewport.config.viewports`](/up.viewport.config) array.
-    
+
     [`up.reveal()`](/up.reveal) will always try to scroll the viewport closest
     to the element that is being revealed. By default this is the `<body>` element.
-    
+
     \#\#\# Example
-    
+
     Here is an example for a layout for an e-mail client, showing a list of e-mails
     on the left side and the e-mail text on the right side:
-    
+
         .side {
           position: fixed;
           top: 0;
@@ -52900,7 +52859,7 @@ Unpoly will automatically be aware of sticky Bootstrap components such as
           width: 100px;
           overflow-y: scroll;
         }
-    
+
         .main {
           position: fixed;
           top: 0;
@@ -52909,15 +52868,15 @@ Unpoly will automatically be aware of sticky Bootstrap components such as
           right: 0;
           overflow-y: scroll;
         }
-    
+
     This would be the HTML (notice the `up-viewport` attribute):
-    
+
         <div class=".side" up-viewport>
           <a href="/emails/5001" up-target=".main">Re: Your invoice</a>
           <a href="/emails/2023" up-target=".main">Quote for services</a>
           <a href="/emails/9002" up-target=".main">Fwd: Room reservation</a>
         </div>
-    
+
         <div class="main" up-viewport>
           <h1>Re: Your Invoice</h1>
           <p>
@@ -52925,7 +52884,7 @@ Unpoly will automatically be aware of sticky Bootstrap components such as
             Stet clita kasd gubergren, no sea takimata sanctus est.
           </p>
         </div>
-    
+
     @selector [up-viewport]
     @stable
      */
@@ -52933,19 +52892,19 @@ Unpoly will automatically be aware of sticky Bootstrap components such as
     /***
     Marks this element as being fixed to the top edge of the screen
     using `position: fixed`.
-    
+
     When [following a fragment link](/a-up-target), the viewport is scrolled
     so the targeted element becomes visible. By using this attribute you can make
     Unpoly aware of fixed elements that are obstructing the viewport contents.
     Unpoly will then scroll the viewport far enough that the revealed element is fully visible.
-    
+
     Instead of using this attribute,
     you can also configure a selector in [`up.viewport.config.fixedTop`](/up.viewport.config#config.fixedTop).
-    
+
     \#\#\# Example
-    
+
         <div class="top-nav" up-fixed="top">...</div>
-    
+
     @selector [up-fixed=top]
     @stable
      */
@@ -52953,19 +52912,19 @@ Unpoly will automatically be aware of sticky Bootstrap components such as
     /***
     Marks this element as being fixed to the bottom edge of the screen
     using `position: fixed`.
-    
+
     When [following a fragment link](/a-up-target), the viewport is scrolled
     so the targeted element becomes visible. By using this attribute you can make
     Unpoly aware of fixed elements that are obstructing the viewport contents.
     Unpoly will then scroll the viewport far enough that the revealed element is fully visible.
-    
+
     Instead of using this attribute,
     you can also configure a selector in [`up.viewport.config.fixedBottom`](/up.viewport.config#config.fixedBottom).
-    
+
     \#\#\# Example
-    
+
         <div class="bottom-nav" up-fixed="bottom">...</div>
-    
+
     @selector [up-fixed=bottom]
     @stable
      */
@@ -52973,34 +52932,34 @@ Unpoly will automatically be aware of sticky Bootstrap components such as
     /***
     Marks this element as being anchored to the right edge of the screen,
     typically fixed navigation bars.
-    
+
     Since [modal dialogs](/up.modal) hide the document scroll bar,
     elements anchored to the right appear to jump when the dialog opens or
     closes. Applying this attribute to anchored elements will make Unpoly
     aware of the issue and adjust the `right` property accordingly.
-    
+
     You should give this attribute to layout elements
     with a CSS of `right: 0` with `position: fixed` or `position:absolute`.
-    
+
     Instead of giving this attribute to any affected element,
     you can also configure a selector in [`up.viewport.config.anchoredRight`](/up.viewport.config#config.anchoredRight).
-    
+
     \#\#\# Example
-    
+
     Here is the CSS for a navigation bar that is anchored to the top edge of the screen:
-    
+
         .top-nav {
            position: fixed;
            top: 0;
            left: 0;
            right: 0;
          }
-    
+
     By adding an `up-anchored="right"` attribute to the element, we can prevent the
     `right` edge from jumping when a [modal dialog](/up.modal) opens or closes:
-    
+
         <div class="top-nav" up-anchored="right">...</div>
-    
+
     @selector [up-anchored=right]
     @stable
      */
@@ -53019,9 +52978,9 @@ Unpoly will automatically be aware of sticky Bootstrap components such as
 
     /***
     Returns `'foo'` if the hash is `'#foo'`.
-    
+
     Returns undefined if the hash is `'#'`, `''` or `undefined`.
-    
+
     @function pureHash
     @internal
      */
@@ -53076,7 +53035,7 @@ Unpoly will automatically be aware of sticky Bootstrap components such as
 /***
 Fragment update API
 ===================
-  
+
 The `up.fragment` module exposes a high-level Javascript API to [update](/up.replace) or
 [destroy](/up.destroy) page fragments.
 
@@ -53100,20 +53059,20 @@ is built from `up.fragment` functions. You may use them to extend Unpoly from yo
 
     /***
     Configures defaults for fragment insertion.
-    
+
     @property up.fragment.config
     @param {string} [options.fallbacks=['body']]
       When a fragment updates cannot find the requested element, Unpoly will try this list of alternative selectors.
-    
+
       The first selector that matches an element in the current page (or response) will be used.
       If the response contains none of the selectors, an error message will be shown.
-    
+
       It is recommend to always keep `'body'` as the last selector in the last in the case
       your server or load balancer renders an error message that does not contain your
       application layout.
     @param {string} [options.fallbackTransition=null]
       The transition to use when using a [fallback target](/#options.fallbacks).
-    
+
       By default this is not set and the original replacement's transition is used.
     @stable
      */
@@ -53135,7 +53094,7 @@ is built from `up.fragment` functions. You may use them to extend Unpoly from yo
 
     /***
     Returns the URL the given element was retrieved from.
-    
+
     @method up.fragment.source
     @param {string|Element|jQuery} selectorOrElement
     @experimental
@@ -53153,80 +53112,80 @@ is built from `up.fragment` functions. You may use them to extend Unpoly from yo
     /***
     Replaces elements on the current page with corresponding elements
     from a new page fetched from the server.
-    
+
     The current and new elements must both match the given CSS selector.
-    
+
     The unobtrusive variant of this is the [`a[up-target]`](/a-up-target) selector.
-    
+
     \#\#\# Example
-    
+
     Let's say your current HTML looks like this:
-    
+
         <div class="one">old one</div>
         <div class="two">old two</div>
-    
+
     We now replace the second `<div>`:
-    
+
         up.replace('.two', '/new')
-    
+
     The server renders a response for `/new`:
-    
+
         <div class="one">new one</div>
         <div class="two">new two</div>
-    
+
     Unpoly looks for the selector `.two` in the response and [implants](/up.extract) it into
     the current page. The current page now looks like this:
-    
+
         <div class="one">old one</div>
         <div class="two">new two</div>
-    
+
     Note how only `.two` has changed. The update for `.one` was
     discarded, since it didn't match the selector.
-    
+
     \#\#\# Appending or prepending instead of replacing
-    
+
     By default Unpoly will replace the given selector with the same
     selector from a freshly fetched page. Instead of replacing you
     can *append* the loaded content to the existing content by using the
     `:after` pseudo selector. In the same fashion, you can use `:before`
     to indicate that you would like the *prepend* the loaded content.
-    
+
     A practical example would be a paginated list of items:
-    
+
         <ul class="tasks">
           <li>Wash car</li>
           <li>Purchase supplies</li>
           <li>Fix tent</li>
         </ul>
-    
+
     In order to append more items from a URL, replace into
     the `.tasks:after` selector:
-    
+
         up.replace('.tasks:after', '/page/2')
-    
+
     \#\#\# Setting the window title from the server
-    
+
     If the `replace` call changes history, the document title will be set
     to the contents of a `<title>` tag in the response.
-    
+
     The server can also change the document title by setting
     an `X-Up-Title` header in the response.
-    
+
     \#\#\# Optimizing response rendering
-    
+
     The server is free to optimize Unpoly requests by only rendering the HTML fragment
     that is being updated. The request's `X-Up-Target` header will contain
     the CSS selector for the updating fragment.
-    
+
     If you are using the `unpoly-rails` gem you can also access the selector via
     `up.target` in all controllers, views and helpers.
-    
+
     \#\#\# Events
-    
+
     Unpoly will emit [`up:fragment:destroyed`](/up:fragment:destroyed) on the element
     that was replaced and [`up:fragment:inserted`](/up:fragment:inserted) on the new
     element that replaces it.
-    
+
     @function up.replace
     @param {string|Element|jQuery} selectorOrElement
       The CSS selector to update. You can also pass a DOM element or jQuery element
@@ -53239,7 +53198,7 @@ is built from `up.fragment` functions. You may use them to extend Unpoly from yo
       The selector to update when the original target was not found in the page.
     @param {string} [options.title]
       The document title after the replacement.
-    
+
       If the call pushes an history entry and this option is missing, the title is extracted from the response's `<title>` tag.
       You can also pass `false` to explicitly prevent the title from being updated.
     @param {string} [options.method='get']
@@ -53254,14 +53213,14 @@ is built from `up.fragment` functions. You may use them to extend Unpoly from yo
     @param {boolean|string} [options.source=true]
     @param {boolean|string} [options.reveal=false]
       Whether to [reveal](/up.reveal) the new fragment.
-    
+
       You can also pass a CSS selector for the element to reveal.
     @param {boolean|string} [options.failReveal=false]
       Whether to [reveal](/up.reveal) the new fragment when the server responds with an error.
-    
+
       You can also pass a CSS selector for the element to reveal.
     @param {number} [options.revealPadding]
-    
+
     @param {boolean} [options.restoreScroll=false]
       If set to true, Unpoly will try to restore the scroll position
       of all the viewports around or below the updated element. The position
@@ -53275,12 +53234,12 @@ is built from `up.fragment` functions. You may use them to extend Unpoly from yo
       with the request.
     @param {Element|jQuery} [options.origin]
       The element that triggered the replacement.
-    
+
       The element's selector will be substituted for the `&` shorthand in the target selector ([like in Sass](https://sass-lang.com/documentation/file.SASS_REFERENCE.html#parent-selector)).
     @param {string} [options.layer='auto']
       The name of the layer that ought to be updated. Valid values are
       `'auto'`, `'page'`, `'modal'` and `'popup'`.
-    
+
       If set to `'auto'` (default), Unpoly will try to find a match in the
       same layer as the element that triggered the replacement (see `options.origin`).
       If that element is not known, or no match was found in that layer,
@@ -53291,7 +53250,7 @@ is built from `up.fragment` functions. You may use them to extend Unpoly from yo
       Whether this replacement will preserve [`[up-keep]`](/up-keep) elements.
     @param {boolean} [options.hungry=true]
       Whether this replacement will update [`[up-hungry]`](/up-hungry) elements.
-    
+
     @return {Promise}
       A promise that will be fulfilled when the page has been updated.
     @stable
@@ -53408,31 +53367,31 @@ is built from `up.fragment` functions. You may use them to extend Unpoly from yo
     /***
     Updates a selector on the current page with the
     same selector from the given HTML string.
-    
+
     \#\#\# Example
-    
+
     Let's say your current HTML looks like this:
-    
+
         <div class="one">old one</div>
         <div class="two">old two</div>
-    
+
     We now replace the second `<div>`, using an HTML string
     as the source:
-    
+
         html = '<div class="one">new one</div>' +
                '<div class="two">new two</div>';
-    
+
         up.extract('.two', html)
-    
+
     Unpoly looks for the selector `.two` in the strings and updates its
     contents in the current page. The current page now looks like this:
-    
+
         <div class="one">old one</div>
         <div class="two">new two</div>
-    
+
     Note how only `.two` has changed. The update for `.one` was
     discarded, since it didn't match the selector.
-    
+
     @function up.extract
     @param {string|Element|jQuery} selectorOrElement
     @param {string} html
@@ -53614,32 +53573,32 @@ is built from `up.fragment` functions. You may use them to extend Unpoly from yo
     /***
     Elements with an `up-keep` attribute will be persisted during
     [fragment updates](/a-up-target).
-    
+
     For example:
-    
+
         <audio up-keep src="song.mp3"></audio>
-    
+
     The element you're keeping should have an umambiguous class name, ID or `up-id`
     attribute so Unpoly can find its new position within the page update.
-    
+
     Emits events [`up:fragment:keep`](/up:fragment:keep) and [`up:fragment:kept`](/up:fragment:kept).
-    
+
     \#\#\# Controlling if an element will be kept
-    
+
     Unpoly will **only** keep an existing element if:
-    
+
     - The existing element has an `up-keep` attribute
     - The response contains an element matching the CSS selector of the existing element
     - The matching element *also* has an `up-keep` attribute
     - The [`up:fragment:keep`](/up:fragment:keep) event that is [emitted](/up.emit) on the existing element
       is not prevented by a event listener.
-    
+
     Let's say we want only keep an `<audio>` element as long as it plays
     the same song (as identified by the tag's `src` attribute).
-    
+
     On the client we can achieve this by listening to an `up:keep:fragment` event
     and preventing it if the `src` attribute of the old and new element differ:
-    
+
         up.compiler('audio', function(element) {
           element.addEventListener('up:fragment:keep', function(event) {
             if element.getAttribute('src') !== event.newElement.getAttribute('src') {
@@ -53647,16 +53606,16 @@ is built from `up.fragment` functions. You may use them to extend Unpoly from yo
             }
           })
         })
-    
+
     If we don't want to solve this on the client, we can achieve the same effect
     on the server. By setting the value of the `up-keep` attribute we can
     define the CSS selector used for matching elements.
-    
+
         <audio up-keep="audio[src='song.mp3']" src="song.mp3"></audio>
-    
+
     Now, if a response no longer contains an `<audio src="song.mp3">` tag, the existing
     element will be destroyed and replaced by a fragment from the response.
-    
+
     @selector [up-keep]
     @stable
      */
@@ -53664,11 +53623,11 @@ is built from `up.fragment` functions. You may use them to extend Unpoly from yo
     /***
     This event is [emitted](/up.emit) before an existing element is [kept](/up-keep) during
     a page update.
-    
+
     Event listeners can call `event.preventDefault()` on an `up:fragment:keep` event
     to prevent the element from being persisted. If the event is prevented, the element
     will be replaced by a fragment from the response.
-    
+
     @event up:fragment:keep
     @param event.preventDefault()
       Event listeners may call this method to prevent the element from being preserved.
@@ -53685,10 +53644,10 @@ is built from `up.fragment` functions. You may use them to extend Unpoly from yo
     /***
     This event is [emitted](/up.emit) when an existing element has been [kept](/up-keep)
     during a page update.
-    
+
     Event listeners can inspect the discarded update through `event.newElement`
     and `event.newData` and then modify the preserved element when necessary.
-    
+
     @event up:fragment:kept
     @param {Element} event.target
       The fragment that has been kept.
@@ -53703,20 +53662,20 @@ is built from `up.fragment` functions. You may use them to extend Unpoly from yo
     /***
     Compiles a page fragment that has been inserted into the DOM
     by external code.
-    
+
     **As long as you manipulate the DOM using Unpoly, you will never
     need to call this method.** You only need to use `up.hello()` if the
     DOM is manipulated without Unpoly' involvement, e.g. by setting
     the `innerHTML` property or calling jQuery methods like
     `html`, `insertAfter` or `appendTo`:
-    
+
         element = document.createElement('div')
         element.innerHTML = '... HTML that needs to be activated ...'
         up.hello(element)
-    
+
     This function emits the [`up:fragment:inserted`](/up:fragment:inserted)
     event.
-    
+
     @function up.hello
     @param {string|Element|jQuery} selectorOrElement
     @param {string|Element|jQuery} [options.origin]
@@ -53748,16 +53707,16 @@ is built from `up.fragment` functions. You may use them to extend Unpoly from yo
     /***
     When any page fragment has been [inserted or updated](/up.replace),
     this event is [emitted](/up.emit) on the fragment.
-    
+
     If you're looking to run code when a new fragment matches
     a selector, use `up.compiler()` instead.
-    
+
     \#\#\# Example
-    
+
         up.on('up:fragment:inserted', function(event, fragment) {
           console.log("Looks like we have a new %o!", fragment)
         })
-    
+
     @event up:fragment:inserted
     @param {Element} event.target
       The fragment that has been inserted or updated.
@@ -53800,44 +53759,44 @@ is built from `up.fragment` functions. You may use them to extend Unpoly from yo
     Returns the first element matching the given selector, but
     ignores elements that are being [destroyed](/up.destroy) or that are being
     removed by a [transition](/up.morph).
-    
+
     Returns `undefined` if no element matches these conditions.
-    
+
     \#\#\# Example
-    
+
     To select the first element with the selector `.foo`:
-    
+
         var fooInModal = up.fragment.first('.foo')
-    
+
     You may also pass a `{ layer }` option to only match elements witin a layer:
-    
+
         var fooInModal = up.fragment.first('.foo', { layer: 'modal' })
-    
+
     You may also pass a root element as a first argument:
-    
+
         var container = up.fragment.first('.container')
         var fooInContainer = up.fragment.first(container, '.foo')
-    
+
     \#\#\# Similar features
-    
+
     - The [`.up-destroying`](/up-destroying) class is assigned to elements during their removal animation.
     - The [`up.element.first()`](/up.element.first) function simply returns the first element matching a selector
       without further filtering.
-    
+
     @function up.fragment.first
     @param {Element|jQuery} [root=document]
       The root element for the search. Only the root's children will be matched.
-    
+
       May be omitted to search through all elements in the `document`.
     @param {string} selector
       The selector to match
     @param {string} [options.layer='auto']
       The name of the layer in which to find the element.
-    
+
       Valid values are `'auto'`, `'page'`, `'modal'` and `'popup'`.
     @param {string|Element|jQuery} [options.origin]
       An second element or selector that can be referenced as `&` in the first selector:
-    
+
           var input = document.querySelector('input.email')
           up.fragment.first('fieldset:has(&)', { origin: input }) // returns the <fieldset> containing input
     @return {Element|undefined}
@@ -53914,15 +53873,15 @@ is built from `up.fragment` functions. You may use them to extend Unpoly from yo
 
     /***
     Destroys the given element or selector.
-    
+
     Takes care that all [`up.compiler()`](/up.compiler) destructors, if any, are called.
-    
+
     The element is removed from the DOM.
     Note that if you choose to animate the element removal using `options.animate`,
     the element won't be removed until after the animation has completed.
-    
+
     Emits events [`up:fragment:destroyed`](/up:fragment:destroyed).
-    
+
     @function up.destroy
     @param {string|Element|jQuery} selectorOrElement
     @param {string} [options.history]
@@ -53980,12 +53939,12 @@ is built from `up.fragment` functions. You may use them to extend Unpoly from yo
     /***
     Elements are assigned the `.up-destroying` class before they are [destroyed](/up.destroy)
     or while they are being removed by a [transition](/up.morph).
-    
+
     If the removal is animated, the class is assigned before the animation starts.
-    
+
     To select an element while ignoring elements that are being destroyed,
     see the [`up.fragment.first()`](/up.fragment.first) function.
-    
+
     @selector .up-destroying
     @stable
      */
@@ -53995,11 +53954,11 @@ is built from `up.fragment` functions. You may use them to extend Unpoly from yo
 
     /***
     This event is [emitted](/up.emit) after a page fragment was [destroyed](/up.destroy) and removed from the DOM.
-    
+
     If the destruction is animated, this event is emitted after the animation has ended.
-    
+
     The event is emitted on the parent element of the fragment that was removed.
-    
+
     @event up:fragment:destroyed
     @param {Element} event.fragment
       The detached element that has been removed from the DOM.
@@ -54012,14 +53971,14 @@ is built from `up.fragment` functions. You may use them to extend Unpoly from yo
 
     /***
     Replaces the given element with a fresh copy fetched from the server.
-    
+
     \#\#\# Example
-    
+
         up.on('new-mail', function() { up.reload('.inbox') })
-    
+
     Unpoly remembers the URL from which a fragment was loaded, so you
     don't usually need to give an URL when reloading.
-    
+
     @function up.reload
     @param {string|Element|jQuery} selectorOrElement
     @param {Object} [options]
@@ -54084,7 +54043,7 @@ is built from `up.fragment` functions. You may use them to extend Unpoly from yo
 /***
 Animation
 =========
-  
+
 Whenever you [update a page fragment](/up.link) you can animate the change.
 
 Let's say you are using an [`up-target`](/a-up-target) link to update an element
@@ -54130,7 +54089,7 @@ You can define custom animations using [`up.transition()`](/up.transition) and
 
     /***
     Sets default options for animations and transitions.
-    
+
     @property up.motion.config
     @param {number} [config.duration=300]
       The default duration for all animations and transitions (in milliseconds).
@@ -54138,15 +54097,15 @@ You can define custom animations using [`up.transition()`](/up.transition) and
       The default delay for all animations and transitions (in milliseconds).
     @param {string} [config.easing='ease']
       The default timing function that controls the acceleration of animations and transitions.
-    
+
       See [W3C documentation](http://www.w3.org/TR/css3-transitions/#transition-timing-function)
       for a list of pre-defined timing functions.
     @param {boolean} [config.enabled=true]
       Whether animation is enabled.
-    
+
       Set this to `false` to disable animation globally.
       This can be useful in full-stack integration tests like a Selenium test suite.
-    
+
       Regardless of this setting, all animations will be skipped on browsers
       that do not support [CSS transitions](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions).
     @stable
@@ -54166,9 +54125,9 @@ You can define custom animations using [`up.transition()`](/up.transition) and
 
     /***
     Returns whether Unpoly will perform animations.
-    
+
     Set [`up.motion.config.enabled`](/up.motion.config) `false` in order to disable animations globally.
-    
+
     @function up.motion.isEnabled
     @return {boolean}
     @stable
@@ -54179,23 +54138,23 @@ You can define custom animations using [`up.transition()`](/up.transition) and
 
     /***
     Applies the given animation to the given element.
-    
+
     \#\#\# Example
-    
+
         up.animate('.warning', 'fade-in')
-    
+
     You can pass additional options:
-    
+
         up.animate('warning', '.fade-in', {
           delay: 1000,
           duration: 250,
           easing: 'linear'
         })
-    
+
     \#\#\# Named animations
-    
+
     The following animations are pre-defined:
-    
+
     | `fade-in`          | Changes the element's opacity from 0% to 100% |
     | `fade-out`         | Changes the element's opacity from 100% to 0% |
     | `move-to-top`      | Moves the element upwards until it exits the screen at the top edge |
@@ -54207,34 +54166,34 @@ You can define custom animations using [`up.transition()`](/up.transition) and
     | `move-to-right`    | Moves the element rightwards until it exists the screen at the right edge  |
     | `move-from-right`  | Moves the element leftwards from beyond the right  edge of the screen until it reaches its current position |
     | `none`             | An animation that has no visible effect. Sounds useless at first, but can save you a lot of `if` statements. |
-    
+
     You can define additional named animations using [`up.animation()`](/up.animation).
-    
+
     \#\#\# Animating CSS properties directly
-    
+
     By passing an object instead of an animation name, you can animate
     the CSS properties of the given element:
-    
+
         var warning = document.querySelector('.warning')
         warning.style.opacity = 0
         up.animate(warning, { opacity: 1 })
-    
+
     CSS properties must be given in `kebab-case`, not `camelCase`.
-    
+
     \#\#\# Multiple animations on the same element
-    
+
     Unpoly doesn't allow more than one concurrent animation on the same element.
-    
+
     If you attempt to animate an element that is already being animated,
     the previous animation will instantly jump to its last frame before
     the new animation begins.
-    
+
     @function up.animate
     @param {Element|jQuery|string} elementOrSelector
       The element to animate.
     @param {string|Function(element, options): Promise|Object} animation
       Can either be:
-    
+
       - The animation's name
       - A function performing the animation
       - An object of CSS attributes describing the last frame of the animation (using kebeb-case property names)
@@ -54244,7 +54203,7 @@ You can define custom animations using [`up.transition()`](/up.transition) and
       The delay before the animation starts, in milliseconds.
     @param {string} [options.easing='ease']
       The timing function that controls the animation's acceleration.
-    
+
       See [W3C documentation](http://www.w3.org/TR/css3-transitions/#transition-timing-function)
       for a list of pre-defined timing functions.
     @return {Promise}
@@ -54280,11 +54239,11 @@ You can define custom animations using [`up.transition()`](/up.transition) and
 
     /***
     Animates the given element's CSS properties using CSS transitions.
-    
+
     Does not track the animation, nor does it finishes existing animations
     (use `up.motion.animate()` for that). It does, however, listen to the motionController's
     finish event.
-    
+
     @function animateNow
     @param {Element|jQuery|string} elementOrSelector
       The element to animate.
@@ -54315,7 +54274,7 @@ You can define custom animations using [`up.transition()`](/up.transition) and
     Extracts animation-related options from the given options hash.
     If `element` is given, also inspects the element for animation-related
     attributes like `up-easing` or `up-duration`.
-    
+
     @param {Object} userOptions
     @param {Element|jQuery} [element]
     @param {Object} [moduleDefaults]
@@ -54341,18 +54300,18 @@ You can define custom animations using [`up.transition()`](/up.transition) and
 
     /***
     Completes [animations](/up.animate) and [transitions](/up.morph).
-    
+
     If called without arguments, all animations on the screen are completed.
     If given an element (or selector), animations on that element and its children
     are completed.
-    
+
     Animations are completed by jumping to the last animation frame instantly.
     Promises returned by animation and transition functions instantly settle.
-    
+
     Emits the `up:motion:finish` event that is already handled by `up.animate()`.
-    
+
     Does nothing if there are no animation to complete.
-    
+
     @function up.motion.finish
     @param {Element|jQuery|string} [elementOrSelector]
     @return {Promise}
@@ -54366,11 +54325,11 @@ You can define custom animations using [`up.transition()`](/up.transition) and
     /***
     This event is emitted on an [animating](/up.animating) element by `up.motion.finish()` to
     request the animation to instantly finish and skip to the last frame.
-    
+
     Promises returned by completed animation functions are expected to settle.
-    
+
     Animations started by `up.animate()` already handle this event.
-    
+
     @event up:motion:finish
     @param {Element} event.target
       The animating element.
@@ -54379,43 +54338,43 @@ You can define custom animations using [`up.transition()`](/up.transition) and
 
     /***
     Performs an animated transition between the `source` and `target` elements.
-    
+
     Transitions are implement by performing two animations in parallel,
     causing `source` to disappear and the `target` to appear.
-    
+
     - `target` is [inserted before](https://developer.mozilla.org/en-US/docs/Web/API/Node/insertBefore) `source`
     - `source` is removed from the [document flow](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning) with `position: absolute`.
        It will be positioned over its original place in the flow that is now occupied by `target`.
     - Both `source` and `target` are animated in parallel
     - `source` is removed from the DOM
-    
+
     \#\#\# Named transitions
-    
+
     The following transitions are pre-defined:
-    
+
     | `cross-fade` | Fades out the first element. Simultaneously fades in the second element. |
     | `move-up`    | Moves the first element upwards until it exits the screen at the top edge. Simultaneously moves the second element upwards from beyond the bottom edge of the screen until it reaches its current position. |
     | `move-down`  | Moves the first element downwards until it exits the screen at the bottom edge. Simultaneously moves the second element downwards from beyond the top edge of the screen until it reaches its current position. |
     | `move-left`  | Moves the first element leftwards until it exists the screen at the left edge. Simultaneously moves the second element leftwards from beyond the right  edge of the screen until it reaches its current position. |
     | `move-right` | Moves the first element rightwards until it exists the screen at the right edge. Simultaneously moves the second element rightwards from beyond the left edge of the screen until it reaches its current position. |
     | `none`       | A transition that has no visible effect. Sounds useless at first, but can save you a lot of `if` statements. |
-    
+
     You can define additional named transitions using [`up.transition()`](/up.transition).
-    
+
     You can also compose a transition from two [named animations](/named-animations).
     separated by a slash character (`/`):
-    
+
     - `move-to-bottom/fade-in`
     - `move-to-left/move-from-top`
-    
+
     \#\#\# Implementation details
-    
+
     During a transition both the old and new element occupy
     the same position on the screen.
-    
+
     Since the CSS layout flow will usually not allow two elements to
     overlay the same space, Unpoly:
-    
+
     - The old and new elements are cloned
     - The old element is removed from the layout flow using `display: hidden`
     - The new element is hidden, but still leaves space in the layout flow by setting `visibility: hidden`
@@ -54425,7 +54384,7 @@ You can define custom animations using [`up.transition()`](/up.transition) and
       At no point will the hidden, original elements be animated.
     - When the transition has finished, the clones are removed from the DOM and the new element is shown.
       The old element remains hidden in the DOM.
-    
+
     @function up.morph
     @param {Element|jQuery|string} source
     @param {Element|jQuery|string} target
@@ -54436,7 +54395,7 @@ You can define custom animations using [`up.transition()`](/up.transition) and
       The delay before the animation starts, in milliseconds.
     @param {string} [options.easing='ease']
       The timing function that controls the transition's acceleration.
-    
+
       See [W3C documentation](http://www.w3.org/TR/css3-transitions/#transition-timing-function)
       for a list of pre-defined timing functions.
     @param {boolean} [options.reveal=false]
@@ -54555,34 +54514,34 @@ You can define custom animations using [`up.transition()`](/up.transition) and
 
     /***
     Defines a named transition that [morphs](/up.element) from one element to another.
-    
+
     \#\#\# Example
-    
+
     Here is the definition of the pre-defined `cross-fade` animation:
-    
+
         up.transition('cross-fade', (oldElement, newElement, options) ->
           Promise.all([
             up.animate(oldElement, 'fade-out', options),
             up.animate(newElement, 'fade-in', options)
           ])
         )
-    
+
     It is recommended that your transitions use [`up.animate()`](/up.animate),
     passing along the `options` that were passed to you.
-    
+
     If you choose to *not* use `up.animate()` and roll your own
     logic instead, your code must honor the following contract:
-    
+
     1. It must honor the options `{ delay, duration, easing }` if given.
     2. It must *not* remove any of the given elements from the DOM.
     3. It returns a promise that is fulfilled when the transition has ended.
     4. If during the animation an event `up:motion:finish` is emitted on
        either element, the transition instantly jumps to the last frame
        and resolves the returned promise.
-    
+
     Calling [`up.animate()`](/up.animate) with an object argument
     will take care of all these points.
-    
+
     @function up.transition
     @param {string} name
     @param {Function(oldElement, newElement, options): Promise|Array} transition
@@ -54594,31 +54553,31 @@ You can define custom animations using [`up.transition()`](/up.transition) and
 
     /***
     Defines a named animation.
-    
+
     Here is the definition of the pre-defined `fade-in` animation:
-    
+
         up.animation('fade-in', function(element, options) {
           element.style.opacity = 0
           up.animate(element, { opacity: 1 }, options)
         })
-    
+
     It is recommended that your definitions always end by calling
     calling [`up.animate()`](/up.animate) with an object argument, passing along
     the `options` that were passed to you.
-    
+
     If you choose to *not* use `up.animate()` and roll your own
     animation code instead, your code must honor the following contract:
-    
+
     1. It must honor the options `{ delay, duration, easing }` if given
     2. It must *not* remove any of the given elements from the DOM.
     3. It returns a promise that is fulfilled when the transition has ended
     4. If during the animation an event `up:motion:finish` is emitted on
        the given element, the transition instantly jumps to the last frame
        and resolves the returned promise.
-    
+
     Calling [`up.animate()`](/up.animate) with an object argument
     will take care of all these points.
-    
+
     @function up.animation
     @param {string} name
     @param {Function(element, options): Promise} animation
@@ -54635,7 +54594,7 @@ You can define custom animations using [`up.transition()`](/up.transition) and
     /***
     Returns whether the given animation option will cause the animation
     to be skipped.
-    
+
     @function up.motion.isNone
     @internal
      */
@@ -54843,10 +54802,10 @@ Other Unpoly modules contain even more tricks to outsmart network latency:
     @param {number} [config.maxRequests=4]
       The maximum number of concurrent requests to allow before additional
       requests are queued. This currently ignores preloading requests.
-    
+
       You might find it useful to set this to `1` in full-stack integration
       tests (e.g. Selenium).
-    
+
       Note that your browser might [impose its own request limit](http://www.browserscope.org/?category=network)
       regardless of what you configure here.
     @param {Array<string>} [config.wrapMethods]
@@ -54885,9 +54844,9 @@ Other Unpoly modules contain even more tricks to outsmart network latency:
 
     /***
     Returns a cached response for the given request.
-    
+
     Returns `undefined` if the given request is not currently cached.
-    
+
     @function up.proxy.get
     @return {Promise<up.Response>}
       A promise for the response.
@@ -54938,33 +54897,33 @@ Other Unpoly modules contain even more tricks to outsmart network latency:
 
     /***
     Makes an AJAX request to the given URL.
-    
+
     \#\#\# Example
-    
+
         up.request('/search', { params: { query: 'sunshine' } }).then(function(response) {
           console.log('The response text is %o', response.text)
         }).catch(function() {
           console.error('The request failed')
         })
-    
+
     \#\#\# Caching
-    
+
     All responses are cached by default. If requesting a URL with a non-`GET` method, the response will
     not be cached and the entire cache will be cleared.
-    
+
     You can configure caching with the [`up.proxy.config`](/up.proxy.config) property.
-    
+
     \#\#\# Events
-    
+
     If a network connection is attempted, the proxy will emit
     a [`up:proxy:load`](/up:proxy:load) event with the `request` as its argument.
     Once the response is received, a [`up:proxy:loaded`](/up:proxy:loaded) event will
     be emitted.
-    
+
     @function up.request
     @param {string} [url]
       The URL for the request.
-    
+
       Instead of passing the URL as a string argument, you can also pass it as an `{ url }` option.
     @param {string} [options.url]
       You can omit the first string argument and pass the URL as
@@ -54980,7 +54939,7 @@ Other Unpoly modules contain even more tricks to outsmart network latency:
       [Parameters](/up.Params) that should be sent as the request's payload.
     @param {string} [options.timeout]
       A timeout in milliseconds.
-    
+
       If [`up.proxy.config.maxRequests`](/up.proxy.config#config.maxRequests) is set, the timeout
       will not include the time spent waiting in the queue.
     @param {string} [options.target='body']
@@ -55024,21 +54983,21 @@ Other Unpoly modules contain even more tricks to outsmart network latency:
 
     /***
     Makes an AJAX request to the given URL and caches the response.
-    
+
     The function returns a promise that fulfills with the response text.
-    
+
     \#\#\# Example
-    
+
         up.request('/search', { params: { query: 'sunshine' } }).then(function(text) {
           console.log('The response text is %o', text)
         }).catch(function() {
           console.error('The request failed')
         })
-    
+
     @function up.ajax
     @param {string} [url]
       The URL for the request.
-    
+
       Instead of passing the URL as a string argument, you can also pass it as an `{ url }` option.
     @param {string} [request.url]
       You can omit the first string argument and pass the URL as
@@ -55053,11 +55012,11 @@ Other Unpoly modules contain even more tricks to outsmart network latency:
       with the request.
     @param {Object|FormData|string|Array} [options.params]
       [Parameters](/up.Params) that should be sent as the request's payload.
-    
+
       On IE 11 and Edge, `FormData` payloads require a [polyfill for `FormData#entries()`](https://github.com/jimmywarting/FormData).
     @param {string} [request.timeout]
       A timeout in milliseconds for the request.
-    
+
       If [`up.proxy.config.maxRequests`](/up.proxy.config#config.maxRequests) is set, the timeout
       will not include the time spent waiting in the queue.
     @return {Promise<string>}
@@ -55081,7 +55040,7 @@ Other Unpoly modules contain even more tricks to outsmart network latency:
     /***
     Returns `true` if the proxy is not currently waiting
     for a request to finish. Returns `false` otherwise.
-    
+
     @function up.proxy.isIdle
     @return {boolean}
       Whether the proxy is idle
@@ -55094,7 +55053,7 @@ Other Unpoly modules contain even more tricks to outsmart network latency:
     /***
     Returns `true` if the proxy is currently waiting
     for a request to finish. Returns `false` otherwise.
-    
+
     @function up.proxy.isBusy
     @return {boolean}
       Whether the proxy is busy
@@ -55122,49 +55081,49 @@ Other Unpoly modules contain even more tricks to outsmart network latency:
     /***
     This event is [emitted](/up.emit) when [AJAX requests](/up.request)
     are taking long to finish.
-    
+
     By default Unpoly will wait 300 ms for an AJAX request to finish
     before emitting `up:proxy:slow`. You can configure this time like this:
-    
+
         up.proxy.config.slowDelay = 150;
-    
+
     Once all responses have been received, an [`up:proxy:recover`](/up:proxy:recover)
     will be emitted.
-    
+
     Note that if additional requests are made while Unpoly is already busy
     waiting, **no** additional `up:proxy:slow` events will be triggered.
-    
-    
+
+
     \#\#\# Spinners
-    
+
     You can [listen](/up.on) to the `up:proxy:slow`
     and [`up:proxy:recover`](/up:proxy:recover) events to implement a spinner
     that appears during a long-running request,
     and disappears once the response has been received:
-    
+
         <div class="spinner">Please wait!</div>
-    
+
     Here is the JavaScript to make it alive:
-    
+
         up.compiler('.spinner', function(element) {
           show = () => { up.element.show(element) }
           hide = () => { up.element.hide(element) }
-    
+
           hide()
-    
+
           return [
             up.on('up:proxy:slow', show),
             up.on('up:proxy:recover', hide)
           ]
         })
-    
+
     The `up:proxy:slow` event will be emitted after a delay of 300 ms
     to prevent the spinner from flickering on and off.
     You can change (or remove) this delay by [configuring `up.proxy`](/up.proxy.config) like this:
-    
+
         up.proxy.config.slowDelay = 150;
-    
-    
+
+
     @event up:proxy:slow
     @stable
      */
@@ -55184,11 +55143,11 @@ Other Unpoly modules contain even more tricks to outsmart network latency:
     /***
     This event is [emitted](/up.emit) when [AJAX requests](/up.request)
     have [taken long to finish](/up:proxy:slow), but have finished now.
-    
+
     See [`up:proxy:slow`](/up:proxy:slow) for more documentation on
     how to use this event for implementing a spinner that shows during
     long-running requests.
-    
+
     @event up:proxy:recover
     @stable
      */
@@ -55229,7 +55188,7 @@ Other Unpoly modules contain even more tricks to outsmart network latency:
     /***
     This event is [emitted](/up.emit) before an [AJAX request](/up.request)
     is sent over the network.
-    
+
     @event up:proxy:load
     @param {up.Request} event.request
     @param event.preventDefault()
@@ -55269,12 +55228,12 @@ Other Unpoly modules contain even more tricks to outsmart network latency:
     /***
     This event is [emitted](/up.emit) when the response to an
     [AJAX request](/up.request) has been received.
-    
+
     Note that this event will also be emitted when the server signals an
     error with an HTTP status like `500`. Only if the request
     encounters a fatal error (like a loss of network connectivity),
     [`up:proxy:fatal`](/up:proxy:fatal) is emitted instead.
-    
+
     @event up:proxy:loaded
     @param {up.Request} event.request
     @param {up.Response} event.response
@@ -55284,11 +55243,11 @@ Other Unpoly modules contain even more tricks to outsmart network latency:
     /***
     This event is [emitted](/up.emit) when an [AJAX request](/up.request)
     encounters fatal error like a timeout or loss of network connectivity.
-    
+
     Note that this event will *not* be emitted when the server produces an
     error message with an HTTP status like `500`. When the server can produce
     any response, [`up:proxy:loaded`](/up:proxy:loaded) is emitted instead.
-    
+
     @event up:proxy:fatal
      */
     pokeQueue = function() {
@@ -55302,10 +55261,10 @@ Other Unpoly modules contain even more tricks to outsmart network latency:
     /***
     Makes the proxy assume that `newRequest` has the same response as the
     already cached `oldRequest`.
-    
+
     Unpoly uses this internally when the user redirects from `/old` to `/new`.
     In that case, both `/old` and `/new` will cache the same response from `/new`.
-    
+
     @function up.proxy.alias
     @param {Object} oldRequest
     @param {Object} newRequest
@@ -55315,7 +55274,7 @@ Other Unpoly modules contain even more tricks to outsmart network latency:
 
     /***
     Manually stores a promise for the response to the given request.
-    
+
     @function up.proxy.set
     @param {string} request.url
     @param {string} [request.method='GET']
@@ -55328,10 +55287,10 @@ Other Unpoly modules contain even more tricks to outsmart network latency:
 
     /***
     Manually removes the given request from the cache.
-    
+
     You can also [configure](/up.proxy.config) when the proxy
     automatically removes cache entries.
-    
+
     @function up.proxy.remove
     @param {string} request.url
     @param {string} [request.method='GET']
@@ -55342,11 +55301,11 @@ Other Unpoly modules contain even more tricks to outsmart network latency:
 
     /***
     Removes all cache entries.
-    
+
     Unpoly also automatically clears the cache whenever it processes
     a request with an [unsafe](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html#sec9.1.1)
     HTTP method like `POST`.
-    
+
     @function up.proxy.clear
     @stable
      */
@@ -55376,10 +55335,10 @@ Other Unpoly modules contain even more tricks to outsmart network latency:
 
     /***
     Preloads the given link.
-    
+
     When the link is clicked later, the response will already be cached,
     making the interaction feel instant.
-    
+
     @function up.proxy.preload
     @param {string|Element|jQuery} linkOrSelector
       The element whose destination should be preloaded.
@@ -55409,7 +55368,7 @@ Other Unpoly modules contain even more tricks to outsmart network latency:
 
     /***
     This event is [emitted](/up.emit) before a link is [preloaded](/up.preload).
-    
+
     @event up:link:preload
     @param {Element} event.target
       The link element that will be preloaded.
@@ -55440,10 +55399,10 @@ Other Unpoly modules contain even more tricks to outsmart network latency:
     Links with an `up-preload` attribute will silently fetch their target
     when the user hovers over the click area, or when the user puts her
     mouse/finger down (before releasing).
-    
+
     When the link is clicked later, the response will already be cached,
-    making the interaction feel instant.   
-    
+    making the interaction feel instant.
+
     @selector a[up-preload]
     @param [up-delay=75]
       The number of milliseconds to wait between hovering
@@ -55568,13 +55527,13 @@ new page is loading.
     /***
     Fetches this given URL with JavaScript and [replaces](/up.replace) the
     current `<body>` element with the response's `<body>` element.
-    
+
     \#\#\# Example
-    
+
     This would replace the current page with the response for `/users`:
-    
+
         up.visit('/users')
-    
+
     @function up.visit
     @param {string} url
       The URL to visit.
@@ -55595,44 +55554,44 @@ new page is loading.
 
     /***
     Fetches the given link's `[href]` with JavaScript and [replaces](/up.replace) the current page with HTML from the response.
-    
+
     By default the page's `<body>` element will be replaced.
     If the link has an attribute like `a[up-target]`
     or `a[up-modal]`, the respective Unpoly behavior will be used.
-    
+
     Emits the event `up:link:follow`.
-    
+
     \#\#\# Examples
-    
+
     Assume we have a link with an `a[up-target]` attribute:
-    
+
         <a href="/users" up-target=".main">Users</a>
-    
+
     Calling `up.follow()` with this link will replace the page's `.main` fragment
     as if the user had clicked on the link:
-    
+
         var link = document.querySelector('a')
         up.follow(link)
-    
+
     @function up.follow
     @param {Element|jQuery|string} linkOrSelector
       An element or selector which is either an `<a>` tag or any element with an `[up-href]` attribute.
     @param {string} [options.target]
       The selector to replace.
-    
+
       Defaults to the link's `[up-target]`, `[up-modal]` or `[up-popup]` attribute.
       If no target is given, the `<body>` element will be replaced.
     @param {String} [options.url]
       The URL to navigate to.
-    
+
       Defaults to the link's `[up-href]` or `[href]` attribute.
     @param {boolean|string} [options.reveal=true]
       Whether to [reveal](/up.reveal) the target fragment after it was replaced.
-    
+
       You can also pass a CSS selector for the element to reveal.
     @param {boolean|string} [options.failReveal=true]
       Whether to [reveal](/up.reveal) the target fragment when the server responds with an error.
-    
+
       You can also pass a CSS selector for the element to reveal.
     @return {Promise}
       A promise that will be fulfilled when the link destination
@@ -55648,9 +55607,9 @@ new page is loading.
 
     /***
     This event is [emitted](/up.emit) when a link is [followed](/up.follow) through Unpoly.
-    
+
     The event is emitted on the `<a>` element that is being followed.
-    
+
     @event up:link:follow
     @param {Element} event.target
       The link element that will be followed.
@@ -55727,10 +55686,10 @@ new page is loading.
 
     /***
     Returns the HTTP method that should be used when following the given link.
-    
+
     Looks at the link's `up-method` or `data-method` attribute.
     Defaults to `"get"`.
-    
+
     @function up.link.followMethod
     @param link
     @param options.method {string}
@@ -55748,7 +55707,7 @@ new page is loading.
     /***
     No-op that is called when we allow a browser's default action to go through,
     so we can spy on it in unit tests. See `link_spec.js`.
-    
+
     @function allowDefault
     @internal
      */
@@ -55757,12 +55716,12 @@ new page is loading.
 
     /***
     Registers the given handler for links with the given selector.
-    
+
     This does more than a simple `click` handler:
-    
+
     - It also handles `[up-instant]`
     - It also handles `[up-href]`
-    
+
     @function up.link.addFollowVariant
     @param {string} simplifiedSelector
       A selector without `a` or `[up-href]`, e.g. `[up-target]`
@@ -55781,10 +55740,10 @@ new page is loading.
     /***
     Returns whether the given link will be [followed](/up.follow) by Unpoly
     instead of making a full page load.
-    
+
     A link will be followed by Unpoly if it has an attribute
     like `a[up-target]` or `a[up-modal]`.
-    
+
     @function up.link.isFollowable
     @param {Element|jQuery|string} linkOrSelector
       The link to check.
@@ -55801,7 +55760,7 @@ new page is loading.
     Returns the handler function that can be used to follow the given link.
     E.g. it wil return a handler calling `up.modal.follow` if the link is a `[up-modal]`,
     but a handler calling `up.link.follow` if the links is `[up-target]`.
-    
+
     @param {Element} link
     @return {Object}
     @internal
@@ -55823,10 +55782,10 @@ new page is loading.
     /***
     Makes sure that the given link will be [followed](/up.follow)
     by Unpoly instead of making a full page load.
-    
+
     This is done by giving the link an `a[up-follow]` attribute
     unless it already have it an attribute like `a[up-target]` or `a[up-modal]`.
-    
+
     @function up.link.makeFollowable
     @param {Element|jQuery|string} linkOrSelector
       The link to process.
@@ -55854,7 +55813,7 @@ new page is loading.
     /***
     Returns whether the given link has a [safe](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html#sec9.1.1)
     HTTP method like `GET`.
-    
+
     @function up.link.isSafe
     @experimental
      */
@@ -55867,61 +55826,61 @@ new page is loading.
     /***
     [Follows](/up.follow) this link with JavaScript and replaces a CSS selector
     on the current page with a corresponding element from the response.
-    
+
     \#\#\# Example
-    
+
     This will update the fragment `<div class="main">` with the same element
     fetched from `/posts/5`:
-    
+
         <a href="/posts/5" up-target=".main">Read post</a>
-    
+
     \#\#\# Updating multiple fragments
-    
+
     You can update multiple fragments from a single request by separating
     separators with a comma (like in CSS).
-    
+
     For instance, if opening a post should
     also update a bubble showing the number of unread posts, you might
     do this:
-    
+
         <a href="/posts/5" up-target=".main, .unread-count">Read post</a>
-    
+
     \#\#\# Appending or prepending content
-    
+
     By default Unpoly will replace the given selector with the same
     selector from the server response. Instead of replacing you
     can *append* the loaded content to the existing content by using the
     `:after` pseudo selector. In the same fashion, you can use `:before`
     to indicate that you would like the *prepend* the loaded content.
-    
+
     A practical example would be a paginated list of items. Below the list is
     a button to load the next page. You can append to the existing list
     by using `:after` in the `up-target` selector like this:
-    
+
         <ul class="tasks">
           <li>Wash car</li>
           <li>Purchase supplies</li>
           <li>Fix tent</li>
         </ul>
-    
+
         <a href="/page/2" class="next-page" up-target=".tasks:after, .next-page">
           Load more tasks
         </a>
-    
+
     \#\#\# Following elements that are no links
-    
+
     You can also use `[up-target]` to turn an arbitrary element into a link.
     In this case, put the link's destination into the `[up-href]` attribute:
-    
+
         <button up-target=".main" up-href="/foo/bar">Go</button>
-    
+
     Note that using any element other than `<a>` will prevent users from
     opening the destination in a new tab.
-    
+
     @selector a[up-target]
     @param {string} up-target
       The CSS selector to replace
-    
+
       Inside the CSS selector you may refer to this link as `&` ([like in Sass](https://sass-lang.com/documentation/file.SASS_REFERENCE.html#parent-selector)).
     @param {string} [up-method='get']
       The HTTP method to use for the request.
@@ -55929,7 +55888,7 @@ new page is loading.
       The [transition](/up.motion) to use for morphing between the old and new elements.
     @param [up-fail-target='body']
       The CSS selector to replace if the server responds with an error.
-    
+
       Inside the CSS selector you may refer to this link as `&` ([like in Sass](https://sass-lang.com/documentation/file.SASS_REFERENCE.html#parent-selector)).
     @param {string} [up-fail-transition='none']
       The [transition](/up.motion) to use for morphing between the old and new elements
@@ -55944,12 +55903,12 @@ new page is loading.
       before the link is followed.
     @param {string} [up-reveal='true']
       Whether to reveal the target element after it was replaced.
-    
+
       You can also pass a CSS selector for the element to reveal.
       Inside the CSS selector you may refer to this link as `&` ([like in Sass](https://sass-lang.com/documentation/file.SASS_REFERENCE.html#parent-selector)).
     @param {string} [up-fail-reveal='true']
       Whether to reveal the target element when the server responds with an error.
-    
+
       You can also pass a CSS selector for the element to reveal.
       Inside the CSS selector you may refer to this link as `&` ([like in Sass](https://sass-lang.com/documentation/file.SASS_REFERENCE.html#parent-selector)).
     @param {string} [up-restore-scroll='false']
@@ -55962,7 +55921,7 @@ new page is loading.
     @param {string} [up-layer='auto']
       The name of the layer that ought to be updated. Valid values are
       `'auto'`, `'page'`, `'modal'` and `'popup'`.
-    
+
       If set to `'auto'` (default), Unpoly will try to find a match in the link's layer.
       If no match was found in that layer,
       Unpoly will search in other layers, starting from the topmost layer.
@@ -55971,7 +55930,7 @@ new page is loading.
       non-200 status code.
     @param [up-history]
       Whether to push an entry to the browser history when following the link.
-    
+
       Set this to `'false'` to prevent the URL bar from being updated.
       Set this to a URL string to update the history with the given URL.
     @stable
@@ -55988,25 +55947,25 @@ new page is loading.
     /***
     Fetches this link's `[href]` with JavaScript and [replaces](/up.replace) the
     current `<body>` element with the response's `<body>` element.
-    
+
     To only update a fragment instead of the entire `<body>`, see `a[up-target]`.
-    
+
     \#\#\# Example
-    
+
         <a href="/users" up-follow>User list</a>
-    
+
     \#\#\# Turn any element into a link
-    
+
     You can also use `[up-follow]` to turn an arbitrary element into a link.
     In this case, put the link's destination into the `up-href` attribute:
-    
+
         <span up-follow up-href="/foo/bar">Go</span>
-    
+
     Note that using any element other than `<a>` will prevent users from
     opening the destination in a new tab.
-    
+
     @selector a[up-follow]
-    
+
     @param {string} [up-method='get']
       The HTTP method to use for the request.
     @param [up-fail-target='body']
@@ -56026,7 +55985,7 @@ new page is loading.
       before the link is followed.
     @param {string} [up-history]
       Whether to push an entry to the browser history when following the link.
-    
+
       Set this to `'false'` to prevent the URL bar from being updated.
       Set this to a URL string to update the history with the given URL.
     @param [up-restore-scroll='false']
@@ -56038,48 +55997,48 @@ new page is loading.
     /***
     By adding an `up-instant` attribute to a link, the destination will be
     fetched on `mousedown` instead of `click` (`mouseup`).
-    
+
         <a href="/users" up-target=".main" up-instant>User list</a>
-    
+
     This will save precious milliseconds that otherwise spent
     on waiting for the user to release the mouse button. Since an
     AJAX request will be triggered right way, the interaction will
     appear faster.
-    
+
     Note that using `[up-instant]` will prevent a user from canceling a
     click by moving the mouse away from the link. However, for
     navigation actions this isn't needed. E.g. popular operation
     systems switch tabs on `mousedown` instead of `click`.
-    
+
     `[up-instant]` will also work for links that open [modals](/up.modal) or [popups](/up.popup).
-    
+
     @selector a[up-instant]
     @stable
      */
 
     /***
     [Follows](/up.follow) this link *as fast as possible*.
-    
+
     This is done by:
-    
+
     - [Following the link through AJAX](/a-up-target) instead of a full page load
     - [Preloading the link's destination URL](/a-up-preload)
     - [Triggering the link on `mousedown`](/a-up-instant) instead of on `click`
-    
+
     \#\#\# Example
-    
+
     Use `up-dash` like this:
-    
+
         <a href="/users" up-dash=".main">User list</a>
-    
+
     This is shorthand for:
-    
+
         <a href="/users" up-target=".main" up-instant up-preload>User list</a>
-    
+
     @selector a[up-dash]
     @param {string} [up-dash='body']
       The CSS selector to replace
-    
+
       Inside the CSS selector you may refer to this link as `&` ([like in Sass](https://sass-lang.com/documentation/file.SASS_REFERENCE.html#parent-selector)).
     @stable
      */
@@ -56102,47 +56061,47 @@ new page is loading.
     /***
     Add an `[up-expand]` attribute to any element to enlarge the click area of a
     descendant link.
-    
+
     `[up-expand]` honors all the Unppoly attributes in expanded links, like
     `a[up-target]`, `a[up-instant]` or `a[up-preload]`.
     It also expands links that open [modals](/up.modal) or [popups](/up.popup).
-    
-    
+
+
     \#\#\# Example
-    
+
         <div class="notification" up-expand>
           Record was saved!
           <a href="/records">Close</a>
         </div>
-    
+
     In the example above, clicking anywhere within `.notification` element
     would [follow](/up.follow) the *Close* link.
-    
+
     \#\#\# Elements with multiple contained links
-    
+
     If a container contains more than one link, you can set the value of the
     `up-expand` attribute to a CSS selector to define which link should be expanded:
-    
+
         <div class="notification" up-expand=".close">
           Record was saved!
           <a class="details" href="/records/5">Details</a>
           <a class="close" href="/records">Close</a>
         </div>
-    
+
     \#\#\# Limitations
-    
+
     `[up-expand]` has some limitations for advanced browser users:
-    
+
     - Users won't be able to right-click the expanded area to open a context menu
     - Users won't be able to `CTRL`+click the expanded area to open a new tab
-    
+
     To overcome these limitations, consider nesting the entire clickable area in an actual `<a>` tag.
     [It's OK to put block elements inside an anchor tag](https://makandracards.com/makandra/43549-it-s-ok-to-put-block-elements-inside-an-a-tag).
-    
+
     @selector [up-expand]
     @param {string} [up-expand]
       A CSS selector that defines which containing link should be expanded.
-    
+
       If omitted, the first link in this element will be expanded.
     @stable
      */
@@ -56190,7 +56149,7 @@ new page is loading.
 /***
 Forms
 =====
-  
+
 Unpoly comes with functionality to [submit](/form-up-target) and [validate](/input-up-validate)
 forms without leaving the current page. This means you can replace page fragments,
 open dialogs with sub-forms, etc. all without losing form state.
@@ -56208,7 +56167,7 @@ open dialogs with sub-forms, etc. all without losing form state.
 
     /***
     Sets default options for form submission and validation.
-    
+
     @property up.form.config
     @param {number} [config.observeDelay=0]
       The number of miliseconds to wait before [`up.observe()`](/up.observe) runs the callback
@@ -56218,7 +56177,7 @@ open dialogs with sub-forms, etc. all without losing form state.
       An array of CSS selectors that are searched around a form field
       that wants to [validate](/up.validate). The first matching selector
       will be updated with the validation messages from the server.
-    
+
       By default this looks for a `<fieldset>`, `<label>` or `<form>`
       around the validating input field.
     @param {string} [config.fields]
@@ -56252,16 +56211,16 @@ open dialogs with sub-forms, etc. all without losing form state.
 
     /***
     Returns a list of form fields within the given element.
-    
+
     You can configure what Unpoly considers a form field by adding CSS selectors to the
     [`up.form.config.fields`](/up.form.config#config.fields) array.
-    
+
     If the given element is itself a form field, a list of that given element is returned.
-    
+
     @function up.form.fields
     @param {Element|jQuery} root
       The element to scan for contained form fields.
-    
+
       If the element is itself a form field, a list of that element is returned.
     @return {NodeList<Element>|Array<Element>}
     @experimental
@@ -56318,19 +56277,19 @@ open dialogs with sub-forms, etc. all without losing form state.
 
     /***
     Submits a form via AJAX and updates a page fragment with the response.
-    
+
         up.submit('form.new-user', { target: '.main' })
-    
+
     Instead of loading a new page, the form is submitted via AJAX.
     The response is parsed for a CSS selector and the matching elements will
     replace corresponding elements on the current page.
-    
+
     The unobtrusive variant of this is the [`form[up-target]`](/form-up-target) selector.
     See the documentation for [`form[up-target]`](/form-up-target) for more
     information on how AJAX form submissions work in Unpoly.
-    
+
     Emits the event [`up:form:submit`](/up:form:submit).
-    
+
     @function up.submit
     @param {Element|jQuery|string} formOrSelector
       A reference or selector for the form to submit.
@@ -56346,13 +56305,13 @@ open dialogs with sub-forms, etc. all without losing form state.
     @param {string} [options.target]
       The CSS selector to update when the form submission succeeds (server responds with status 200).
       Defaults to the form's `up-target` attribute.
-    
+
       Inside the CSS selector you may refer to the form as `&` ([like in Sass](https://sass-lang.com/documentation/file.SASS_REFERENCE.html#parent-selector)).
     @param {string} [options.failTarget]
       The CSS selector to update when the form submission fails (server responds with non-200 status).
       Defaults to the form's `up-fail-target` attribute, or to an auto-generated
       selector that matches the form itself.
-    
+
       Inside the CSS selector you may refer to the form as `&` ([like in Sass](https://sass-lang.com/documentation/file.SASS_REFERENCE.html#parent-selector)).
     @param {string} [options.fallback]
       The selector to update when the original target was not found in the page.
@@ -56377,11 +56336,11 @@ open dialogs with sub-forms, etc. all without losing form state.
       The timing function that controls the transition's acceleration. [`up.morph()`](/up.morph).
     @param {Element|string} [options.reveal=true]
       Whether to reveal the target fragment after it was replaced.
-    
+
       You can also pass a CSS selector for the element to reveal.
     @param {boolean|string} [options.failReveal=true]
       Whether to [reveal](/up.reveal) the target fragment when the server responds with an error.
-    
+
       You can also pass a CSS selector for the element to reveal.
     @param {boolean} [options.restoreScroll]
       If set to `true`, this will attempt to [`restore scroll positions`](/up.restoreScroll)
@@ -56390,7 +56349,7 @@ open dialogs with sub-forms, etc. all without losing form state.
       Whether to force the use of a cached response (`true`)
       or never use the cache (`false`)
       or make an educated guess (`undefined`).
-    
+
       By default only responses to `GET` requests are cached
       for a few minutes.
     @param {Object} [options.headers={}]
@@ -56399,7 +56358,7 @@ open dialogs with sub-forms, etc. all without losing form state.
     @param {string} [options.layer='auto']
       The name of the layer that ought to be updated. Valid values are
       `'auto'`, `'page'`, `'modal'` and `'popup'`.
-    
+
       If set to `'auto'` (default), Unpoly will try to find a match in the form's layer.
     @param {string} [options.failLayer='auto']
       The name of the layer that ought to be updated if the server sends a non-200 status code.
@@ -56484,9 +56443,9 @@ open dialogs with sub-forms, etc. all without losing form state.
 
     /***
     This event is [emitted](/up.emit) when a form is [submitted](/up.submit) through Unpoly.
-    
+
     The event is emitted on the`<form>` element.
-    
+
     @event up:form:submit
     @param {Element} event.target
       The `<form>` element that will be submitted.
@@ -56497,38 +56456,38 @@ open dialogs with sub-forms, etc. all without losing form state.
 
     /***
     Observes form fields and runs a callback when a value changes.
-    
+
     This is useful for observing text fields while the user is typing.
-    
+
     The unobtrusive variant of this is the [`[up-observe]`](/up-observe) attribute.
-    
+
     \#\#\# Example
-    
+
     The following would print to the console whenever an input field changes:
-    
+
         up.observe('input.query', function(value) {
           console.log('Query is now %o', value)
         })
-    
+
     Instead of a single form field, you can also pass multiple fields,
     a `<form>` or any container that contains form fields.
     The callback will be run if any of the given fields change:
-    
+
         up.observe('form', function(value, name) {
           console.log('The value of %o is now %o', name, value)
         })
-    
+
     You may also pass the `{ batch: true }` option to receive all
     changes since the last callback in a single object:
-    
+
         up.observe('form', { batch: true }, function(diff) {
           console.log('Observed one or more changes: %o', diff)
         })
-    
+
     @function up.observe
     @param {string|Element|Array<Element>|jQuery} elements
       The form fields that will be observed.
-    
+
       You can pass one or more fields, a `<form>` or any container that contains form fields.
       The callback will be run if any of the given fields change.
     @param {boolean} [options.batch=false]
@@ -56540,11 +56499,11 @@ open dialogs with sub-forms, etc. all without losing form state.
       will be invoked for a fast typist.
     @param {Function(value, name): string} onChange
       The callback to run when the field's value changes.
-    
+
       If given as a function, it receives two arguments (`value`, `name`).
       `value` is a string with the new attribute value and `string` is the name
       of the form field that changed.
-    
+
       If given as a string, it will be evaled as JavaScript code in a context where
       (`value`, `name`) are set.
     @return {Function()}
@@ -56572,12 +56531,12 @@ open dialogs with sub-forms, etc. all without losing form state.
 
     /***
     [Observes](/up.observe) a field or form and submits the form when a value changes.
-    
+
     Both the form and the changed field will be assigned a CSS class [`form-up-active`](/form-up-active)
     while the autosubmitted form is processing.
-    
+
     The unobtrusive variant of this is the [`up-autosubmit`](/form-up-autosubmit) attribute.
-    
+
     @function up.autosubmit
     @param {string|Element|jQuery} selectorOrElement
       The field or form to observe.
@@ -56610,22 +56569,22 @@ open dialogs with sub-forms, etc. all without losing form state.
 
     /***
     Performs a server-side validation of a form field.
-    
+
     `up.validate()` submits the given field's form with an additional `X-Up-Validate`
     HTTP header. Upon seeing this header, the server is expected to validate (but not save)
     the form submission and render a new copy of the form with validation errors.
-    
+
     The unobtrusive variant of this is the [`input[up-validate]`](/input-up-validate) selector.
     See the documentation for [`input[up-validate]`](/input-up-validate) for more information
     on how server-side validation works in Unpoly.
-    
+
     \#\#\# Example
-    
+
         up.validate('input[name=email]', { target: '.email-errors' })
-    
+
     @function up.validate
     @param {string|Element|jQuery} fieldOrSelector
-    
+
     @param {string|Element|jQuery} [options.target]
     @return {Promise}
       A promise that is fulfilled when the server-side
@@ -56687,13 +56646,13 @@ open dialogs with sub-forms, etc. all without losing form state.
 
     /***
     Shows or hides a target selector depending on the value.
-    
+
     See [`input[up-switch]`](/input-up-switch) for more documentation and examples.
-    
+
     This function does not currently have a very useful API outside
     of our use for `up-switch`'s UJS behavior, that's why it's currently
     still marked `@internal`.
-    
+
     @function up.form.switchTargets
     @param {Element} switcher
     @param {string} [options.target]
@@ -56757,33 +56716,33 @@ open dialogs with sub-forms, etc. all without losing form state.
     /***
     Forms with an `up-target` attribute are [submitted via AJAX](/up.submit)
     instead of triggering a full page reload.
-    
+
         <form method="post" action="/users" up-target=".main">
           ...
         </form>
-    
+
     The server response is searched for the selector given in `up-target`.
     The selector content is then [replaced](/up.replace) in the current page.
-    
+
     The programmatic variant of this is the [`up.submit()`](/up.submit) function.
-    
+
     \#\#\# Failed submission
-    
+
     When the server was unable to save the form due to invalid params,
     it will usually re-render an updated copy of the form with
     validation messages.
-    
+
     For Unpoly to be able to detect a failed form submission,
     the form must be re-rendered with a non-200 HTTP status code.
     We recommend to use either 400 (bad request) or
     422 (unprocessable entity).
-    
+
     In Ruby on Rails, you can pass a
     [`:status` option to `render`](http://guides.rubyonrails.org/layouts_and_rendering.html#the-status-option)
     for this:
-    
+
         class UsersController < ApplicationController
-    
+
           def create
             user_params = params[:user].permit(:email, :password)
             @user = User.new(user_params)
@@ -56793,43 +56752,43 @@ open dialogs with sub-forms, etc. all without losing form state.
               render 'form', status: :bad_request
             end
           end
-    
+
         end
-    
+
     Note that you can also use
     [`input[up-validate]`](/input-up-validate) to perform server-side
     validations while the user is completing fields.
-    
+
     \#\#\# Redirects
-    
+
     Unpoly requires an additional response header to detect redirects,
     which are otherwise undetectable for an AJAX client.
-    
+
     After the form's action performs a redirect, the next response should echo
     the new request's URL as a response header `X-Up-Location`.
-    
+
     If you are using Unpoly via the `unpoly-rails` gem, these headers
     are set automatically for every request.
-    
+
     \#\#\# Giving feedback while the form is processing
-    
+
     The `<form>` element will be assigned a CSS class [`up-active`](/form.up-active) while
     the submission is loading.
-    
+
     You can also [implement a spinner](/up.proxy/#spinners)
     by [listening](/up.on) to the [`up:proxy:slow`](/up:proxy:slow)
     and [`up:proxy:recover`](/up:proxy:recover) events.
-    
+
     @selector form[up-target]
     @param {string} up-target
       The CSS selector to [replace](/up.replace) if the form submission is successful (200 status code).
-    
+
       Inside the CSS selector you may refer to this form as `&` ([like in Sass](https://sass-lang.com/documentation/file.SASS_REFERENCE.html#parent-selector)).
     @param {string} [up-fail-target]
       The CSS selector to [replace](/up.replace) if the form submission is not successful (non-200 status code).
-    
+
       Inside the CSS selector you may refer to this form as `&` ([like in Sass](https://sass-lang.com/documentation/file.SASS_REFERENCE.html#parent-selector)).
-    
+
       If omitted, Unpoly will replace the `<form>` tag itself, assuming that the server has echoed the form with validation errors.
     @param [up-fallback]
       The selector to replace if the server responds with an error.
@@ -56839,10 +56798,10 @@ open dialogs with sub-forms, etc. all without losing form state.
       The animation to use when the form is replaced after a failed submission.
     @param [up-history]
       Whether to push a browser history entry after a successful form submission.
-    
+
       By default the form's target URL is used. If the form redirects to another URL,
       the redirect target will be used.
-    
+
       Set this to `'false'` to prevent the URL bar from being updated.
       Set this to a URL string to update the history with the given URL.
     @param {string} [up-method]
@@ -56853,7 +56812,7 @@ open dialogs with sub-forms, etc. all without losing form state.
     @param {string} [up-layer='auto']
       The name of the layer that ought to be updated. Valid values are
       `'auto'`, `'page'`, `'modal'` and `'popup'`.
-    
+
       If set to `'auto'` (default), Unpoly will try to find a match in the form's layer.
       If no match was found in that layer,
       Unpoly will search in other layers, starting from the topmost layer.
@@ -56862,19 +56821,19 @@ open dialogs with sub-forms, etc. all without losing form state.
       non-200 status code.
     @param {string} [up-reveal='true']
       Whether to reveal the target element after it was replaced.
-    
+
       You can also pass a CSS selector for the element to reveal.
       Inside the CSS selector you may refer to the form as `&` ([like in Sass](https://sass-lang.com/documentation/file.SASS_REFERENCE.html#parent-selector)).
     @param {string} [up-fail-reveal='true']
       Whether to reveal the target element when the server responds with an error.
-    
+
       You can also pass a CSS selector for the element to reveal. You may use this, for example,
       to reveal the first validation error message:
-    
+
           <form up-target=".content" up-fail-reveal=".error">
             ...
           </form>
-    
+
       Inside the CSS selector you may refer to the form as `&` ([like in Sass](https://sass-lang.com/documentation/file.SASS_REFERENCE.html#parent-selector)).
     @param {string} [up-restore-scroll='false']
       Whether to restore previously known scroll position of all viewports
@@ -56883,7 +56842,7 @@ open dialogs with sub-forms, etc. all without losing form state.
       Whether to force the use of a cached response (`true`)
       or never use the cache (`false`)
       or make an educated guess (`undefined`).
-    
+
       By default only responses to `GET` requests are cached for a few minutes.
     @stable
      */
@@ -56895,59 +56854,59 @@ open dialogs with sub-forms, etc. all without losing form state.
     /***
     When a form field with this attribute is changed, the form is validated on the server
     and is updated with validation messages.
-    
+
     To validate the form, Unpoly will submit the form with an additional `X-Up-Validate` HTTP header.
     When seeing this header, the server is expected to validate (but not save)
     the form submission and render a new copy of the form with validation errors.
-    
+
     The programmatic variant of this is the [`up.validate()`](/up.validate) function.
-    
+
     \#\#\# Example
-    
+
     Let's look at a standard registration form that asks for an e-mail and password:
-    
+
         <form action="/users">
-    
+
           <label>
             E-mail: <input type="text" name="email" />
           </label>
-    
+
           <label>
             Password: <input type="password" name="password" />
           </label>
-    
+
           <button type="submit">Register</button>
-    
+
         </form>
-    
+
     When the user changes the `email` field, we want to validate that
     the e-mail address is valid and still available. Also we want to
     change the `password` field for the minimum required password length.
     We can do this by giving both fields an `up-validate` attribute:
-    
+
         <form action="/users">
-    
+
           <label>
             E-mail: <input type="text" name="email" up-validate />
           </label>
-    
+
           <label>
             Password: <input type="password" name="password" up-validate />
           </label>
-    
+
           <button type="submit">Register</button>
-    
+
         </form>
-    
+
     Whenever a field with `up-validate` changes, the form is POSTed to
     `/users` with an additional `X-Up-Validate` HTTP header.
     When seeing this header, the server is expected to validate (but not save)
     the form submission and render a new copy of the form with validation errors.
-    
+
     In Ruby on Rails the processing action should behave like this:
-    
+
         class UsersController < ApplicationController
-    
+
            * This action handles POST /users
           def create
             user_params = params[:user].permit(:email, :password)
@@ -56961,89 +56920,89 @@ open dialogs with sub-forms, etc. all without losing form state.
               render 'form', status: :bad_request
             end
           end
-    
+
         end
-    
+
     Note that if you're using the `unpoly-rails` gem you can simply say `up.validate?`
     instead of manually checking for `request.headers['X-Up-Validate']`.
-    
+
     The server now renders an updated copy of the form with eventual validation errors:
-    
+
         <form action="/users">
-    
+
           <label class="has-error">
             E-mail: <input type="text" name="email" value="foo@bar.com" />
             Has already been taken!
           </label>
-    
+
           <button type="submit">Register</button>
-    
+
         </form>
-    
+
     The `<label>` around the e-mail field is now updated to have the `has-error`
     class and display the validation message.
-    
+
     \#\#\# How validation results are displayed
-    
+
     Although the server will usually respond to a validation with a complete,
     fresh copy of the form, Unpoly will by default not update the entire form.
     This is done in order to preserve volatile state such as the scroll position
     of `<textarea>` elements.
-    
+
     By default Unpoly looks for a `<fieldset>`, `<label>` or `<form>`
     around the validating input field, or any element with an
     `up-fieldset` attribute.
     With the Bootstrap bindings, Unpoly will also look
     for a container with the `form-group` class.
-    
+
     You can change this default behavior by setting [`up.form.config.validateTargets`](/up.form.config#config.validateTargets):
-    
+
         // Always update the entire form containing the current field ("&")
         up.form.config.validateTargets = ['form &']
-    
+
     You can also individually override what to update by setting the `up-validate`
     attribute to a CSS selector:
-    
+
         <input type="text" name="email" up-validate=".email-errors">
         <span class="email-errors"></span>
-    
+
     \#\#\# Updating dependent fields
-    
+
     The `[up-validate]` behavior is also a great way to partially update a form
     when one fields depends on the value of another field.
-    
+
     Let's say you have a form with one `<select>` to pick a department (sales, engineering, ...)
     and another `<select>` to pick an employeee from the selected department:
-    
+
         <form action="/contracts">
           <select name="department">...</select> <!-- options for all departments -->
           <select name="employeed">...</select> <!-- options for employees of selected department -->
         </form>
-    
+
     The list of employees needs to be updated as the appartment changes:
-    
+
         <form action="/contracts">
           <select name="department" up-validate="[name=employee]">...</select>
           <select name="employee">...</select>
         </form>
-    
+
     In order to update the `department` field in addition to the `employee` field, you could say
     `up-validate="&, [name=employee]"`, or simply `up-validate="form"` to update the entire form.
-    
+
     @selector input[up-validate]
     @param {string} up-validate
       The CSS selector to update with the server response.
-    
+
       This defaults to a fieldset or form group around the validating field.
     @stable
      */
 
     /***
     Performs [server-side validation](/input-up-validate) when any fieldset within this form changes.
-    
+
     You can configure what Unpoly considers a fieldset by adding CSS selectors to the
     [`up.form.config.validateTargets`](/up.form.config#config.validateTargets) array.
-    
+
     @selector form[up-validate]
     @stable
      */
@@ -57055,73 +57014,73 @@ open dialogs with sub-forms, etc. all without losing form state.
 
     /***
     Show or hide elements when a `<select>` or `<input>` has a given value.
-    
+
     \#\#\# Example: Select options
-    
+
     The controlling form field gets an `up-switch` attribute with a selector for the elements to show or hide:
-    
+
         <select name="advancedness" up-switch=".target">
           <option value="basic">Basic parts</option>
           <option value="advanced">Advanced parts</option>
           <option value="very-advanced">Very advanced parts</option>
         </select>
-    
+
     The target elements can use [`[up-show-for]`](/up-show-for) and [`[up-hide-for]`](/up-hide-for)
     attributes to indicate for which values they should be shown or hidden:
-    
+
         <div class="target" up-show-for="basic">
           only shown for advancedness = basic
         </div>
-    
+
         <div class="target" up-hide-for="basic">
           hidden for advancedness = basic
         </div>
-    
+
         <div class="target" up-show-for="advanced very-advanced">
           shown for advancedness = advanced or very-advanced
         </div>
-    
+
     \#\#\# Example: Text field
-    
+
     The controlling `<input>` gets an `up-switch` attribute with a selector for the elements to show or hide:
-    
+
         <input type="text" name="user" up-switch=".target">
-    
+
         <div class="target" up-show-for="alice">
           only shown for user alice
         </div>
-    
+
     You can also use the pseudo-values `:blank` to match an empty input value,
     or `:present` to match a non-empty input value:
-    
+
         <input type="text" name="user" up-switch=".target">
-    
+
         <div class="target" up-show-for=":blank">
           please enter a username
         </div>
-    
+
     \#\#\# Example: Checkbox
-    
+
     For checkboxes you can match against the pseudo-values `:checked` or `:unchecked`:
-    
+
         <input type="checkbox" name="flag" up-switch=".target">
-    
+
         <div class="target" up-show-for=":checked">
           only shown when checkbox is checked
         </div>
-    
+
         <div class="target" up-show-for=":cunhecked">
           only shown when checkbox is unchecked
         </div>
-    
+
     Of course you can also match against the `value` property of the checkbox element:
-    
+
         <input type="checkbox" name="flag" value="active" up-switch=".target">
-    
+
         <div class="target" up-show-for="active">
           only shown when checkbox is checked
         </div>
-    
+
     @selector input[up-switch]
     @param {string} up-switch
       A CSS selector for elements whose visibility depends on this field's value.
@@ -57130,9 +57089,9 @@ open dialogs with sub-forms, etc. all without losing form state.
 
     /***
     Only shows this element if an input field with [`[up-switch]`](/input-up-switch) has one of the given values.
-    
+
     See [`input[up-switch]`](/input-up-switch) for more documentation and examples.
-    
+
     @selector [up-show-for]
     @param {string} [up-show-for]
       A space-separated list of input values for which this element should be shown.
@@ -57141,9 +57100,9 @@ open dialogs with sub-forms, etc. all without losing form state.
 
     /***
     Hides this element if an input field with [`[up-switch]`](/input-up-switch) has one of the given values.
-    
+
     See [`input[up-switch]`](/input-up-switch) for more documentation and examples.
-    
+
     @selector [up-hide-for]
     @param {string} [up-hide-for]
       A space-separated list of input values for which this element should be hidden.
@@ -57161,43 +57120,43 @@ open dialogs with sub-forms, etc. all without losing form state.
 
     /***
     Observes this field and runs a callback when a value changes.
-    
+
     This is useful for observing text fields while the user is typing.
     If you want to submit the form after a change see [`input[up-autosubmit]`](/input-up-autosubmit).
-    
+
     The programmatic variant of this is the [`up.observe()`](/up.observe) function.
-    
+
     \#\#\# Example
-    
+
     The following would run a global `showSuggestions(value)` function
     whenever the `<input>` changes:
-    
+
         <input name="query" up-observe="showSuggestions(value)">
-    
+
     \#\#\# Callback context
-    
+
     The script given to `[up-observe]` runs with the following context:
-    
+
     | Name     | Type      | Description                           |
     | -------- | --------- | ------------------------------------- |
     | `value`  | `string`  | The current value of the field        |
     | `this`   | `Element` | The form field                        |
     | `$field` | `jQuery`  | The form field as a jQuery collection |
-    
+
     \#\#\# Observing radio buttons
-    
+
     Multiple radio buttons with the same `[name]` (a radio button group)
     produce a single value for the form.
-    
+
     To observe radio buttons group, use the `[up-observe]` attribute on an
     element that contains all radio button elements with a given name:
-    
+
         <div up-observe="formatSelected(value)">
           <input type="radio" name="format" value="html"> HTML format
           <input type="radio" name="format" value="pdf"> PDF format
           <input type="radio" name="format" value="txt"> Text format
         </div>
-    
+
     @selector input[up-observe]
     @param {string} up-observe
       The code to run when the field's value changes.
@@ -57208,32 +57167,32 @@ open dialogs with sub-forms, etc. all without losing form state.
 
     /***
     Observes this form and runs a callback when any field changes.
-    
+
     This is useful for observing text fields while the user is typing.
     If you want to submit the form after a change see [`input[up-autosubmit]`](/input-up-autosubmit).
-    
+
     The programmatic variant of this is the [`up.observe()`](/up.observe) function.
-    
+
     \#\#\# Example
-    
+
     The would call a function `somethingChanged(value)`
     when any `<input>` within the `<form>` changes:
-    
+
         <form up-observe="somethingChanged(value)">
           <input name="foo">
           <input name="bar">
         </form>
-    
+
     \#\#\# Callback context
-    
+
     The script given to `up-observe` runs with the following context:
-    
+
     | Name     | Type      | Description                           |
     | -------- | --------- | ------------------------------------- |
     | `value`  | `string`  | The current value of the field        |
     | `this`   | `Element` | The form field                        |
     | `$field` | `jQuery`  | The form field as a jQuery collection |
-    
+
     @selector form[up-observe]
     @param {string} up-observe
       The code to run when any field's value changes.
@@ -57247,35 +57206,35 @@ open dialogs with sub-forms, etc. all without losing form state.
 
     /***
     Submits this field's form when this field changes its values.
-    
+
     Both the form and the changed field will be assigned a CSS class [`up-active`](/form-up-active)
     while the autosubmitted form is loading.
-    
+
     The programmatic variant of this is the [`up.autosubmit()`](/up.autosubmit) function.
-    
+
     \#\#\# Example
-    
+
     The following would automatically submit the form when the query is changed:
-    
+
         <form method="GET" action="/search">
           <input type="search" name="query" up-autosubmit>
           <input type="checkbox" name="archive"> Include archive
         </form>
-    
+
     \#\#\# Auto-submitting radio buttons
-    
+
     Multiple radio buttons with the same `[name]` (a radio button group)
     produce a single value for the form.
-    
+
     To auto-submit radio buttons group, use the `[up-submit]` attribute on an
     element that contains all radio button elements with a given name:
-    
+
         <div up-autosubmit>
           <input type="radio" name="format" value="html"> HTML format
           <input type="radio" name="format" value="pdf"> PDF format
           <input type="radio" name="format" value="txt"> Text format
         </div>
-    
+
     @selector input[up-autosubmit]
     @param {string} up-delay
       The number of miliseconds to wait after a change before the form is submitted.
@@ -57284,21 +57243,21 @@ open dialogs with sub-forms, etc. all without losing form state.
 
     /***
     Submits the form when *any* field changes.
-    
+
     Both the form and the field will be assigned a CSS class [`up-active`](/form-up-active)
     while the autosubmitted form is loading.
-    
+
     The programmatic variant of this is the [`up.autosubmit()`](/up.autosubmit) function.
-    
+
     \#\#\# Example
-    
+
     This will submit the form when either query or checkbox was changed:
-    
+
         <form method="GET" action="/search" up-autosubmit>
           <input type="search" name="query">
           <input type="checkbox" name="archive"> Include archive
         </form>
-    
+
     @selector form[up-autosubmit]
     @param {string} up-delay
       The number of miliseconds to wait after a change before the form is submitted.
@@ -57394,15 +57353,15 @@ The popup element is appended to the [viewport](/up.viewport) of the anchor elem
 
     /***
     Sets default options for future popups.
-    
+
     @property up.popup.config
     @param {string} [config.position='bottom']
       Defines on which side of the opening element the popup is attached.
-    
+
       Valid values are `'top'`, `'right'`, `'bottom'` and `'left'`.
     @param {string} [config.align='left']
       Defines the alignment of the popup along its side.
-    
+
       When the popup's `{ position }` is `'top'` or `'bottom'`, valid `{ align }` values are `'left'`, `center'` and `'right'`.
       When the popup's `{ position }` is `'left'` or `'right'`, valid `{ align }` values are `top'`, `center'` and `bottom'`.
     @param {string} [config.history=false]
@@ -57438,9 +57397,9 @@ The popup element is appended to the [viewport](/up.viewport) of the anchor elem
 
     /***
     Returns the URL from which the current popup's contents were loaded.
-    
+
     Returns `undefined` if no  popup is open.
-    
+
     @function up.popup.url
     @return {string}
       the source URL
@@ -57449,7 +57408,7 @@ The popup element is appended to the [viewport](/up.viewport) of the anchor elem
 
     /***
     Returns the URL of the page or modal behind the popup.
-    
+
     @function up.popup.coveredUrl
     @return {string}
     @experimental
@@ -57497,11 +57456,11 @@ The popup element is appended to the [viewport](/up.viewport) of the anchor elem
 
     /***
     Forces the popup to update its position relative to its anchor element.
-    
+
     Unpoly automatically keep popups aligned when
     the document is resized or scrolled. Complex layout changes may make
     it necessary to call this function.
-    
+
     @function up.popup.sync
     @experimental
      */
@@ -57512,7 +57471,7 @@ The popup element is appended to the [viewport](/up.viewport) of the anchor elem
 
     /***
     Returns whether popup modal is currently open.
-    
+
     @function up.popup.isOpen
     @return {boolean}
     @stable
@@ -57523,27 +57482,27 @@ The popup element is appended to the [viewport](/up.viewport) of the anchor elem
 
     /***
     Attaches a popup overlay to the given element or selector.
-    
+
     Emits events [`up:popup:open`](/up:popup:open) and [`up:popup:opened`](/up:popup:opened).
-    
+
     @function up.popup.attach
     @param {Element|jQuery|string} anchor
       The element to which the popup will be attached.
     @param {string} [options.url]
       The URL from which to fetch the popup contents.
-    
+
       If omitted, the `href` or `up-href` attribute of the anchor element will be used.
-    
+
       Will be ignored if `options.html` is given.
     @param {string} [options.target]
       A CSS selector that will be extracted from the response and placed into the popup.
     @param {string} [options.position='bottom']
       Defines on which side of the opening element the popup is attached.
-    
+
       Valid values are `'top'`, `'right'`, `'bottom'` and `'left'`.
     @param {string} [options.align='left']
       Defines the alignment of the popup along its side.
-    
+
       When the popup's `{ position }` is `'top'` or `'bottom'`, valid `{ align }` values are `'left'`, `center'` and `'right'`.
       When the popup's `{ position }` is `'left'` or `'right'`, valid `{ align }` values are `top'`, `center'` and `bottom'`.
     @param {string} [options.html]
@@ -57658,7 +57617,7 @@ The popup element is appended to the [viewport](/up.viewport) of the anchor elem
 
     /***
     This event is [emitted](/up.emit) when a popup is starting to open.
-    
+
     @event up:popup:open
     @param {Element} event.anchor
       The element to which the popup will be attached.
@@ -57669,7 +57628,7 @@ The popup element is appended to the [viewport](/up.viewport) of the anchor elem
 
     /***
     This event is [emitted](/up.emit) when a popup has finished opening.
-    
+
     @event up:popup:opened
     @param {Element} event.anchor
       The element to which the popup was attached.
@@ -57678,11 +57637,11 @@ The popup element is appended to the [viewport](/up.viewport) of the anchor elem
 
     /***
     Closes a currently opened popup overlay.
-    
+
     Does nothing if no popup is currently open.
-    
+
     Emits events [`up:popup:close`](/up:popup:close) and [`up:popup:closed`](/up:popup:closed).
-    
+
     @function up.popup.close
     @param {Object} options
       See options for [`up.animate()`](/up.animate).
@@ -57750,7 +57709,7 @@ The popup element is appended to the [viewport](/up.viewport) of the anchor elem
     /***
     This event is [emitted](/up.emit) when a popup dialog
     is starting to [close](/up.popup.close).
-    
+
     @event up:popup:close
     @param {Element} event.anchor
       The element to which the popup is attached.
@@ -57762,7 +57721,7 @@ The popup element is appended to the [viewport](/up.viewport) of the anchor elem
     /***
     This event is [emitted](/up.emit) when a popup dialog
     is done [closing](/up.popup.close).
-    
+
     @event up:popup:closed
     @param {Element} event.anchor
       The element to which the popup was attached.
@@ -57778,7 +57737,7 @@ The popup element is appended to the [viewport](/up.viewport) of the anchor elem
     /***
     Returns whether the given element or selector is contained
     within the current popup.
-    
+
     @methods up.popup.contains
     @param {string} elementOrSelector
       The element to test
@@ -57793,26 +57752,26 @@ The popup element is appended to the [viewport](/up.viewport) of the anchor elem
 
     /***
     Opens this link's destination of in a popup overlay:
-    
+
         <a href="/decks" up-popup=".deck_list">Switch deck</a>
-    
+
     If the `up-sticky` attribute is set, the dialog does not auto-close
     if a page fragment behind the popup overlay updates:
-    
+
         <a href="/decks" up-popup=".deck_list">Switch deck</a>
         <a href="/settings" up-popup=".options" up-sticky>Settings</a>
-    
+
     @selector a[up-popup]
     @param {string} up-popup
       The CSS selector that will be extracted from the response and
       displayed in a popup overlay.
     @param {string} [up-position]
       Defines on which side of the opening element the popup is attached.
-    
+
       Valid values are `'top'`, `'right'`, `'bottom'` and `'left'`.
     @param {string} [up-align]
       Defines the alignment of the popup along its side.
-    
+
       When the popup's `{ position }` is `'top'` or `'bottom'`, valid `{ align }` values are `'left'`, `center'` and `'right'`.
       When the popup's `{ position }` is `'left'` or `'right'`, valid `{ align }` values are `top'`, `center'` and `bottom'`.
     @param {string} [up-confirm]
@@ -57825,10 +57784,10 @@ The popup element is appended to the [viewport](/up.viewport) of the anchor elem
       open even if the page changes in the background.
     @param {string} [up-history='false']
       Whether to push an entry to the browser history for the popup's source URL.
-    
+
       Set this to `'false'` to prevent the URL bar from being updated.
       Set this to a URL string to update the history with the given URL.
-    
+
     @stable
      */
     up.link.addFollowVariant('[up-popup]', {
@@ -57862,23 +57821,23 @@ The popup element is appended to the [viewport](/up.viewport) of the anchor elem
 
     /***
     When this element is clicked, a currently open [popup](/up.popup) is closed.
-    
+
     Does nothing if no popup is currently open.
-    
+
     \#\#\# Example
-    
+
     Clickin on this `<span>` will close a currently open popup:
-    
+
         <span class='up-close'>Close this popup</span>
-    
+
     When a popup changes the current URL, you might need to deal with content being displayed
     as either a popup or a full page.
-    
+
     To make a link that closes the current popup, but follows to
     a fallback destination if no popup is open:
-    
+
         <a href="/fallback" up-close>Okay</a>
-    
+
     @selector .up-popup [up-close]
     @stable
      */
@@ -57975,13 +57934,13 @@ or function.
 
     /***
     Sets default options for future modals.
-    
+
     @property up.modal.config
     @param {string} [config.history=true]
       Whether opening a modal will add a browser history entry.
     @param {number} [config.width]
       The width of the dialog as a CSS value like `'400px'` or `'50%'`.
-    
+
       Defaults to `undefined`, meaning that the dialog will grow to fit its contents
       until it reaches `config.maxWidth`. Leaving this as `undefined` will
       also allow you to control the width using CSS on `.up-modal-dialog´.
@@ -57998,7 +57957,7 @@ or function.
       A string containing the HTML structure of the modal.
       You can supply an alternative template string, but make sure that it
       defines tag with the classes `up-modal`, `up-modal-dialog` and  `up-modal-content`.
-    
+
       You can also supply a function that returns a HTML string.
       The function will be called with the modal options (merged from these defaults
       and any per-open overrides) whenever a modal opens.
@@ -58007,7 +57966,7 @@ or function.
     @param {boolean} [config.closable=true]
       When `true`, the modal will render a close icon and close when the user
       clicks on the backdrop or presses Escape.
-    
+
       When `false`, you need to either supply an element with `[up-close]` or
       close the modal manually with `up.modal.close()`.
     @param {string} [config.openAnimation='fade-in']
@@ -58058,36 +58017,36 @@ or function.
 
     /***
     Define modal variants with their own default configuration, CSS or HTML template.
-    
+
     \#\#\# Example
-    
+
     Unpoly's [`[up-drawer]`](/a-up-drawer) is implemented as a modal flavor:
-    
+
         up.modal.flavors.drawer = {
           openAnimation: 'move-from-right',
           closeAnimation: 'move-to-right'
         }
-    
+
     Modals with that flavor will have a container with an `up-flavor` attribute:
-    
+
         <div class='up-modal' up-flavor='drawer'>
           ...
         </div>
-    
+
     We can target the `up-flavor` attribute to override the default dialog styles:
-    
+
         .up-modal[up-flavor='drawer'] {
-    
+
           .up-modal-dialog {
             margin: 0;         // Remove margin so drawer starts at the screen edge
             max-width: 350px;  // Set drawer size
           }
-    
+
           .up-modal-content {
             min-height: 100vh; // Stretch background to full window height
           }
         }
-    
+
     @property up.modal.flavors
     @param {Object} flavors
       An object where the keys are flavor names (e.g. `'drawer') and
@@ -58101,7 +58060,7 @@ or function.
     /***
     Returns the source URL for the fragment displayed in the current modal overlay,
     or `undefined` if no modal is currently open.
-    
+
     @function up.modal.url
     @return {string}
       the source URL
@@ -58110,7 +58069,7 @@ or function.
 
     /***
     Returns the URL of the page behind the modal overlay.
-    
+
     @function up.modal.coveredUrl
     @return {string}
     @experimental
@@ -58180,9 +58139,9 @@ or function.
 
     /***
     Returns whether a modal is currently open.
-    
+
     This also returns `true` if the modal is in an opening or closing animation.
-    
+
     @function up.modal.isOpen
     @return {boolean}
     @stable
@@ -58193,14 +58152,14 @@ or function.
 
     /***
     Opens the given link's destination in a modal overlay:
-    
+
         var link = document.querySelector('a')
         up.modal.follow(link)
-    
+
     Any option attributes for [`a[up-modal]`](/a-up-modal) will be honored.
-    
+
     Emits events [`up:modal:open`](/up:modal:open) and [`up:modal:opened`](/up:modal:opened).
-    
+
     @function up.modal.follow
     @param {Element|jQuery|string} linkOrSelector
       The link to follow.
@@ -58218,7 +58177,7 @@ or function.
     @param {boolean} [config.closable=true]
       When `true`, the modal will render a close icon and close when the user
       clicks on the backdrop or presses Escape.
-    
+
       When `false`, you need to either supply an element with `[up-close]` or
       close the modal manually with `up.modal.close()`.
     @param {string} [options.confirm]
@@ -58255,16 +58214,16 @@ or function.
 
     /***
     Opens a modal for the given URL.
-    
+
     \#\#\# Example
-    
+
         up.modal.visit('/foo', { target: '.list' })
-    
+
     This will request `/foo`, extract the `.list` selector from the response
     and open the selected container in a modal dialog.
-    
+
     Emits events [`up:modal:open`](/up:modal:open) and [`up:modal:opened`](/up:modal:opened).
-    
+
     @function up.modal.visit
     @param {string} url
       The URL to load.
@@ -58287,18 +58246,18 @@ or function.
     /***
     [Extracts](/up.extract) the given CSS selector from the given HTML string and
     opens the results in a modal.
-    
+
     \#\#\# Example
-    
+
         var html = 'before <div class="content">inner</div> after';
         up.modal.extract('.content', html)
-    
+
     The would open a modal with the following contents:
-    
+
         <div class="content">inner</div>
-    
+
     Emits events [`up:modal:open`](/up:modal:open) and [`up:modal:opened`](/up:modal:opened).
-    
+
     @function up.modal.extract
     @param {string} selector
       The CSS selector to extract from the HTML.
@@ -58444,7 +58403,7 @@ or function.
 
     /***
     This event is [emitted](/up.emit) when a modal dialog is starting to open.
-    
+
     @event up:modal:open
     @param event.preventDefault()
       Event listeners may call this method to prevent the modal from opening.
@@ -58453,18 +58412,18 @@ or function.
 
     /***
     This event is [emitted](/up.emit) when a modal dialog has finished opening.
-    
+
     @event up:modal:opened
     @stable
      */
 
     /***
     Closes a currently opened modal overlay.
-    
+
     Does nothing if no modal is currently open.
-    
+
     Emits events [`up:modal:close`](/up:modal:close) and [`up:modal:closed`](/up:modal:closed).
-    
+
     @function up.modal.close
     @param {Object} options
       See options for [`up.animate()`](/up.animate)
@@ -58550,7 +58509,7 @@ or function.
     /***
     This event is [emitted](/up.emit) when a modal dialog
     is starting to [close](/up.modal.close).
-    
+
     @event up:modal:close
     @param event.preventDefault()
       Event listeners may call this method to prevent the modal from closing.
@@ -58560,7 +58519,7 @@ or function.
     /***
     This event is [emitted](/up.emit) when a modal dialog
     is done [closing](/up.modal.close).
-    
+
     @event up:modal:closed
     @stable
      */
@@ -58574,7 +58533,7 @@ or function.
     /***
     Returns whether the given element or selector is contained
     within the current modal.
-    
+
     @function up.modal.contains
     @param {string} elementOrSelector
       The element to test
@@ -58598,7 +58557,7 @@ or function.
     Returns a config object for the given flavor.
     Properties in that config should be preferred to the defaults in
     [`/up.modal.config`](/up.modal.config).
-    
+
     @function flavorOverrides
     @internal
      */
@@ -58608,7 +58567,7 @@ or function.
 
     /***
     Returns the config option for the current flavor.
-    
+
     @function flavorDefault
     @internal
      */
@@ -58629,16 +58588,16 @@ or function.
     /***
     Clicking this link will load the destination via AJAX and open
     the given selector in a modal dialog.
-    
+
     \#\#\# Example
-    
+
         <a href="/blogs" up-modal=".blog-list">Switch blog</a>
-    
+
     Clicking would request the path `/blog` and select `.blog-list` from
     the HTML response. Unpoly will dim the page
     and place the matching `.blog-list` tag in
     a modal dialog.
-    
+
     @selector a[up-modal]
     @param {string} up-modal
       The CSS selector that will be extracted from the response and displayed in a modal dialog.
@@ -58653,7 +58612,7 @@ or function.
     @param {boolean} [up-closable]
       When `true`, the modal will render a close icon and close when the user
       clicks on the backdrop or presses Escape.
-    
+
       When `false`, you need to either supply an element with `[up-close]` or
       close the modal manually with `up.modal.close()`.
     @param {string} [up-animation]
@@ -58668,10 +58627,10 @@ or function.
       By [default](/up.modal.config) the dialog will grow to fit its contents.
     @param {string} [up-history]
       Whether to push an entry to the browser history for the modal's source URL.
-    
+
       Set this to `'false'` to prevent the URL bar from being updated.
       Set this to a URL string to update the history with the given URL.
-    
+
     @stable
      */
     up.link.addFollowVariant('[up-modal]', {
@@ -58711,14 +58670,14 @@ or function.
 
     /***
     When this element is clicked, closes a currently open dialog.
-    
+
     Does nothing if no modal is currently open.
-    
+
     To make a link that closes the current modal, but follows to
     a fallback destination if no modal is open:
-    
+
         <a href="/fallback" up-close>Okay</a>
-    
+
     @selector .up-modal [up-close]
     @stable
      */
@@ -58730,24 +58689,24 @@ or function.
     /***
     Clicking this link will load the destination via AJAX and open
     the given selector in a modal drawer that slides in from the edge of the screen.
-    
+
     You can configure drawers using the [`up.modal.flavors.drawer`](/up.modal.flavors.drawer) property.
-    
+
     \#\#\# Example
-    
+
         <a href="/blogs" up-drawer=".blog-list">Switch blog</a>
-    
+
     Clicking would request the path `/blog` and select `.blog-list` from
     the HTML response. Unpoly will dim the page
     and place the matching `.blog-list` tag will be placed in
     a modal drawer.
-    
+
     @selector a[up-drawer]
     @param {string} up-drawer
       The CSS selector to extract from the response and open in the drawer.
     @param {string} [up-position='auto']
       The side from which the drawer slides in.
-    
+
       Valid values are `'left'`, `'right'` and `'auto'`. If set to `'auto'`, the
       drawer will slide in from left if the opening link is on the left half of the screen.
       Otherwise it will slide in from the right.
@@ -58764,11 +58723,11 @@ or function.
 
     /***
     Sets default options for future drawers.
-    
+
     @property up.modal.flavors.drawer
     @param {Object} config
       Default options for future drawers.
-    
+
       See [`up.modal.config`](/up.modal.config) for available options.
     @experimental
      */
@@ -58864,15 +58823,15 @@ The tooltip element is appended to the [viewport](/up.viewport) of the anchor el
 
     /***
     Configures defaults for future tooltips.
-    
+
     @property up.tooltip.config
     @param {string} [config.position]
       The default position of tooltips relative to the opening element.
-    
+
       Valid values are `'top'`, `'right'`, `'bottom'` or `'left'`.
     @param {string} [config.align]
       Defines the alignment of the tooltip along its side.
-    
+
       When the tooltip's `{ position }` is `'top'` or `'bottom'`, valid `{ align }` values are `'left'`, `center'` and `'right'`.
       When the tooltip's `{ position }` is `'left'` or `'right'`, valid `{ align }` values are `top'`, `center'` and `bottom'`.
     @param {string} [config.openAnimation='fade-in']
@@ -58934,11 +58893,11 @@ The tooltip element is appended to the [viewport](/up.viewport) of the anchor el
 
     /***
     Forces the tooltip to update its position relative to its anchor element.
-    
+
     Unpoly will automatically keep tooltips aligned when
     the document is resized or scrolled. Complex layout changes may make
     it necessary to call this function.
-    
+
     @function up.tooltip.sync
     @experimental
      */
@@ -58949,34 +58908,34 @@ The tooltip element is appended to the [viewport](/up.viewport) of the anchor el
 
     /***
     Opens a tooltip over the given element.
-    
+
     The unobtrusive variant of this is the [`[up-tooltip]`](/up-tooltip) selector.
-    
+
     \#\#\# Examples
-    
+
     In order to attach a tooltip to a `<span class="help">?</span>`:
-    
+
         up.tooltip.attach('.help', { text: 'Useful info' })
-    
+
     @function up.tooltip.attach
     @param {Element|jQuery|string} elementOrSelector
     @param {string} [options.text]
       The text to display in the tooltip.
-    
+
       Any HTML control characters will be escaped.
       If you need to use HTML formatting in the tooltip, use `options.html` instead.
     @param {string} [options.html]
       The HTML to display in the tooltip unescaped.
-    
+
       Make sure to escape any user-provided text before passing it as this option,
       or use `options.text` (which automatically escapes).
     @param {string} [options.position]
       The tooltip's position relative to the opening element.
-    
+
       Valid values are `'top'`, `'right'`, `'bottom'` or `'left'`.
     @param {string} [options.align]
       Defines the alignment of the tooltip along its side.
-    
+
       When the tooltip's `{ position }` is `'top'` or `'bottom'`, valid `{ align }` values are `'left'`, `center'` and `'right'`.
       When the tooltip's `{ position }` is `'left'` or `'right'`, valid `{ align }` values are `top'`, `center'` and `bottom'`.
     @param {string} [options.animation]
@@ -59021,9 +58980,9 @@ The tooltip element is appended to the [viewport](/up.viewport) of the anchor el
 
     /***
     Closes a currently shown tooltip.
-    
+
     Does nothing if no tooltip is currently shown.
-    
+
     @function up.tooltip.close
     @param {Object} options
       See options for [`up.animate()`](/up.animate).
@@ -59062,7 +59021,7 @@ The tooltip element is appended to the [viewport](/up.viewport) of the anchor el
 
     /***
     Returns whether a tooltip is currently showing.
-    
+
     @function up.tooltip.isOpen
     @stable
      */
@@ -59072,27 +59031,27 @@ The tooltip element is appended to the [viewport](/up.viewport) of the anchor el
 
     /***
     Displays a tooltip with text content when hovering the mouse over this element.
-    
+
     \#\#\# Example
-    
+
         <a href="/decks" up-tooltip="Show all decks">Decks</a>
-    
+
     To make the tooltip appear below the element instead of above the element,
     add an `up-position` attribute:
-    
+
         <a href="/decks" up-tooltip="Show all decks" up-position="bottom">Decks</a>
-    
+
     @selector [up-tooltip]
     @param {string} [up-animation]
       The animation used to open the tooltip.
       Defaults to [`up.tooltip.config.openAnimation`](/up.tooltip.config).
     @param {string} [up-position]
       The tooltip's position relative to the opening element.
-    
+
       Valid values are `'top'`, `'right'`, `'bottom'` or `'left'`.
     @param {string} [up-align]
       Defines the alignment of the tooltip along its side.
-    
+
       When the tooltip's `{ position }` is `'top'` or `'bottom'`, valid `{ align }` values are `'left'`, `center'` and `'right'`.
       When the tooltip's `{ position }` is `'left'` or `'right'`, valid `{ align }` values are `top'`, `center'` and `bottom'`.
     @stable
@@ -59100,9 +59059,9 @@ The tooltip element is appended to the [viewport](/up.viewport) of the anchor el
 
     /***
     Displays a tooltip with HTML content when hovering the mouse over this element:
-    
+
         <a href="/decks" up-tooltip-html="Show &lt;b&gt;all&lt;/b&gt; decks">Decks</a>
-    
+
     @selector [up-tooltip-html]
     @stable
      */
@@ -59184,7 +59143,7 @@ Once the response is received the URL will change to `/bar` and the `up-active` 
 
     /***
     Sets default options for this module.
-    
+
     @property up.feedback.config
     @param {Array<string>} [config.currentClasses]
       An array of classes to set on [links that point the current location](/a.up-current).
@@ -59313,24 +59272,24 @@ Once the response is received the URL will change to `/bar` and the `up-active` 
 
     /***
     Marks the given element as currently loading, by assigning the CSS class [`up-active`](/a.up-active).
-    
+
     This happens automatically when following links or submitting forms through the Unpoly API.
     Use this function if you make custom network calls from your own JavaScript code.
-    
+
     If the given element is a link within an [expanded click area](/up-expand),
     the class will be assigned to the expanded area.
-    
+
     \#\#\# Example
-    
+
         var button = document.querySelector('button')
-    
+
         button.addEventListener('click', () => {
           up.feedback.start(button)
           up.request(...).then(() => {
             up.feedback.stop(button)
           })
         })
-    
+
     @method up.feedback.start
     @param {Element|jQuery|string} element
       The element to mark as active
@@ -59345,25 +59304,25 @@ Once the response is received the URL will change to `/bar` and the `up-active` 
     are assigned the `up-active` class automatically.
     Style `.up-active` in your CSS to improve the perceived responsiveness
     of your user interface.
-    
+
     The `up-active` class will be removed when the link is done loading.
-    
+
     \#\#\# Example
-    
+
     We have a link:
-    
+
         <a href="/foo" up-follow>Foo</a>
-    
+
     The user clicks on the link. While the request is loading,
     the link has the `up-active` class:
-    
+
         <a href="/foo" up-follow class="up-active">Foo</a>
-    
+
     Once the link destination has loaded and rendered, the `up-active` class
     is removed and the [`up-current`](/a.up-current) class is added:
-    
+
         <a href="/foo" up-follow class="up-current">Foo</a>
-    
+
     @selector a.up-active
     @stable
      */
@@ -59373,38 +59332,38 @@ Once the response is received the URL will change to `/bar` and the `up-active` 
     are assigned the `up-active` class automatically.
     Style `.up-active` in your CSS to improve the perceived responsiveness
     of your user interface.
-    
+
     The `up-active` class will be removed as soon as the response to the
     form submission has been received.
-    
+
     \#\#\# Example
-    
+
     We have a form:
-    
+
         <form up-target=".foo">
           <button type="submit">Submit</button>
         </form>
-    
+
     The user clicks on the submit button. While the form is being submitted
     and waiting for the server to respond, the form has the `up-active` class:
-    
+
         <form up-target=".foo" class="up-active">
           <button type="submit">Submit</button>
         </form>
-    
+
     Once the link destination has loaded and rendered, the `up-active` class
     is removed.
-    
+
     @selector form.up-active
     @stable
      */
 
     /***
     Marks the given element as no longer loading, by removing the CSS class [`up-active`](/a.up-active).
-    
+
     This happens automatically when network requests initiated by the Unpoly API have completed.
     Use this function if you make custom network calls from your own JavaScript code.
-    
+
     @function up.feedback.stop
     @param {Element|jQuery|string} element
       The link or form that has finished loading.
@@ -59416,72 +59375,72 @@ Once the response is received the URL will change to `/bar` and the `up-active` 
 
     /***
     Marks this element as a navigation component, such as a menu or navigation bar.
-    
+
     When a link within an `[up-nav]` element points to the current location, it is assigned the `.up-current` class. When the browser navigates to another location, the class is removed automatically.
-    
+
     You may also assign `[up-nav]` to an individual link instead of an navigational container.
-    
+
     If you don't want to manually add this attribute to every navigational element, you can configure selectors to automatically match your navigation components in [`up.feedback.config.navs`](/up.feedback.config#config.navs).
-    
-    
+
+
     \#\#\# Example
-    
+
     Let's take a simple menu with two links. The menu has been marked with the `[up-nav]` attribute:
-    
+
         <div up-nav>
           <a href="/foo">Foo</a>
           <a href="/bar">Bar</a>
         </div>
-    
+
     If the browser location changes to `/foo`, the first link is marked as `.up-current`:
-    
+
         <div up-nav>
           <a href="/foo" class="up-current">Foo</a>
           <a href="/bar">Bar</a>
         </div>
-    
+
     If the browser location changes to `/bar`, the first link automatically loses its `.up-current` class. Now the second link is marked as `.up-current`:
-    
+
         <div up-nav>
           <a href="/foo">Foo</a>
           <a href="/bar" class="up-current">Bar</a>
         </div>
-    
-    
+
+
     \#\#\# What is considered to be "current"?
-    
+
     The current location is considered to be either:
-    
+
     - the URL displayed in the browser window's location bar
     - the source URL of a [modal dialog](/up.modal)
     - the URL of the page behind a [modal dialog](/up.modal)
     - the source URL of a [popup overlay](/up.popup)
     - the URL of the content behind a [popup overlay](/up.popup)
-    
+
     A link matches the current location (and is marked as `.up-current`) if it matches either:
-    
+
     - the link's `href` attribute
     - the link's `up-href` attribute
     - a space-separated list of URLs in the link's `up-alias` attribute
-    
+
     \#\#\# Matching URL by pattern
-    
+
     You can mark a link as `.up-current` whenever the current URL matches a prefix or suffix.
     To do so, include an asterisk (`*`) in the `up-alias` attribute.
-    
+
     For instance, the following `[up-nav]` link is highlighted for both `/reports` and `/reports/123`:
-    
+
         <a up-nav href="/reports" up-alias="/reports/*">Reports</a>
-    
+
     @selector [up-nav]
     @stable
      */
 
     /***
     When a link within an `[up-nav]` element points to the current location, it is assigned the `.up-current` class.
-    
+
     See [`[up-nav]`](/up-nav) for more documentation and examples.
-    
+
     @selector [up-nav] a.up-current
     @stable
      */
@@ -59520,17 +59479,17 @@ passively receive updates from the server.
 
     /***
     Configures defaults for passive updates.
-    
+
     @property up.radio.config
     @param {Array<string>} [options.hungry]
       An array of CSS selectors that is replaced whenever a matching element is found in a response.
       These elements are replaced even when they were not targeted directly.
-    
+
       By default this contains the [`[up-hungry]`](/up-hungry) attribute.
     @param {string} [options.hungryTransition=null]
       The transition to use when a [hungry element](/up-hungry) is replacing itself
       while another target is replaced.
-    
+
       By default this is not set and the original replacement's transition is used.
     @stable
      */
@@ -59554,11 +59513,11 @@ passively receive updates from the server.
     Elements with this attribute are [updated](/up.replace) whenever there is a
     matching element found in a successful response. The element is replaced even
     when it isn't [targeted](/a-up-target) directly.
-    
+
     Use cases for this are unread message counters or notification flashes.
     Such elements often live in the layout, outside of the content area that is
     being replaced.
-    
+
     @selector [up-hungry]
     @stable
      */
@@ -59702,6 +59661,12 @@ module.exports = function(module) {
  */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+__webpack_require__(/*! ./compilers/userForm */ "./resources/js/compilers/userForm.js");
+
+__webpack_require__(/*! ./compilers/modal */ "./resources/js/compilers/modal.js");
+
+__webpack_require__(/*! ./compilers/datatable */ "./resources/js/compilers/datatable.js");
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -59728,9 +59693,8 @@ try {
 
   __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
 
-  __webpack_require__(/*! unpoly/dist/unpoly */ "./node_modules/unpoly/dist/unpoly.js");
+  __webpack_require__(/*! unpoly/dist/unpoly.js */ "./node_modules/unpoly/dist/unpoly.js"); //   require('unpoly/dist/unpoly-bootstrap3');
 
-  __webpack_require__(/*! unpoly/dist/unpoly-bootstrap3 */ "./node_modules/unpoly/dist/unpoly-bootstrap3.js");
 } catch (e) {}
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -59754,6 +59718,158 @@ window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/compilers/datatable.js":
+/*!*********************************************!*\
+  !*** ./resources/js/compilers/datatable.js ***!
+  \*********************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _util_swalHelper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/swalHelper */ "./resources/js/util/swalHelper.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+(function (up) {
+  up.compiler("div.datatable", function ($el) {
+    var unbindClick = up.on("click", "a.delete-link", function (ev, el) {
+      Object(_util_swalHelper__WEBPACK_IMPORTED_MODULE_0__["swalConfirm"])("O usuário será apagado do sistema.", "Tem certeza?").then(function (result) {
+        if (result) {
+          axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"](el.href).then(function (result) {
+            up.reload("div.datatable");
+          });
+        }
+      });
+    });
+    return function () {
+      unbindClick();
+    };
+  });
+})(up);
+
+/***/ }),
+
+/***/ "./resources/js/compilers/modal.js":
+/*!*****************************************!*\
+  !*** ./resources/js/compilers/modal.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+(function () {
+  if (true) {
+    up.log.enable();
+  }
+
+  up.modal.config.closable = false;
+}).call(this);
+
+/***/ }),
+
+/***/ "./resources/js/compilers/userForm.js":
+/*!********************************************!*\
+  !*** ./resources/js/compilers/userForm.js ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+(function (up) {
+  up.compiler("div.user-form", function (el) {
+    var inputCpf = $(el).find("input[name=cpf]")[0];
+    var im = new Inputmask("999.999.999-99");
+    im.mask(inputCpf);
+    return function () {
+      if (inputCpf.inputmask) inputCpf.inputmask.remove();
+    };
+  });
+})(up);
+
+/***/ }),
+
+/***/ "./resources/js/util/swalHelper.js":
+/*!*****************************************!*\
+  !*** ./resources/js/util/swalHelper.js ***!
+  \*****************************************/
+/*! exports provided: swalConfirm, swalFlashSuccess, swalFlashError, swalAlertInfo, swalAlertWarning */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "swalConfirm", function() { return swalConfirm; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "swalFlashSuccess", function() { return swalFlashSuccess; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "swalFlashError", function() { return swalFlashError; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "swalAlertInfo", function() { return swalAlertInfo; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "swalAlertWarning", function() { return swalAlertWarning; });
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_0__);
+
+var swalConfirm = function swalConfirm(text) {
+  var title = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "Tem certeza?";
+  var confirmButtonText = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "Sim";
+  var cancelButtonText = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : "Não";
+  return sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire({
+    title: title,
+    text: text,
+    icon: "question",
+    showCancelButton: true,
+    cancelButtonText: cancelButtonText,
+    confirmButtonText: confirmButtonText
+  }).then(function (result) {
+    return result.value;
+  });
+};
+var swalFlashSuccess = function swalFlashSuccess(text) {
+  var title = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "Sucesso!";
+  var timer = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1000;
+  sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire({
+    title: title,
+    text: text,
+    icon: "success",
+    showCancelButton: false,
+    showConfirmButton: false,
+    timer: timer
+  });
+};
+var swalFlashError = function swalFlashError(text) {
+  var title = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "Erro!";
+  var timer = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1000;
+  sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire({
+    title: title,
+    text: text,
+    icon: "error",
+    showCancelButton: false,
+    showConfirmButton: false,
+    timer: timer
+  });
+};
+var swalAlertInfo = function swalAlertInfo(text) {
+  var title = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "Informação";
+  var confirmButtonText = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "Ok";
+  sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire({
+    title: title,
+    text: text,
+    icon: "info",
+    showConfirmButton: true,
+    confirmButtonText: confirmButtonText
+  });
+};
+var swalAlertWarning = function swalAlertWarning(text) {
+  var title = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "Atenção";
+  var confirmButtonText = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "Entendi";
+  sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire({
+    title: title,
+    text: text,
+    icon: "warning",
+    showConfirmButton: true,
+    confirmButtonText: confirmButtonText
+  });
+};
 
 /***/ }),
 

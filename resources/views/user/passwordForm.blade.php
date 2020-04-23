@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="ic-content">
+<div class="user-password-form">
     <div class="modal-header">
         <h5 class="modal-title">Alterar senha do usuário</h5>
     </div>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="ic-content">
+<div class="user-data">
     <div class="modal-header">
         <h5 class="modal-title">Dados do Usuário</h5>
     </div>
@@ -57,16 +57,13 @@
     </div>
 
     <div class="modal-footer">
-        <a href="{{route('user.edit', [$user])}}" class="btn btn-primary">
+        <a href="{{route('user.edit', [$user])}}" class="btn btn-primary" up-modal="div.user-form">
             Editar
         </a>
-        <a href="{{route('user.password.form', [$user])}}" class="btn btn-secondary"
-            ic-target="#userShowModal .modal-content" ic-get-from="{{route('user.password.form', [$user])}}"
-            ic-select-from-response="div.ic-content">
+        <a href="{{route('user.password.form', [$user])}}" class="btn btn-secondary" up-dash="div.user-password-form">
             Alterar Senha
         </a>
-        <a href="" class="btn btn-secondary" ic-action="modal:hide;addClass:showModalLoadingIndicator"
-            ic-action-target="#userShowModal">
+        <a href="{{route('user.index')}}" class="btn btn-secondary" up-close>
             Fechar
         </a>
     </div>

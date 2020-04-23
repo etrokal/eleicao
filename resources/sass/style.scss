@@ -6,12 +6,9 @@
   display: none;
 }
 
-div.alert.ic-removing {
-  @extend .fadeOutUp;
-}
-
 .up-modal-content {
   padding-top: 5%;
   padding-left: 3%;
   padding-right: 3%;
+  padding-bottom: 5%;
 }

@@ -6,5 +6,6 @@
 
 require("./bootstrap");
 
-
-
+require("./compilers/userForm");
+require("./compilers/modal");
+require("./compilers/datatable");

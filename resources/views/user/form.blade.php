@@ -3,7 +3,7 @@
 @section('content')
 <div class="user-form">
     <h2 class="modal-title">@yield('title')</h2>
-    <form action="@yield('action')" method="POST" class="userForm" up-target="body">
+    <form action="@yield('action')" method="POST" class="userForm" up-target="div.datatable">
         @csrf
         @if($user->id)
         @method('PUT')
@@ -22,7 +22,7 @@
         @include('user.partials.admin')
 
         <div class="form-group mt-3">
-            <a href="{{route('user.index')}}" class="btn btn-secondary" up-dash="div.datatable">
+            <a href="{{route('user.index')}}" class="btn btn-secondary" up-close up-dash="div.datatable">
                 Cancelar
             </a>
 

@@ -98,11 +98,20 @@ class UserController extends Controller
 
     public function update(UpdateUserRequest $request, User $user)
     {
-        $data = $request->all();
+        $validator = $this->getValidator($request->all(), 'update');
 
-        unset($data['password']);
-        $user->fill($data);
-        $user->save();
+        if ($validator->fails()) {
+            $user = new User($request->all());
+            return response()->view('user.create', [
+                'errors' => $validator->errors(),
+                'user' => $user
+            ], 400);
+        } else {
+            $campos = $validator->valid();
+            $campos['password'] = Hash::make($campos['password']);
+            $user = User::create($campos);
+            return redirect()->route('user.index')->with('success', 'Usuário alterado com sucesso.');
+        }
 
         return redirect()->route('user.index');
     }
@@ -186,17 +195,33 @@ class UserController extends Controller
         }
     }
 
-    protected function getValidator($data)
+    protected function getValidator($data, $type = 'create')
     {
-
-        $data['cpf'] = isset($data['cpf']) ? preg_replace("/[^0-9]/", "", $data['cpf']) : null;
         $id = isset($data['id']) ? $data['id'] : 'null';
+        $data['cpf'] = isset($data['cpf']) ? preg_replace("/[^0-9]/", "", $data['cpf']) : null;
 
-        return Validator::make($data, [
+        $createRules = [
             'name' => 'required|max:191',
             'email' => "required|email|unique:App\Models\User,email,{$id},id,deleted_at,NULL",
             'cpf' => "required|cpf|unique:App\Models\User,cpf,{$id},id,deleted_at,NULL",
             'rg' => 'required',
-        ], []);
+            'password' => 'required|min:6|max:64|confirmed',
+        ];
+
+        $updateRules = [
+            'name' => 'required|max:191',
+            'email' => "required|email|unique:App\Models\User,email,{$id},id,deleted_at,NULL",
+            'cpf' => "required|cpf|unique:App\Models\User,cpf,{$id},id,deleted_at,NULL",
+            'rg' => 'required',
+        ];
+
+        $passwordRules = [
+            'password' => 'required|min:6|max:64|confirmed',
+        ];
+
+
+        return Validator::make($data, ${$type . 'Rules'}, [
+
+        ]);
     }
 }

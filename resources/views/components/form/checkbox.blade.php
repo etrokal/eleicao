@@ -1,6 +1,6 @@
-<div class="form-check">
+<div class="form-check" up-fieldset>
     <input class="form-check-input @if(!empty($errorMsg ?? '') || !empty($errorPartial ?? '')) is-invalid @endif"
-        type="checkbox" value="{{$value}}" {{$checked ? 'checked': ''}} id="{{$name}}" name="{{$name}}" />
+        type="checkbox" value="{{$value}}" {{$checked ? 'checked': ''}} id="{{$name}}" name="{{$name}}" up-validate >
     <label class="form-check-label" for="{{$name}}">
         {{$label ?? $name}}
     </label>
